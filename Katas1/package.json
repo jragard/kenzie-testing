@@ -1,0 +1,30 @@
+{
+  "name": "katas1",
+  "version": "1.0.0",
+  "description": "Test for Katas 1 assessment",
+  "main": "katas1.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha || exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jragard/kenzie-testing.git"
+  },
+  "keywords": [
+    "Javascript",
+    "Kata"
+  ],
+  "author": "Aaron, Ryan, Meaghan, Travis, Carl",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jragard/kenzie-testing/issues"
+  },
+  "homepage": "https://github.com/jragard/kenzie-testing#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
+  }
+}

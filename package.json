@@ -1,0 +1,23 @@
+{
+  "name": "kenzie-testing",
+  "version": "1.0.0",
+  "description": "Making a Kenzie Test Suite for JS front end curriculum",
+  "main": "katas1-framework.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha || exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jragard/kenzie-testing.git"
+  },
+  "author": "Aaron Jackson, Meaghan Crowell, Ryan Agard, Travis Anderson, Carl Smith",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jragard/kenzie-testing/issues"
+  },
+  "homepage": "https://github.com/jragard/kenzie-testing#readme",
+  "dependencies": {}
+}
