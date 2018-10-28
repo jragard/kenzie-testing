@@ -5,7 +5,8 @@ module.exports = {
         for (let counter = 1; counter < 21; counter++) {
             numbers.push(counter)
         }
-        return numbers
+        return numbers;
+        
     },
     evensToTwenty: function() {
         // Return an array with the even numbers from 1 to 20
