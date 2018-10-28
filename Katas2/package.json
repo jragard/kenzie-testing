@@ -1,11 +1,8 @@
 {
-  "name": "kenzie-js-testing",
+  "name": "katas2",
   "version": "1.0.0",
-  "description": "Making a Kenzie Test Suite for JS front end curriculum",
-  "main": "",
-  "directories": {
-    "test": "test"
-  },
+  "description": "Testing for Javascript Katas 2",
+  "main": "katas2.js",
   "scripts": {
     "test": "mocha || exit 0"
   },
@@ -13,16 +10,18 @@
     "type": "git",
     "url": "git+https://github.com/jragard/kenzie-testing.git"
   },
-  "author": "Aaron Jackson, Meaghan Crowell, Ryan Agard, Travis Anderson, Carl Smith",
+  "keywords": [
+    "functions",
+    "katas"
+  ],
+  "author": "Aaron Jackson",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/jragard/kenzie-testing/issues"
   },
   "homepage": "https://github.com/jragard/kenzie-testing#readme",
-  "dependencies": {},
-  "keywords": [
-    "testing",
-    "kenzie",
-    "javascript"
-  ]
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
+  }
 }
