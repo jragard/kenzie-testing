@@ -1,4 +1,4 @@
-const katas1 = require('../assignments-to-test/katas1')
+const katas1 = require('../katas1')
 const chai = require('chai')
 const assert = chai.assert;
 
