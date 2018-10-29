@@ -19,7 +19,10 @@
     "url": "https://github.com/jragard/kenzie-testing/issues"
   },
   "homepage": "https://github.com/jragard/kenzie-testing#readme",
-  "dependencies": {},
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
+  },
   "keywords": [
     "testing",
     "kenzie",
