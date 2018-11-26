@@ -1,0 +1,15 @@
+{
+  "name": "katas4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "katas4.js",
+  "scripts": {
+    "test": "mocha || exit"
+  },
+  "author": "Ryan Agard",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
+  }
+}
