@@ -86,7 +86,7 @@ describe('Kata 7, Display an array with even numbers counting backwards 20 - 2',
     it('CORRECT - displays even numbers counting backwards 20 - 2', function() {
         expect(katas1.evenNumbersBackwards()).to.eql([20, 18, 16, 14, 12, 10, 8, 6, 4, 2])
     })
-    it('EdgeCase 1 - ends with 0 instead of 2', function() {
+    it('Oops! The array ends with 0 instead of 2...double check the end condition in your for loop', function() {
         expect(katas1.evenNumbersBackwards()).to.eql([20, 18, 16, 14, 12, 10, 8, 6, 4, 2, 0])
     })
 })
@@ -96,10 +96,10 @@ describe('Kata 8, Display an array with odd numbers counting backwards 20 - 1', 
     it('CORRECT - displays odd numbers counting backwards 20 - 1', function() {
         expect(katas1.oddNumbersBackwards()).to.eql([19, 17, 15, 13, 11, 9, 7, 5, 3, 1])
     })
-    it('EdgeCase 1 - starts with 21 instead of 20', function() {
+    it('Oops! The array starts with 21 instead of 20...double check the start condition in your for loop', function() {
         expect(katas1.oddNumbersBackwards()).to.eql([21, 19, 17, 15, 13, 11, 9, 7, 5, 3, 1])
     })
-    it('EdgeCase 2 - ends with -1 instead of 1', function() {
+    it('Oops!  The array ends with -1 instead of 1...double check the end condition in your for loop', function() {
         expect(katas1.oddNumbersBackwards()).to.eql([19, 17, 15, 13, 11, 9, 7, 5, 3, 1, -1])
     })
 })
@@ -109,7 +109,7 @@ describe('Kata 9, Display an array with multiples of 5 counting backwards from 1
     it('CORRECT - displays multiples of 5 counting backwards from 100', function() {
         expect(katas1.multiplesOfFiveBackwards()).to.eql([100, 95, 90, 85, 80, 75, 70, 65, 60, 55, 50, 45, 40, 35, 30, 25, 20, 15, 10, 5])
     })
-    it('EdgeCase 1 - ends with 0 instead of 5', function() {
+    it('Oops!  The array ends with 0 instead of 5...double check the end condition in your for loop', function() {
         expect(katas1.multiplesOfFiveBackwards()).to.eql([100, 95, 90, 85, 80, 75, 70, 65, 60, 55, 50, 45, 40, 35, 30, 25, 20, 15, 10, 5, 0])
     })
 })
@@ -119,7 +119,7 @@ describe('Kata 10, Display an array with square numbers counting backwards from 
     it('CORRECT - displays square numbers counting backwards from 100', function() {
         expect(katas1.squareNumbersBackwards()).to.eql([100, 81, 64, 49, 36, 25, 16, 9, 4, 1])
     })
-    it('EdgeCase 1 - ends with 0 instead of 1', function() {
+    it('Oops!  The array ends with 0 instead of 1...double check the end condition in your for loop', function() {
         expect(katas1.squareNumbersBackwards()).to.eql([100, 81, 64, 49, 36, 25, 16, 9, 4, 1, 0])
     })
 })
