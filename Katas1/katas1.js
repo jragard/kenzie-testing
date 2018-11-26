@@ -2,7 +2,7 @@ module.exports = {
     oneThroughTwenty: function() {
         // Return an array with the numbers from 1 to 20
         const numbers = []
-        for (let counter = 1; counter < 22; counter++) {
+        for (let counter = 1; counter < 21; counter++) {
             numbers.push(counter)
         }
         return numbers
@@ -27,7 +27,7 @@ module.exports = {
     multiplesOfFive: function() {
         // Return an array with the multiples of 5 up to 100
         const numbers = []
-        for (let counter = 0; counter < 101; counter += 5) {
+        for (let counter = 5; counter < 101; counter += 5) {
             numbers.push(counter)
         }
 
