@@ -1,6 +1,6 @@
 # Kenzie Academy Frontend Javascript Testing Files
 
-This repo is for the development of testing for assignments in the first 6 months of Kenzie curriculum. Each folder contains tests for a related assignment in the curriculum. These files will be distributed to the students to aid them in learning programming and give them quicker feed back. It will also allow Coaches to give more code feedback instead of just correctness of problem.
+This repo is for the development of testing for assignments in the first 6 months of Kenzie curriculum. Each folder contains tests for a related assignment in the curriculum. Many of the files with empty function skeletons and export objects containing the function names can be cloned and filled out by the students, so that coaches/graders can simply run the automated tests resulting in drastically reduced grading time and increased time for specialized feedback.  Eventually the tests can be used to develop a codewars-style interface for students to interact with to receive instant feedback.
 
 # Assignment Folder Structure
 
@@ -12,19 +12,19 @@ The mocha testing framework is being used currently for all assignments. This fr
 
 ### Test file
 
-Inside this file should go all test files. This file will be located in the test folder. An example test file will be maintained at the top of the repository
+Inside this file should go all test files. This file will be located in the test folder. An example test file will be maintained at the top of the repository (NOTE:  Not every test file will be the same, as we will need to get a little creative for some of the different kinds of assessments)
 
 ## Framework file
 
-Each folder should contain a framework file or "skeleton file". This file will be given to the students so that the test files can be run properly. This should have a structure that the students knows what each function should be named and any comments needed for them to know what to complete.
+Each folder should contain a framework file or "skeleton file". Earlier on in the coursework, this file could be given to the students to fill out so that the test files can be run properly.  Later when the students have more experience and are comfortable writing their own functions, we can simply ask them to name their functions according to what we are importing in our test files. 
 
 ## Completed solutions file
 
-There should also be a completed solutions file for each assignment folder so that if new tests are created, there is code to test the tests with. This file name will also be important since this will be the file name that will be imported into the test file.
+There should also be a completed solutions file for each assignment folder to run the tests against.
 
 ## npm reposititory folders
 
-Each assignment folder contains its own initialized npm reposititory with the required packages for that project. Each folder will contain its own package.json file and package-lock.json file. This structure will all each to be its own project and have all projects in one github repo for easy access and maintainability
+Each assignment folder contains its own initialized npm reposititory with the required packages for that project. Each folder will contain its own package.json file and package-lock.json file. This structure will all each to be its own project and have all projects in one github repo for easy access and maintainability.  Each assignment folder should also contain its own README with any changes to the assignment instructions, and an overview of the kinds of tests we are running for that particular assignment.
 
 # Setting up new assignment folder
 
@@ -60,7 +60,7 @@ That will setup everything that is needed for the assignment folder.
 
 Currently, we are using module.exports to export the functions from the main file so the test file can import them and test them.
 
-This should be done in a manner that is not confusing or obtrusive for the student. Comments are needed to guide them to how we expect the file structure is to be setup and so they can focus on learning the programming.
+This should be done in a manner that is not confusing or obtrusive for the student. Comments could be needed to guide them to how we expect the file structure is to be setup and so they can focus on learning the programming.
 
 an example test file can be seen in the top of the directory `test-file-example.js`
 Also, Katas1 is mostly flushed out and can be a good starting point.
