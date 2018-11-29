@@ -13,10 +13,10 @@ describe("Multiply, write a function that takes two arguments and returns their 
     const stringFunction = katas2.multiply.toString()
     const restrictedOperator = /[*+]/
     const test = restrictedOperator.test(stringFunction)
-    it("THIS TEST SHOULD PASS, Function doesn't use restricted built-in operators", function() {
+    it("Function doesn't use restricted built-in operators", function() {
         expect(test).to.equal(false)
     })
-    it("CORRECT, Function returns correct product", function() {
+    it("CORRECT", function() {
         expect(katas2.multiply(3, 9)).to.equal(27)
     })
 })
@@ -25,10 +25,10 @@ describe("Power, write a function that takes two arguments (x and n) and returns
     const stringFunction = katas2.power.toString()
     const restrictedOperator = /[*+]/
     const test = restrictedOperator.test(stringFunction)
-    it("THIS TEST SHOULD PASS, Function doesn't use restricted built-in operators", function() {
+    it("Function doesn't use restricted built-in operators", function() {
         expect(test).to.equal(false)
     })
-    it("CORRECT, Function returns x raised to the nth power", function() {
+    it("CORRECT", function() {
         expect(katas2.power(2, 8)).to.equal(256)
         expect(katas2.power(3, 7)).to.equal(2187)
         expect(katas2.power(3, 13)).to.equal(1594323)
@@ -39,10 +39,10 @@ describe("Factorial, write a function that takes a single argument and returns i
     const stringFunction = katas2.factorial.toString()
     const restrictedOperator = /[*+]/
     const test = restrictedOperator.test(stringFunction)
-    it("THIS TEST SHOULD PASS, Function doesn't use restricted built-in operators", function() {
+    it("Function doesn't use restricted built-in operators", function() {
         expect(test).to.equal(false)
     })
-    it("CORRECT, Function returns the factorial of x", function() {
+    it("CORRECT", function() {
         expect(katas2.factorial(4)).to.equal(24)
         expect(katas2.factorial(7)).to.equal(5040)
         expect(katas2.factorial(9)).to.equal(362880)
@@ -53,10 +53,10 @@ describe("Fibonacci, write a fnction that takes an argument n and returns the nt
     const stringFunction = katas2.fibonacci.toString()
     const restrictedOperator = /[*+]/
     const test = restrictedOperator.test(stringFunction)
-    it("THIS TEST SHOULD PASS, Function doesn't use restricted built-in operators", function() {
+    it("Function doesn't use restricted built-in operators", function() {
         expect(test).to.equal(false)
     })
-    it("CORRECT, Function returns nth fibonacci number", function() {
+    it("CORRECT", function() {
         expect(katas2.fibonacci(1)).to.equal(0)
         expect(katas2.fibonacci(2)).to.equal(1)
         expect(katas2.fibonacci(3)).to.equal(1)
