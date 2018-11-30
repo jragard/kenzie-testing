@@ -1,4 +1,4 @@
-# Katas 1 Tests
+ # Katas 1 Tests
 
 Each kata has one 'describe' statement with 2-3 tests in test/katas1test.js - one test is for the correct answer we are expecting, and the other tests are for common incorrect answers (for example, if the instructions call for returning an array of the numbers 1 - 20, but the function returns 1 - 21, a test looking for that common mistake will be triggered, further automatically narrowing down the mistake.  Test messages can also be accessed, so this might come in handy later when we build a user interface with instant feedback)
 
