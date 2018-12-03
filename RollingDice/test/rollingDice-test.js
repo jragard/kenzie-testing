@@ -2,6 +2,10 @@ const rollingDice = require("../rollingDice");
 const chai = require("chai");
 const assert = chai.assert;
 const FunctionAnalyzer = require("function-analyzer");
+const spies = require("chai-spies");
+const should = chai.should();
+
+chai.use(spies);
 
 describe("rollDie", () => {
   it("should use Math.floor(Math.random() * 6) + 1", () => {
@@ -19,6 +23,12 @@ describe("times", () => {
     const numOfTimes = Math.floor(Math.random() * 100) + 1;
     const result = rollingDice.times(rollingDice.rollDie, numOfTimes);
     assert(result && result.length === numOfTimes);
+  });
+  it("should call the fn numOfTimes", () => {
+    const fnSpy = chai.spy();
+    const numOfTimes = Math.floor(Math.random() * 100) + 1;
+    const _ = rollingDice.times(fnSpy, numOfTimes);
+    fnSpy.should.have.been.called.exactly(numOfTimes);
   });
 });
 describe("createKeyCount", () => {});
