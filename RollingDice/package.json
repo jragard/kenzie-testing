@@ -1,0 +1,19 @@
+{
+  "name": "rollingdice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "rollingDice.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha || exit 0"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "function-analyzer": "git+ssh://git@gitlab.com:kenzie-academy/misc/function-analyzer.git",
+    "mocha": "^5.2.0"
+  }
+}
