@@ -19,18 +19,17 @@ describe("rollDie", () => {
 
 describe("times", () => {
   const randomNum = Math.floor(Math.random() * 100) + 1;
+  const fnSpy = chai.spy(() => randomNum);
 
   it("should return an array with length equal to numOfTimes", () => {
     const result = times(rollDie, randomNum);
     assert(result && result.length === randomNum);
   });
   it("should call the fn numOfTimes", () => {
-    const fnSpy = chai.spy();
     const _ = times(fnSpy, randomNum);
     fnSpy.should.have.been.called.exactly(randomNum);
   });
   it("should return an array whose values come the result of calling fn", () => {
-    const fnSpy = chai.spy(() => randomNum);
     const result = times(fnSpy, randomNum);
     assert(result.every(val => val === randomNum));
   });
