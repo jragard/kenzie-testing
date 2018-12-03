@@ -1,62 +1,51 @@
-module.exports = {
-    oneThroughTwenty: function() {
-        // Return an array with the numbers from 1 to 20
+function oneThroughTwenty() {
 
+    return;
+}
 
-        return;
-    },
-    evensToTwenty: function() {
-        // Return an array with the even numbers from 1 to 20
+function evensToTwenty() {
 
+    return;
+}
 
-        return;
-    },
-    oddsToTwenty: function() {
-        // Return an array with the odd numbers from 1 - 20
+function oddsToTwenty() {
 
+    return;
+}
 
-        return;
-    },
-    multiplesOfFive: function() {
-        // Return an array with the multiples of 5 up to 100
+function multiplesOfFive() {
 
+    return;
+}
 
-        return;
-    },
-    squareNumbers: function() {
-        // Return an array with square numbers up to 100
+function squareNumbers() {
 
+    return;
+}
 
-        return;
-    },
-    countingBackwards: function() {
-        // Return an array with the numbers counting backwards from 20 to 1
+function countingBackwards() {
 
+    return;
+}
 
-        return;
-    },
-    evenNumbersBackwards: function() {
-        // Return an array with the even numbers counting backwards from 20
+function evenNumbersBackwards() {
 
+    return;
+}
 
-        return;
-    },
-    oddNumbersBackwards: function() {
-        // Return an array with the odd numbers counting backwards from 20 to 1
+function oddNumbersBackwards() {
 
+    return;
+}
 
-        return;
-    },
-    multiplesOfFiveBackwards: function() {
-        // Return an array with the multiples of five, counting backwards from 100
+function multiplesOfFiveBackwards() {
 
+    return;
+}
 
-        return;
-    },
-    squareNumbersBackwards: function() {
-        // Return an array with square numbers, counting backwards from 100
-        
+function squareNumbersBackwards() {
 
-        return;
-    }
- }
+    return;
+}
+
+module.exports = { oneThroughTwenty, evensToTwenty, oddsToTwenty, multiplesOfFive, squareNumbers, countingBackwards, evenNumbersBackwards, oddNumbersBackwards, multiplesOfFiveBackwards, squareNumbersBackwards }
