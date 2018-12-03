@@ -1,7 +1,7 @@
 module.exports = {
   rollDie: function() {
     // Return a random integer from 1 to 6
-    return;
+    return Math.floor(Math.random() * 6) + 1;
   },
   rollDice: function(numOfRolls) {
     // Return an array whose length is numOfRolls, and each item is one rollDie() result
