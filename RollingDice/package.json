@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "chai": "^4.2.0",
+    "chai-spies": "^1.0.0",
     "function-analyzer": "git+ssh://git@gitlab.com:kenzie-academy/misc/function-analyzer.git",
     "mocha": "^5.2.0"
   }
