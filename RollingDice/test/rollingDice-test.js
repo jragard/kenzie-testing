@@ -26,7 +26,7 @@ describe("times", () => {
     assert(result && result.length === randomNum);
   });
   it("should call the fn numOfTimes", () => {
-    const _ = times(fnSpy, randomNum);
+    times(fnSpy, randomNum);
     fnSpy.should.have.been.called.exactly(randomNum);
   });
   it("should return an array whose values come the result of calling fn", () => {
