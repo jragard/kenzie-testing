@@ -13,7 +13,14 @@ describe("rollDie", () => {
   });
 });
 
-describe("rollDice", () => {});
+describe("rollDice", () => {
+  it("should return an array with length equal to numOfRolls", () => {
+    // create a random number between 1 and 100
+    const numOfRolls = Math.floor(Math.random() * 100) + 1;
+    const result = rollingDice.rollDice(numOfRolls);
+    assert(result && result.length === numOfRolls);
+  });
+});
 describe("createKeyCount", () => {});
 describe("documentWriteObject", () => {});
 describe("createBarGraph", () => {});
