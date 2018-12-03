@@ -30,6 +30,14 @@ describe("times", () => {
     const _ = rollingDice.times(fnSpy, numOfTimes);
     fnSpy.should.have.been.called.exactly(numOfTimes);
   });
+  it("should return an array whose values come the result of calling fn", () => {
+    const randomNum = Math.floor(Math.random() * 100) + 1;
+
+    const fnSpy = chai.spy(() => randomNum);
+
+    const result = rollingDice.times(fnSpy, randomNum);
+    assert(result.every(val => val === randomNum));
+  });
 });
 describe("createKeyCount", () => {});
 describe("documentWriteObject", () => {});
