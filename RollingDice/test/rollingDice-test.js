@@ -13,12 +13,12 @@ describe("rollDie", () => {
   });
 });
 
-describe("rollDice", () => {
-  it("should return an array with length equal to numOfRolls", () => {
+describe("times", () => {
+  it("should return an array with length equal to numOfTimes", () => {
     // create a random number between 1 and 100
-    const numOfRolls = Math.floor(Math.random() * 100) + 1;
-    const result = rollingDice.rollDice(numOfRolls);
-    assert(result && result.length === numOfRolls);
+    const numOfTimes = Math.floor(Math.random() * 100) + 1;
+    const result = rollingDice.times(rollingDice.rollDie, numOfTimes);
+    assert(result && result.length === numOfTimes);
   });
 });
 describe("createKeyCount", () => {});

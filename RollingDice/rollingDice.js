@@ -3,10 +3,10 @@ module.exports = {
     // Return a random integer from 1 to 6
     return Math.floor(Math.random() * 6) + 1;
   },
-  rollDice: function(numOfRolls) {
-    // Return an array whose length is numOfRolls, and each item is one rollDie() result
+  times: function(fn, numOfTimes) {
+    // Return an array whose length is numOfTimes, and each item is a fn() result
 
-    return Array(numOfRolls).fill();
+    return Array(numOfTimes).fill();
   },
   createKeyCount: function(array) {
     // Return an object whose keys represent every unique value in the input array
