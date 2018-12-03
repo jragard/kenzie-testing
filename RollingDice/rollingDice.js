@@ -11,7 +11,7 @@ module.exports = {
       arr.push(fn());
     }
 
-    return Array(numOfTimes).fill();
+    return arr;
   },
   createKeyCount: function(array) {
     // Return an object whose keys represent every unique value in the input array
