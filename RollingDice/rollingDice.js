@@ -6,7 +6,7 @@ module.exports = {
   rollDice: function(numOfRolls) {
     // Return an array whose length is numOfRolls, and each item is one rollDie() result
 
-    return;
+    return Array(numOfRolls).fill();
   },
   createKeyCount: function(array) {
     // Return an object whose keys represent every unique value in the input array
