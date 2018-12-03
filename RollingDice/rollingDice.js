@@ -5,6 +5,11 @@ module.exports = {
   },
   times: function(fn, numOfTimes) {
     // Return an array whose length is numOfTimes, and each item is a fn() result
+    const arr = [];
+
+    for (let i = 0; i < numOfTimes; i++) {
+      arr.push(fn());
+    }
 
     return Array(numOfTimes).fill();
   },
