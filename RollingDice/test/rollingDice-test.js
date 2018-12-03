@@ -3,8 +3,8 @@ const chai = require("chai");
 const assert = chai.assert;
 const FunctionAnalyzer = require("function-analyzer");
 const spies = require("chai-spies");
-const should = chai.should();
 
+chai.should();
 chai.use(spies);
 
 describe("rollDie", () => {
