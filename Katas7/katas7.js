@@ -25,7 +25,7 @@ function some(array, callback) {
 function find(array, callback) {
     for(let index = 0; index < array.length; index++) {
         if(callback(array[index]) === true) {
-            return array[i]
+            return array[index]
         }
     }
 }
