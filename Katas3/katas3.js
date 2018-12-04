@@ -23,9 +23,21 @@ const sampleArray = [
 
 // instructions need this to be in an html element,
 // not console log, will have to brainstorm on that
-function kata1() {
-  for (let i = 1; i <= 20; i++) {
-    console.log(i);
+module.exports = {
+  kata11: () => {
+    return sampleArray;
+  },
+  kata12: function() {
+    return sampleArray.filter(number => number % 2 === 0);
+  },
+  kata13: () => {
+    // let answer = [];
+    // for (let i = 0; i < sampleArray.length; i++) {
+    //   if (sampleArray[i] % 2 != 0) {
+    //     answer.unshift(sampleArray[i]);
+    //   }
+    // }
+    // return answer;
+    return sampleArray.filter(number => number % 2 !== 0);
   }
-}
-kata1();
+};
