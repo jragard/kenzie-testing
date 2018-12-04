@@ -18,9 +18,9 @@ describe('Fizzbuzz Test Suite', () => {
     //         expect(fb.fizzbuzz()).to.equal(2)
     //     })
     // })
-    describe('Checking first element contains value of 1', () => {
-        it('should contain 1', () => {
-            expect('body').dom.to.contain.text('1')
+    describe('Checking first element', () => {
+        it('should contain help', () => {
+            expect('body > p:last-of-type').dom.to.contain.text('2')
         })
     })
 })
