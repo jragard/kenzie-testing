@@ -35,11 +35,16 @@ describe("times", () => {
   });
 });
 describe("createKeyCount", () => {
+  const testArr = Array(Math.floor(Math.random() * 100) + 1)
+    .fill()
+    .map(_ => Math.floor(Math.random() * 100) + 1);
+  const result = createKeyCount(testArr);
+  console.log(testArr);
   it("should create an object whose keys represent every unique value in the input array", () => {
-    const testArr = [1, 2, 3];
-    const result = createKeyCount(testArr);
     assert(
-      result && testArr.every(val => Object.keys(result).includes(String(val)))
+      result &&
+        testArr.every(num => Object.keys(result).includes(String(num))) &&
+        Object.keys(result).every(key => testArr.includes(Number(key)))
     );
   });
 });
