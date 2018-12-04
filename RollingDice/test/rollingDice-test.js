@@ -38,7 +38,9 @@ describe("createKeyCount", () => {
   it("should create an object whose keys represent every unique value in the input array", () => {
     const testArr = [1, 2, 3];
     const result = createKeyCount(testArr);
-    assert(result && testArr.every(val => Object.keys(result).includes(val)));
+    assert(
+      result && testArr.every(val => Object.keys(result).includes(String(val)))
+    );
   });
 });
 describe("documentWriteObject", () => {});

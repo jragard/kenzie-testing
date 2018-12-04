@@ -16,8 +16,13 @@ module.exports = {
   createKeyCount: function(array) {
     // Return an object whose keys represent every unique value in the input array
     // and whose values represent the number of times that key was seen in the input array
-
-    return;
+    const obj = {};
+    array.forEach(val => {
+      if (obj[val] === undefined) {
+        obj[val] = "";
+      }
+    });
+    return obj;
   },
   documentWriteObject: function(object) {
     // Side-effecting function: should write the object's keys and values directly to the document
