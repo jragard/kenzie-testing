@@ -36,7 +36,6 @@ function findIndex(array, callback) {
             return index;
         }
     }
-
     return -1;
 }
 

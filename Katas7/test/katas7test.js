@@ -8,6 +8,7 @@ const numbers = [1, 2, 3, 4, 5, 6]
 const oddNumbers = [1, 3, 5, 7, 9, 11]
 const letters = ['a', 'b', 'c', 'd', 'e']
 const vowels = ['a', 'e', 'i', 'o', 'u']
+const consonants = ['b', 'c', 'd', 'f', 'g']
 const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present']
 
 let lettersCallbackCounter = 0;
@@ -200,6 +201,12 @@ describe("find, should reproduce the built-in method 'find' using a callback fun
                 return true
             }
         })).to.eql('a')
+
+        expect(katas7.find(vowels, function(letter) {
+            if(consonants.includes(letter)) {
+                return true
+            }
+        })).to.equal(undefined)
     })
 })
 
@@ -229,6 +236,20 @@ describe("findIndex, should reproduce the built-in method 'findIndex' using a ca
         expect(lettersCallbackCounter).to.equal(5)
         expect(wordsCallbackCounter).to.equal(6)
     })
+
+    it("Behaves like the built-in method it's duplicating and returns expected results", function() {
+        expect(katas7.findIndex(numbers, function(number) {
+            if(number > 2) {
+                return true
+            }
+        })).to.equal(2)
+
+        expect(katas7.findIndex(numbers, function(number) {
+            if(number > 7) {
+                return true
+            }
+        })).to.equal(-1)
+    })
 })
 
 describe("every, should reproduce the built-in method 'every' using a callback function, and without using the built-in version", function() {
@@ -256,6 +277,21 @@ describe("every, should reproduce the built-in method 'every' using a callback f
         expect(numbersCallbackCounter).to.equal(6)
         expect(lettersCallbackCounter).to.equal(5)
         expect(wordsCallbackCounter).to.equal(6)
+    })
+
+    it("Behaves like the built-in method it's duplicating and returns expected results", function() {
+        
+        expect(katas7.every(numbers, function(number) {
+            if((typeof number) === 'number') {
+                return true
+            }
+        })).to.equal(true)
+
+        expect(katas7.every(words, function(word) {
+            if((typeof word) === 'string') {
+                return true
+            }
+        })).to.equal(true)
     })
 })
 
