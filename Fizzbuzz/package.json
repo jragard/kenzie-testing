@@ -1,0 +1,31 @@
+{
+  "name": "fizzbuzz",
+  "version": "1.0.0",
+  "description": "Testing for fizzbuzz assignment.",
+  "main": "fizzbuzz-framework.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jragard/kenzie-testing.git"
+  },
+  "keywords": [
+    "mocha",
+    "chai"
+  ],
+  "author": "Aaron Jackson, Sam Kane",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jragard/kenzie-testing/issues"
+  },
+  "homepage": "https://github.com/jragard/kenzie-testing#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "chai-webdriver": "^1.2.0",
+    "mocha": "^5.2.0"
+  }
+}
