@@ -1,4 +1,4 @@
-const { rollDie, times } = require("../rollingDice");
+const { rollDie, times, createKeyCount } = require("../rollingDice");
 const chai = require("chai");
 const assert = chai.assert;
 const FunctionAnalyzer = require("function-analyzer");
@@ -34,6 +34,12 @@ describe("times", () => {
     assert(result.every(val => val === randomNum));
   });
 });
-describe("createKeyCount", () => {});
+describe("createKeyCount", () => {
+  it("should create an object whose keys represent every unique value in the input array", () => {
+    const testArr = [1, 2, 3];
+    const result = createKeyCount(testArr);
+    assert(result && testArr.every(val => Object.keys(result).includes(val)));
+  });
+});
 describe("documentWriteObject", () => {});
 describe("createBarGraph", () => {});
