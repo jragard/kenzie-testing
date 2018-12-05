@@ -29,6 +29,14 @@ describe("forEach, should reproduce the built-in method 'forEach' using a callba
         wordsResults = [];
     })
 
+    const stringFunction = katas7.forEach.toString()
+    const restricted = /\.forEach/
+    const test = restricted.test(stringFunction)
+
+    it("Doesn't use built-in forEach method", function() {
+        expect(test).to.equal(false)
+    })
+
     it("Should be calling the callback function for each element in the given array", function() {
 
         katas7.forEach(numbers, function() {
@@ -76,6 +84,14 @@ describe("map, should reproduce the built-in method 'map' using a callback funct
         wordsCallbackCounter = 0;
     })
 
+    const stringFunction = katas7.forEach.toString()
+    const restricted = /\.map/
+    const test = restricted.test(stringFunction)
+
+    it("Doesn't use built-in forEach method", function() {
+        expect(test).to.equal(false)
+    })
+
     it("Should be calling the callback function for each element in the given array", function() {
 
         katas7.map(numbers, function() {
@@ -120,6 +136,14 @@ describe("some, should reproduce the built-in method 'some' using a callback fun
         wordsCallbackCounter = 0;
     })
 
+    const stringFunction = katas7.forEach.toString()
+    const restricted = /\.some/
+    const test = restricted.test(stringFunction)
+
+    it("Doesn't use built-in forEach method", function() {
+        expect(test).to.equal(false)
+    })
+
     it("Should be calling the callback function for each element in the given array", function() {
 
         katas7.some(numbers, function() {
@@ -161,6 +185,14 @@ describe("find, should reproduce the built-in method 'find' using a callback fun
         lettersCallbackCounter = 0;
         numbersCallbackCounter = 0;
         wordsCallbackCounter = 0;
+    })
+
+    const stringFunction = katas7.forEach.toString()
+    const restricted = /\.find/
+    const test = restricted.test(stringFunction)
+
+    it("Doesn't use built-in forEach method", function() {
+        expect(test).to.equal(false)
     })
 
     it("Should be calling the callback function for each element in the given array", function() {
@@ -217,6 +249,14 @@ describe("findIndex, should reproduce the built-in method 'findIndex' using a ca
         numbersCallbackCounter = 0;
         wordsCallbackCounter = 0;
     })
+
+    const stringFunction = katas7.forEach.toString()
+    const restricted = /\.findIndex/
+    const test = restricted.test(stringFunction)
+
+    it("Doesn't use built-in forEach method", function() {
+        expect(test).to.equal(false)
+    })
     
     it("Should be calling the callback function for each element in the given array", function() {
 
@@ -258,6 +298,14 @@ describe("every, should reproduce the built-in method 'every' using a callback f
         lettersCallbackCounter = 0;
         numbersCallbackCounter = 0;
         wordsCallbackCounter = 0;
+    })
+
+    const stringFunction = katas7.forEach.toString()
+    const restricted = /\.every/
+    const test = restricted.test(stringFunction)
+
+    it("Doesn't use built-in forEach method", function() {
+        expect(test).to.equal(false)
     })
 
     it("Should be calling the callback function for each element in the given array", function() {
@@ -303,6 +351,14 @@ describe("filter, should reproduce the built-in method 'filter' using a callback
         wordsCallbackCounter = 0;
     })
 
+    const stringFunction = katas7.forEach.toString()
+    const restricted = /\.filter/
+    const test = restricted.test(stringFunction)
+
+    it("Doesn't use built-in forEach method", function() {
+        expect(test).to.equal(false)
+    })
+
     it("Should be calling the callback function for each element in the given array", function() {
 
         katas7.filter(numbers, function() {
@@ -320,5 +376,20 @@ describe("filter, should reproduce the built-in method 'filter' using a callback
         expect(numbersCallbackCounter).to.equal(6)
         expect(lettersCallbackCounter).to.equal(5)
         expect(wordsCallbackCounter).to.equal(6)
+    })
+
+    it("Behaves like the built-in method it's duplicating and returns expected results", function() {
+
+        expect(katas7.filter(words, function(word) {
+            if(word.length > 6) {
+                return true
+            }
+        })).to.eql(['exuberant', 'destruction', 'present'])
+
+        expect(katas7.filter(numbers, function(number) {
+            if(number % 2 === 0) {
+                return true
+            }
+        })).to.eql([2, 4, 6])
     })
 })
