@@ -39,20 +39,18 @@ describe("createKeyCount", () => {
     .fill()
     .map(_ => Math.floor(Math.random() * 100) + 1);
   const result = createKeyCount(testArr);
+  const resultKeys = Object.keys(result);
   it("should create an object whose keys represent every unique value in the input array", () => {
     assert(
-      result &&
-        testArr.every(num => Object.keys(result).includes(String(num))) &&
-        Object.keys(result).every(key => testArr.includes(Number(key)))
+      testArr.every(num => resultKeys.includes(String(num))) &&
+        resultKeys.every(key => testArr.includes(Number(key)))
     );
   });
   it("should create an object whose values represent the number of times that key was seen in the input array", () => {
     assert(
-      result &&
-        Object.keys(result).every(
-          key =>
-            result[key] === testArr.filter(num => num === Number(key)).length
-        )
+      resultKeys.every(
+        key => result[key] === testArr.filter(num => num === Number(key)).length
+      )
     );
   });
 });
