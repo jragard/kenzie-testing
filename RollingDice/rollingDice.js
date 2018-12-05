@@ -19,7 +19,9 @@ module.exports = {
     const obj = {};
     array.forEach(val => {
       if (obj[val] === undefined) {
-        obj[val] = "";
+        obj[val] = 1;
+      } else {
+        obj[val]++;
       }
     });
     return obj;
