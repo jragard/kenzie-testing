@@ -27,17 +27,23 @@ module.exports = {
   kata11: () => {
     return sampleArray;
   },
-  kata12: function() {
+  kata12: () => {
     return sampleArray.filter(number => number % 2 === 0);
   },
   kata13: () => {
-    // let answer = [];
-    // for (let i = 0; i < sampleArray.length; i++) {
-    //   if (sampleArray[i] % 2 != 0) {
-    //     answer.unshift(sampleArray[i]);
-    //   }
-    // }
-    // return answer;
     return sampleArray.filter(number => number % 2 !== 0);
+  },
+  kata14: () => {
+    return sampleArray.map(x => x * x);
+  },
+  kata15: () => {
+    const sum = (total, num) => total + num;
+    let N = 21;
+    let a = Array.apply(null, { length: N }).map(Number.call, Number);
+    return a.reduce(sum);
+  },
+  kata16: () => {
+    const sum = (total, num) => total + num;
+    return sampleArray.reduce(sum);
   }
 };
