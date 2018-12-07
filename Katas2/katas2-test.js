@@ -1,4 +1,4 @@
-const katas2 = require('../katas2')
+const katas2 = require('./katas2')
 const chai = require('chai')
 const expect = chai.expect;
 
