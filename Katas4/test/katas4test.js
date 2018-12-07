@@ -1,8 +1,6 @@
 const katas4 = require('../katas4')
 const chai = require('chai')
-const assert = chai.assert;
 const expect = chai.expect;
-const should = chai.should();
 
 describe("Kata1, Should return an array from gotCitiesCSV", function() {
     const stringFunction = katas4.kata1.toString()
