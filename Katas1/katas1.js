@@ -9,7 +9,7 @@ function oneThroughTwenty() {
 
 function evensToTwenty() {
     // Return an array with the even numbers from 1 to 20
-    onst numbers = []
+    const numbers = []
     for (let counter = 2; counter < 21; counter += 2) {
         numbers.push(counter)
     }
