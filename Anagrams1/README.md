@@ -26,11 +26,11 @@ run.js is a script that does the following:
   3. makes a GET request for the raw version of anagrams.js
   4. writes `const { words } = require('./words')` to s.js in order to make the words array available to the students code
   5. writes the students anagrams.js to s.js
-    * any `use 'strict'` is removed, since this conflicts with module.exports  
+  * any `use 'strict'` is removed, since this conflicts with module.exports  
   6. writes `module.exports = { getAnagramsOf }` to s.js
-    * At this point, s.js is ready to be tested.  It contains the student's code along with the necessary import and export statements
+  * At this point, s.js is ready to be tested.  It contains the student's code along with the necessary import and export statements
   7. Calls `mocha anagramsTest.js` and displays the output to the console
-    * anagramsTest.js is hard coded to test s.js
+  * anagramsTest.js is hard coded to test s.js
   8. Deletes s.js
 
 
