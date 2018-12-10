@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   rollDie: function() {
     // Return a random integer from 1 to 6
     return Math.floor(Math.random() * 6) + 1;
