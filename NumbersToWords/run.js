@@ -6,7 +6,7 @@ const { argv } = require('yargs');
 const file = fs.createWriteStream('s.js');
 
 const answer = /.*github.com\/(\w*)\/(\w*)[.git]?$/.exec(argv._[0]);
-const url = `https://raw.githubusercontent.com/${answer[1]}/${answer[2]}/master/katas4.js`;
+const url = `https://raw.githubusercontent.com/${answer[1]}/${answer[2]}/master/numbersToWords.js`;
 
 axios.get(url)
     .then(response => {
