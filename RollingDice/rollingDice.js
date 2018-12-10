@@ -30,12 +30,30 @@ module.exports = {
     // Side-effecting function: should write the object's keys and values directly to the document
     // in the format of
     // key: value<br>
-
-    return;
+    for (let key in object) {
+      document.write(`${key}: ${object[key]}<br>`);
+    }
   },
   createBarGraph: function(object) {
     // Return a DOM subtree containing all the elements needed to render a bar graph from the input object data
-
-    return;
+    const barGraph = document.createElement("div");
+    for (let key in object) {
+      const bar = document.createElement("div");
+      bar.innerText = key;
+      bar.style.color = "white";
+      bar.style.backgroundColor = "grey";
+      bar.style.width = object[key] + "px";
+      bar.style.marginTop = "10px";
+      bar.style.marginBottom = "10px";
+      barGraph.appendChild(bar);
+    }
+    return barGraph;
+  },
+  execute: function() {
+    const result = this.createKeyCount(
+      this.times(() => this.rollDie() + this.rollDie(), 1000)
+    );
+    this.documentWriteObject(result);
+    document.body.appendChild(this.createBarGraph(result));
   }
 };
