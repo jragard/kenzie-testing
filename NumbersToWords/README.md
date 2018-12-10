@@ -10,9 +10,11 @@
 
 If you would like to test it on a dummy submission link, use `node run.js https://github.com/jragard/numberstowordstest`
 
-# Instructions
+# Assignment Instructions
 
 Write a function named *numbersToWords* that returns an array with all the numbers from 1 through 1000 **in words**, e.g. "one hundred seventeen" or "three hundred forty two".  
+
+IMPORTANT: For testing/grading purposes, make sure you name your function *numbersToWords*
 
 Start off small by only handling the numbers from 1 to 20 at first. *(1 points)*
 

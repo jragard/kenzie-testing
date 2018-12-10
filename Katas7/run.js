@@ -11,7 +11,7 @@ const url = `https://raw.githubusercontent.com/${answer[1]}/${answer[2]}/master/
 axios.get(url)
     .then(response => {
         file.write(response.data.replace(/use ['"]?strict['"]?/, ''));
-        file.write('\nmodule.exports = { forEach, map, some, find, findIndex, every, filter };');
+        file.write('\nmodule.exports = { newForEach, newMap, newSome, newFind, newFindIndex, newEvery, newFilter };');
         spawn('mocha', ['test.js'], {stdio: 'inherit'})
             .on('exit', function (error) {
             if (error) {
