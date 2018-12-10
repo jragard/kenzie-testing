@@ -1,4 +1,4 @@
-const numbersToWords = require('../numbersToWords')
+const numbersToWords = require('./s.js')
 const chai = require('chai')
 const expect = chai.expect
 
