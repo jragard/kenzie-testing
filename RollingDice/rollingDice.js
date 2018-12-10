@@ -1,7 +1,7 @@
 export default {
-  rollDie: function() {
-    // Return a random integer from 1 to 6
-    return Math.floor(Math.random() * 6) + 1;
+  randomInteger: function(max) {
+    // Return a random integer from 1 to max
+    return Math.floor(Math.random() * max) + 1;
   },
   times: function(fn, numOfTimes) {
     // Return an array whose length is numOfTimes, and each item is a fn() result
@@ -49,11 +49,17 @@ export default {
     }
     return barGraph;
   },
-  execute: function() {
+  execute: function(nSidedDie, sumOfNRolls, nNumberOfTimes) {
     const result = this.createKeyCount(
-      this.times(() => this.rollDie() + this.rollDie(), 1000)
+      this.times(
+        () =>
+          this.times(() => this.randomInteger(nSidedDie), sumOfNRolls).reduce(
+            (sum, num) => sum + num,
+            0
+          ),
+        nNumberOfTimes
+      )
     );
-    this.documentWriteObject(result);
     document.body.appendChild(this.createBarGraph(result));
   }
 };

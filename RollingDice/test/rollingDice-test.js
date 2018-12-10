@@ -7,10 +7,10 @@ const spies = require("chai-spies");
 chai.should();
 chai.use(spies);
 
-describe("rollDie", () => {
+describe("randomInteger", () => {
   it("should use Math.floor(Math.random() * 6) + 1", () => {
     assert(
-      new FunctionAnalyzer(rollDie).includes(
+      new FunctionAnalyzer(randomInteger).includes(
         "Math.floor(Math.random() * 6) + 1"
       )
     );
@@ -22,7 +22,7 @@ describe("times", () => {
   const fnSpy = chai.spy(() => randomNum);
 
   it("should return an array with length equal to numOfTimes", () => {
-    const result = times(rollDie, randomNum);
+    const result = times(randomInteger, randomNum);
     assert(result && result.length === randomNum);
   });
   it("should call the fn numOfTimes", () => {
