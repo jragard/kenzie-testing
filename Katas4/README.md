@@ -1,12 +1,33 @@
 # Katas 4 Tests
 
-Each kata has one 'describe' statement with 2-3 tests in test/katas4test.js - one test is for the correct answer we are expecting, and the other tests are either ensuring the student didn't simply return a hard-coded array without using the intended array methods, or ensuring the student used the array method specified in the instructions.
+## To Run These Tests
+
+1: Go to the test suite repo (here) and clone it to your machine.
+
+2: cd into the cloned directory and run `npm install` from the command line.
+
+3: Run `node run.js ___student's_repo_url___`.  Upon execution the output of the test results will be written to your console.
+
+If you would like to test it on a dummy submission link, use `node run.js https://github.com/jragard/katas4test`
 
 # Katas 4 Instructions
 
-For these tests to work on this particular assignment, the wording of the instructions for the Katas 4 assessment will need to be slightly changed.  Below are the instructions I propose.
+Overview
 
+A [kata](https://en.wikipedia.org/wiki/Kata_(programming)) is an individual exercise where you practice a programming skill through repetition. Today you will practice using JavaScript loops, conditionals, expressions and arrays through a series of katas.
+
+Several of the katas will use the following sample variables, which you can copy and paste into your code:
+
+`const gotCitiesCSV = "King's Landing,Braavos,Volantis,Old Valyria,Free Cities,Qarth,Meereen";`
+
+`const lotrCitiesArray = ["Mordor","Gondor","Rohan","Beleriand","Mirkwood","Dead Marshes","Rhun","Harad"];`
+
+`const bestThing = "The best thing about a boolean is even if you are wrong you are only off by a bit"`
+
+
+### Part 1: Katas
 1.  Write a function that returns an array with the cities in 'gotCitiesCSV'
+
 2.  Write a function that returns an array of words from the sentence in 'bestThing'
 3.  Write a function that returns a string separated by semi-colons instead of commas from 'gotCitiesCSV'
 4.  Write a function that returns a CSV (comma-separated) string from the 'lotrCitiesArray'  
@@ -38,3 +59,12 @@ For these tests to work on this particular assignment, the wording of the instru
 30.  Write a function that uses 'push' to add back the city from 'lotrCitiesArray' that was removed in #29 to the back of the array and returns the new array
 31.  Write a function that uses 'shift' to remove the first city from 'lotrCitiesArray' and returns the new array
 32.  Write a function that uses 'unshift' to add back the city from 'lotrCitiesArray' that was removed in #31 to the front of the array and returns the new array
+
+
+### Part 2: Display results on a webpage
+
+You will create a single web page to display the results of calling the functions you have written, with a labeled heading for each individual exercise followed by your solution.  Write a helper function and utilize **document.createElement** and associated methods to achieve this.
+
+Hint: when displaying an array, use JSON.stringify(...) to 'prettify' the output. For example, lets say you use document.createElement and store it into a variable called newElement. To display lotrCitiesArray on this element, you can call: 
+
+`newElement.textContent = JSON.stringify(lotrCitiesArray);`

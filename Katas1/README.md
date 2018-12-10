@@ -1,9 +1,11 @@
  # Katas 1 Tests
 
-# To Run These Tests
+## To Run These Tests
 
 1: Go to the test suite repo (here) and clone it to your machine.
+
 2: cd into the cloned directory and run `npm install` from the command line.
+
 3: Run `node run.js ___student's_repo_url___`.  Upon execution the output of the test results will be written to your console.
 
 If you would like to test it on a dummy submission link, use `node run.js https://github.com/jragard/katas1runtest`
@@ -16,6 +18,7 @@ To start, go to this repository containing the katas1.js file and clone it (If t
 
 # Example
 
+```
 function oneThroughFive() {
     const numbers = [];
 
@@ -23,15 +26,19 @@ function oneThroughFive() {
 
     return numbers;
 }
+```
 
 Code added below the commented out line:
 
-for(let counter = 1; counter <= 5; counter++) {
+`for(let counter = 1; counter <= 5; counter++) {
     numbers.push(counter)
-}
+}`
+
+### Katas
 
 
 1.  Return the numbers from 1 to 20. (1, 2, 3,..., 19, 20)
+
 2.  Return the even numbers from 1 to 20. (2, 4, 6,...18,20)
 3.  Return the odd numbers from 1 to 20. (1, 3, 5,...,17,19)
 4.  Return the multiples of 5 up to 100. (5, 10, 15, ..., 95, 100)

@@ -1,6 +1,15 @@
 # Katas 7 Tests
 
-Each kata has one 'describe' statement with 3 tests in test/katas7test.js - one is testing to make sure the built-in method isn't used in the student's function, one is testing to verify that the callback function is being called for each element in the given array, and one is testing to verify the expected answer/result.
+## To Run These Tests
+
+1: Go to the test suite repo (here) and clone it to your machine.
+
+2: cd into the cloned directory and run `npm install` from the command line.
+
+3: Run `node run.js ___student's_repo_url___`.  Upon execution the output of the test results will be written to your console.
+
+If you would like to test it on a dummy submission link, use `node run.js https://github.com/jragard/katas7test`
+
 
 # Katas 7 Instructions
 

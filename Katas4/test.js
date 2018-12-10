@@ -1,4 +1,4 @@
-const katas4 = require('../katas4')
+const katas4 = require('./s.js')
 const chai = require('chai')
 const expect = chai.expect;
 
