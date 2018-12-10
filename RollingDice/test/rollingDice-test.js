@@ -1,17 +1,17 @@
-const { rollDie, times, createKeyCount } = require("../rollingDice");
-const chai = require("chai");
+import { randomInteger, times, createKeyCount } from "../rollingDice";
+import chai from "chai";
 const assert = chai.assert;
-const FunctionAnalyzer = require("function-analyzer");
-const spies = require("chai-spies");
+import FunctionAnalyzer from "function-analyzer";
+import spies from "chai-spies";
 
 chai.should();
 chai.use(spies);
 
 describe("randomInteger", () => {
-  it("should use Math.floor(Math.random() * 6) + 1", () => {
+  it("should use Math.floor(Math.random() * max) + 1", () => {
     assert(
       new FunctionAnalyzer(randomInteger).includes(
-        "Math.floor(Math.random() * 6) + 1"
+        "Math.floor(Math.random() * max) + 1"
       )
     );
   });
