@@ -7,7 +7,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha || exit 0"
+    "test": "mocha --require @babel/polyfill --require @babel/register || exit 0"
   },
   "author": "",
   "license": "ISC",
@@ -16,5 +16,11 @@
     "chai-spies": "^1.0.0",
     "function-analyzer": "git+ssh://git@gitlab.com:kenzie-academy/misc/function-analyzer.git",
     "mocha": "^5.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/register": "^7.0.0"
   }
 }
