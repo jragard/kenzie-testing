@@ -34,9 +34,21 @@ const coin = {
         return image;
     }
 };
+
+function display20Flips() {
+    // 4. One point: Use a loop to flip the coin 20 times, each time displaying the result of the flip as a string on the page.  After your loop completes, return an array with the result of each flip.
+
+
+}
+
+function display20Images() {
+    // 5. One point: Use a loop to flip the coin 20 times, and display the results of each flip as an image on the page.  After your loop completes, return an array with result of each flip.
+
+
+}
 ```
 
-Note that you will need to download or create images to use to display face-up or face-down coins for the toHTML method.
+Note that you will need to download or create images to use to display face-up or face-down coins for the toHTML method. Create a folder directory named *images* in your repository to hold them.
 
 Also note that, by convention, an object's toString() method should always return a string which represents the object. This return value can then be used in any debugging output you may need to do. This will be a helpful convention to follow going forward. However, a toString() method should not directly produce any visual output itself – that is, for example, it shouldn't itself perform a console.log(): it should only return the string.
 
