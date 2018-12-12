@@ -54,5 +54,4 @@ describe("createKeyCount", () => {
     );
   });
 });
-describe("documentWriteObject", () => {});
 describe("createBarGraph", () => {});

@@ -15,13 +15,6 @@ module.exports = {
 
     return;
   },
-  documentWriteObject: function(object) {
-    // Side-effecting function: should write the object's keys and values directly to the document
-    // in the format of
-    // key: value<br>
-
-    return;
-  },
   createBarGraph: function(object) {
     // Return a DOM subtree containing all the elements needed to render a bar graph from the input object data
 

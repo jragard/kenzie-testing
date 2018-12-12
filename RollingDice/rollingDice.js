@@ -25,14 +25,7 @@ export const createKeyCount = array => {
   });
   return obj;
 };
-export const documentWriteObject = object => {
-  // Side-effecting function: should write the object's keys and values directly to the document
-  // in the format of
-  // key: value<br>
-  for (let key in object) {
-    document.write(`${key}: ${object[key]}<br>`);
-  }
-};
+
 export const createBarGraph = object => {
   // Return a DOM subtree containing all the elements needed to render a bar graph from the input object data
   const barGraph = document.createElement("div");
