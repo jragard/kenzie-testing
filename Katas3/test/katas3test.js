@@ -1,4 +1,4 @@
-const katas3 = require("../katas3.js");
+const katas3 = require("../katas3-framework.js");
 const chai = require("chai");
 const assert = chai.assert;
 const expect = chai.expect;
@@ -114,49 +114,55 @@ describe("Display numbers on to page as html elements with for loops", function(
         ? assert.isFunction(studentAnswer)
         : this.skip();
     });
-    it("Function Should return an Array", () => {
-      assert.isArray(studentAnswer());
-    });
-    it("Array Should contain the correct amount of numbers", () => {
-      assert.strictEqual(referenceAnswer.length, studentAnswer().length);
-    });
+    if (typeof studentAnswer === "function") {
+      it("Function Should return an Array", () => {
+        assert.isArray(studentAnswer());
+      });
+      it("Array Should contain the correct amount of numbers", () => {
+        assert.strictEqual(referenceAnswer.length, studentAnswer().length);
+      });
 
-    it("Array should contain only Odd values 1-20", () => {
-      studentAnswer().map(item => {
-        assert.isTrue(referenceAnswer.includes(item));
+      it("Array should contain only Odd values 1-20", () => {
+        studentAnswer().map(item => {
+          assert.isTrue(referenceAnswer.includes(item));
+        });
       });
-    });
-    it("Array items should be in the Correct Order", () => {
-      studentAnswer().forEach((item, i) => {
-        assert.strictEqual(referenceAnswer[i], item);
+      it("Array items should be in the Correct Order", () => {
+        studentAnswer().forEach((item, i) => {
+          assert.strictEqual(referenceAnswer[i], item);
+        });
       });
-    });
+    }
   });
   // kata 4
   describe("Kata 4", function() {
     const studentAnswer = katas3.kata4;
     const referenceAnswer = hundred.filter(x => x % 5 === 0);
 
-    it("Should be a function", () => {
-      assert.isFunction(studentAnswer);
+    it("Should be a function", function() {
+      typeof studentAnswer === "function"
+        ? assert.isFunction(studentAnswer)
+        : this.skip();
     });
-    it("Function Should return an Array", () => {
-      assert.isArray(studentAnswer());
-    });
-    it("Array Should contain the correct amount of numbers", () => {
-      assert.strictEqual(referenceAnswer.length, studentAnswer().length);
-    });
+    if (typeof studentAnswer === "function") {
+      it("Function Should return an Array", () => {
+        assert.isArray(studentAnswer());
+      });
+      it("Array Should contain the correct amount of numbers", () => {
+        assert.strictEqual(referenceAnswer.length, studentAnswer().length);
+      });
 
-    it("Array should contain only multiples of 5 from 1-100", () => {
-      studentAnswer().map(item => {
-        assert.isTrue(referenceAnswer.includes(item));
+      it("Array should contain only multiples of 5 from 1-100", () => {
+        studentAnswer().map(item => {
+          assert.isTrue(referenceAnswer.includes(item));
+        });
       });
-    });
-    it("Array items should be in the Correct Order", () => {
-      studentAnswer().forEach((item, i) => {
-        assert.strictEqual(referenceAnswer[i], item);
+      it("Array items should be in the Correct Order", () => {
+        studentAnswer().forEach((item, i) => {
+          assert.strictEqual(referenceAnswer[i], item);
+        });
       });
-    });
+    }
   });
   // kata 5
   describe("Kata 5", function() {
@@ -167,21 +173,23 @@ describe("Display numbers on to page as html elements with for loops", function(
         ? assert.isFunction(studentAnswer)
         : this.skip();
     });
-    it("Function Should return an Array", () => {
-      assert.isArray(studentAnswer());
-    });
-    it("Array Should contain the correct amount of numbers", () => {
-      assert.strictEqual(referenceAnswer.length, studentAnswer().length);
-    });
-
-    it("Array should contain only the square numbers from 1-100", () => {
-      expect(studentAnswer()).to.have.all.members(referenceAnswer);
-    });
-    it("Array items should be in the Correct Order", () => {
-      studentAnswer().forEach((item, i) => {
-        assert.strictEqual(referenceAnswer[i], item);
+    if (typeof studentAnswer === "function") {
+      it("Function Should return an Array", () => {
+        assert.isArray(studentAnswer());
       });
-    });
+      it("Array Should contain the correct amount of numbers", () => {
+        assert.strictEqual(referenceAnswer.length, studentAnswer().length);
+      });
+
+      it("Array should contain only the square numbers from 1-100", () => {
+        expect(studentAnswer()).to.have.all.members(referenceAnswer);
+      });
+      it("Array items should be in the Correct Order", () => {
+        studentAnswer().forEach((item, i) => {
+          assert.strictEqual(referenceAnswer[i], item);
+        });
+      });
+    }
   });
   // kata 6
   describe("Kata 6", function() {
@@ -192,21 +200,23 @@ describe("Display numbers on to page as html elements with for loops", function(
         ? assert.isFunction(studentAnswer)
         : this.skip();
     });
-    it("Function Should return an Array", () => {
-      assert.isArray(studentAnswer());
-    });
-    it("Array Should contain the correct amount of numbers", () => {
-      assert.strictEqual(referenceAnswer.length, studentAnswer().length);
-    });
-
-    it("Array should contain only numbers 1-20", () => {
-      expect(studentAnswer()).to.have.all.members(referenceAnswer);
-    });
-    it("Array items should be in the Correct Order (Descending)", () => {
-      studentAnswer().forEach((item, i) => {
-        assert.strictEqual(referenceAnswer[i], item);
+    if (typeof studentAnswer === "function") {
+      it("Function Should return an Array", () => {
+        assert.isArray(studentAnswer());
       });
-    });
+      it("Array Should contain the correct amount of numbers", () => {
+        assert.strictEqual(referenceAnswer.length, studentAnswer().length);
+      });
+
+      it("Array should contain only numbers 1-20", () => {
+        expect(studentAnswer()).to.have.all.members(referenceAnswer);
+      });
+      it("Array items should be in the Correct Order (Descending)", () => {
+        studentAnswer().forEach((item, i) => {
+          assert.strictEqual(referenceAnswer[i], item);
+        });
+      });
+    }
   });
   // kata 7
   describe("Kata 7", function() {
@@ -217,22 +227,24 @@ describe("Display numbers on to page as html elements with for loops", function(
         ? assert.isFunction(studentAnswer)
         : this.skip();
     });
-    it("Function Should return an Array", () => {
-      assert.isArray(studentAnswer());
-    });
-    it("Array Should contain the correct amount of numbers", () => {
-      assert.strictEqual(referenceAnswer.length, studentAnswer().length);
-    });
-    it("Array should contain only even numbers 1-20", () => {
-      expect(studentAnswer()).to.have.all.members(referenceAnswer);
-    });
-    it("Array items should be in the Correct Order (Descending)", () => {
-      studentAnswer().forEach((item, i) => {
-        assert.strictEqual(referenceAnswer[i], item);
+    if (typeof studentAnswer === "function") {
+      it("Function Should return an Array", () => {
+        assert.isArray(studentAnswer());
       });
-    });
+      it("Array Should contain the correct amount of numbers", () => {
+        assert.strictEqual(referenceAnswer.length, studentAnswer().length);
+      });
+      it("Array should contain only even numbers 1-20", () => {
+        expect(studentAnswer()).to.have.all.members(referenceAnswer);
+      });
+      it("Array items should be in the Correct Order (Descending)", () => {
+        studentAnswer().forEach((item, i) => {
+          assert.strictEqual(referenceAnswer[i], item);
+        });
+      });
+    }
   });
-  // kata 7
+  // kata 8
   describe("Kata 8", function() {
     const studentAnswer = katas3.kata8;
     const referenceAnswer = twentyReversed.filter(x => x % 2 !== 0);
@@ -241,21 +253,23 @@ describe("Display numbers on to page as html elements with for loops", function(
         ? assert.isFunction(studentAnswer)
         : this.skip();
     });
-    it("Function Should return an Array", () => {
-      assert.isArray(studentAnswer());
-    });
-    it("Array Should contain the correct amount of numbers", () => {
-      assert.strictEqual(referenceAnswer.length, studentAnswer().length);
-    });
-
-    it("Array should contain only odd numbers 1-20", () => {
-      expect(studentAnswer()).to.have.all.members(referenceAnswer);
-    });
-    it("Array items should be in the Correct Order (Descending)", () => {
-      studentAnswer().forEach((item, i) => {
-        assert.strictEqual(referenceAnswer[i], item);
+    if (typeof studentAnswer === "function") {
+      it("Function Should return an Array", () => {
+        assert.isArray(studentAnswer());
       });
-    });
+      it("Array Should contain the correct amount of numbers", () => {
+        assert.strictEqual(referenceAnswer.length, studentAnswer().length);
+      });
+
+      it("Array should contain only odd numbers 1-20", () => {
+        expect(studentAnswer()).to.have.all.members(referenceAnswer);
+      });
+      it("Array items should be in the Correct Order (Descending)", () => {
+        studentAnswer().forEach((item, i) => {
+          assert.strictEqual(referenceAnswer[i], item);
+        });
+      });
+    }
   });
   // kata 9
   describe("Kata 9", function() {
@@ -266,21 +280,23 @@ describe("Display numbers on to page as html elements with for loops", function(
         ? assert.isFunction(studentAnswer)
         : this.skip();
     });
-    it("Function Should return an Array", () => {
-      assert.isArray(studentAnswer());
-    });
-    it("Array Should contain the correct amount of numbers", () => {
-      assert.strictEqual(referenceAnswer.length, studentAnswer().length);
-    });
-
-    it("Array should contain only multiples of 5 from 1-100", () => {
-      expect(studentAnswer()).to.have.all.members(referenceAnswer);
-    });
-    it("Array items should be in the Correct Order (Descending)", () => {
-      studentAnswer().forEach((item, i) => {
-        assert.strictEqual(referenceAnswer[i], item);
+    if (typeof studentAnswer === "function") {
+      it("Function Should return an Array", () => {
+        assert.isArray(studentAnswer());
       });
-    });
+      it("Array Should contain the correct amount of numbers", () => {
+        assert.strictEqual(referenceAnswer.length, studentAnswer().length);
+      });
+
+      it("Array should contain only multiples of 5 from 1-100", () => {
+        expect(studentAnswer()).to.have.all.members(referenceAnswer);
+      });
+      it("Array items should be in the Correct Order (Descending)", () => {
+        studentAnswer().forEach((item, i) => {
+          assert.strictEqual(referenceAnswer[i], item);
+        });
+      });
+    }
   });
   // kata 10
   describe("Kata 10", function() {
@@ -293,21 +309,23 @@ describe("Display numbers on to page as html elements with for loops", function(
         ? assert.isFunction(studentAnswer)
         : this.skip();
     });
-    it("Function Should return an Array", () => {
-      assert.isArray(studentAnswer());
-    });
-    it("Array Should contain the correct amount of numbers", () => {
-      assert.strictEqual(referenceAnswer.length, studentAnswer().length);
-    });
-
-    it("Array should contain only square numbers from 1-100", () => {
-      expect(studentAnswer()).to.have.all.members(referenceAnswer);
-    });
-    it("Array items should be in the Correct Order (Descending)", () => {
-      studentAnswer().forEach((item, i) => {
-        assert.strictEqual(referenceAnswer[i], item);
+    if (typeof studentAnswer === "function") {
+      it("Function Should return an Array", () => {
+        assert.isArray(studentAnswer());
       });
-    });
+      it("Array Should contain the correct amount of numbers", () => {
+        assert.strictEqual(referenceAnswer.length, studentAnswer().length);
+      });
+
+      it("Array should contain only square numbers from 1-100", () => {
+        expect(studentAnswer()).to.have.all.members(referenceAnswer);
+      });
+      it("Array items should be in the Correct Order (Descending)", () => {
+        studentAnswer().forEach((item, i) => {
+          assert.strictEqual(referenceAnswer[i], item);
+        });
+      });
+    }
   });
   describe("Kata 11", function() {
     const studentFunction = katas3.kata11;

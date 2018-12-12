@@ -21,8 +21,11 @@ const sampleArray = [
   472
 ];
 
-function kata1() {
-  console.log("hi jake!");
-}
-
-const kata2 = () => {};
+module.exports = {
+  // kata1: () => {
+  //   return "Hello";
+  // },
+  // kata2: () => {
+  //   return "World";
+  // }
+};
