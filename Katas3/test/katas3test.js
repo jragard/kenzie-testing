@@ -35,7 +35,7 @@ const arrayLengthMatches = "Length of Array is correct";
 const arrayValuesAreCorrect = "Array values are correct";
 const returnValueIsCorrect = "Return Value is Correct";
 const TODO_WAITINGFORDOMRESEARCH = "DOM Question, look at the screen!";
-
+// change this
 describe("Display numbers on to page as html elements with for loops", function() {
   describe("Kata 11", function() {
     const studentFunction = katas3.kata11;
