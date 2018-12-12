@@ -32,7 +32,7 @@ Katas
 19Display 20 solid gray rectangles, each 20px high and 100px wide.
 20Display 20 solid gray rectangles, each 20px high, with widths ranging evenly from 105px to 200px (remember #4, above).
 21Display 20 solid gray rectangles, each 20px high, with widths in pixels given by the 20 elements of sampleArray.
-As in #21, but alternate colors so that every other rectangle is red.
-As in #21, but color the rectangles with even widths red. 
+22As in #21, but alternate colors so that every other rectangle is red.
+23As in #21, but color the rectangles with even widths red. 
 Bonus
 If you would like an additional challenge, try completing each of the above again without using any for or while loops.
