@@ -25,7 +25,7 @@ describe("The flip method randomly sets the coin object's state to either 0 or 1
     })
 })
 
-describe("The toString method successfully returns 'Heads', 'heads', 'Tails', or 'tails' depending on coin.state", function() {
+describe("toString method successfully returns 'Heads', 'heads', 'Tails', or 'tails' depending on coin.state", function() {
 
     function toString50() {
         let results = [];
@@ -61,19 +61,50 @@ describe("toHTML method creates an image element and sets the src to a particula
 
     let results = toHTML50();
 
-    it("Flipping the coin 50 times and each time pushing the results of the toHTML method to an array results in 50 elements", function() {
+    it("Flipping the coin 50 times and each time pushing the results of the toHTML method to an array results in 50 'type object' elements with nodeName 'IMG'...each element must have an src (src must not be an empty string) ", function() {
         expect(results.length).to.equal(50);
         
         for(let i = 0; i < results.length; i++) {
             expect(typeof results[i]).to.equal('object');
             expect(results[i].src).to.not.equal('');
+            expect(results[i].nodeName).to.equal('IMG');
         }
+    })
+})
+
+describe("display20Flips() flips the coin 20 times and displays the results on the DOM as a string", function() {
+
+    it("20 strings of 'Heads', 'heads', 'Tails', or 'tails' are appended to the DOM", function() {
+        const acceptedValues = ['Heads', 'heads', 'Tails', 'tails'];
+        const numberOfElementsBefore = document.getElementsByTagName('*').length;
+
+        coinObject.display20Flips();
+
+        const numberOfElementsAfter = document.getElementsByTagName('*').length;
+        const allElements = document.getElementsByTagName('*')
+        
+        const elementsList = [];
+        for (let item of allElements) {
+            elementsList.push(item)
+        }
+
+        const textNodeList = [];
+        for (let i = 0; i < elementsList.length; i++) {
+            if(acceptedValues.includes(elementsList[i].innerHTML) === true) {
+                textNodeList.push(elementsList[i].innerHTML)
+            }
+        }
+
+        expect(numberOfElementsAfter).to.equal(numberOfElementsBefore + 20)
+        expect(textNodeList.length).to.equal(20);
+
+
     })
 })
 
 describe("display20Images() flips the coin 20 times and displays the results on the DOM as images", function() {
 
-    it("Images are appended to the DOM", function() {
+    it("Images are appended to the DOM...src must not be empty", function() {
         const imgTagNumberBefore = document.getElementsByTagName("img").length;
         coinObject.display20Images();
         const imgTagNumberAfter = document.getElementsByTagName("img").length;
@@ -83,12 +114,6 @@ describe("display20Images() flips the coin 20 times and displays the results on 
             expect(imgTags[i].src).to.not.equal("")
         }
 
-        expect(imgTagNumberAfter).to.equal(imgTagNumberBefore + 20);
-
-
-
-
-        // console.log(imgTags[0].src)
-        
+        expect(imgTagNumberAfter).to.equal(imgTagNumberBefore + 20);    
     })
 })
