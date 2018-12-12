@@ -1,10 +1,10 @@
 {
-  "name": "katas4",
+  "name": "numberstowords",
   "version": "1.0.0",
   "description": "",
-  "main": "katas4.js",
+  "main": "numbersToWords.js",
   "scripts": {
-    "test": "mocha || exit"
+    "test": "mocha || exit 0"
   },
   "author": "Ryan Agard",
   "license": "ISC",

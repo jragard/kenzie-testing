@@ -1,71 +1,25 @@
 # Kenzie Academy Frontend Javascript Testing Files
 
-This repo is for the development of testing for assignments in the first 6 months of Kenzie curriculum. Each folder contains tests for a related assignment in the curriculum. Many of the files with empty function skeletons and export objects containing the function names can be cloned and filled out by the students, so that coaches/graders can simply run the automated tests resulting in drastically reduced grading time and increased time for specialized feedback.  Eventually the tests can be used to develop a codewars-style interface for students to interact with to receive instant feedback.
+This repo is for the development of automated testing suites to be run on student assessment submissions in order to automatically grade them.  The goal of these tests is to significantly reduce time and mental bandwith committed to grading assignments, which should free coaches up to give more focused and directed feedback. Each directory is a test suite tailored for its particular curricular assignment, containing a `README` with revised assignment instructions and instructions on how to run the tests.  Each suite also includes a `test.js` file containing the actual tests, and a `run.js` file containing a script that allows the tester to supply a github url as a command line arg and automatically pull down the contents of each student's submission to run the appropriate tests. Some assignments may provide the student with a file containing partial code for them to fill in.  The test suites that correspond with these assignments will also include `providedFile.js`. In the longer term, we will explore using the tests to create an online browser interface that gives immediate automated feedback upon student code submission.  
 
-# Assignment Folder Structure
+# Basic Guidelines For Creating New Test Suites
 
-Each folder should contain the following files, folders and information so that it is easy and accessible for anyone to change or update files.
+1. Create a new directory for the test, with a name that clearly identifies the assessment it is meant to test
 
-## test folder
+2. cd into the directory and from the command line run `npm i fs axios child_process yargs mocha chai` 
+3. run `touch run.js test.js README.md`
+4. The README file should include a quick 3 step guide on running the tests (for new graders or people using these tools for the first time).  Below that, detailed instructions for the assignment, as close as possible to what you think should be displayed on Canvas should also be included.  Refer to the README in the Katas1 directory for a template.
+5. Copy the script found in `run-js-example.js` at the root of this project directory into your new `run.js` file.  
 
-The mocha testing framework is being used currently for all assignments. This framework requires a test folder on the same level as the file being test. 
+2 IMPORTANT NOTES:  In `run-js-example.js`, notice the end of line 9 -- `/katas1.js`.  You will need to replace this with the filename the student will be submitting.  If the assignment does not already include a provided file that we can name ahead of time, you will need to revise the assignment guidelines to include explicit instructions for the students to name their submission files according to whatever file name you choose to include at the end of line 9 in your `run.js` script.  
 
-### Test file
+Notice the empty object brackets on line 14 of the script (`file.write('\nmodule.exports = {  };)`)  This is where you will need to add the function names to be exported from the student's submission.  Most of the assignments that use this approach will either have provided files with function names already declared, or the assignment instructions will explicitly require functions to be declared with pre-decided names.
 
-Inside this file should go all test files. This file will be located in the test folder. An example test file will be maintained at the top of the repository (NOTE:  Not every test file will be the same, as we will need to get a little creative for some of the different kinds of assessments)
 
-## Framework file
+6.  `test.js` is where you write your tests.  At the top of the file, include the line `const { __functions_to_import__  } = require('./s.js)`, filling in the object brackets with each function name you need to import from the student's submission.  Now you can call the functions in the test file.
 
-Each folder should contain a framework file or "skeleton file". Earlier on in the coursework, this file could be given to the students to fill out so that the test files can be run properly.  Later when the students have more experience and are comfortable writing their own functions, we can simply ask them to name their functions according to what we are importing in our test files. 
+7.  Since we will be pulling content directly from student's github url's, we will no longer need solution files in the test directories.  Instead, to verify your tests are working, create your own simple repo with just a solutions file for the assignment and use that url.
 
-## Completed solutions file
-
-There should also be a completed solutions file for each assignment folder to run the tests against.
-
-## npm reposititory folders
-
-Each assignment folder contains its own initialized npm reposititory with the required packages for that project. Each folder will contain its own package.json file and package-lock.json file. This structure will all each to be its own project and have all projects in one github repo for easy access and maintainability.  Each assignment folder should also contain its own README with any changes to the assignment instructions, and an overview of the kinds of tests we are running for that particular assignment.
-
-# Setting up new assignment folder
-
-All the files described above will be needed to make a new folder for testing a different assignment. Below are the instructions for setting up a new folder.
-
-On the command Line: 
-First, Checkout dev branch into a new branch.
-
-Make a new folder on the top level of the directory. Keep the same name as the assignment.
-
-cd into the new directory and run `npm init`.
-    While going through the init process for the package.json file make sure to change the followiong: 
-        main -> to the name of the file that the solutions will be in.
-        test -> if using mocha -> `mocha || exit 0`
-
-run `npm install mocha chai` to install the dependecies for testing
-
-make a test folder `mkdir test`
-
-make a solutions file.
-    make sure you use the same name that you used in the package.json for main.js
-        ex: `touch katas1.js`
-
-make a skeleton file.
-    this file will be used to give to the student so the testing works properly.
-
-cd into the test folder that was made.
-    make a testing file.
-
-That will setup everything that is needed for the assignment folder.
-
-## Setting up file content
-
-Currently, we are using module.exports to export the functions from the main file so the test file can import them and test them.
-
-This should be done in a manner that is not confusing or obtrusive for the student. Comments could be needed to guide them to how we expect the file structure is to be setup and so they can focus on learning the programming.
-
-an example test file can be seen in the top of the directory `test-file-example.js`
-Also, Katas1 is mostly flushed out and can be a good starting point.
-
-How we structure these files will need to be fully flushed out and then produced.
 
 
 
