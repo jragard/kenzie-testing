@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rolling the Dice</title>
+    <script type="module">
+      import { execute } from "./rollingDice.js";
+      window.execute = execute;
+    </script>
+  </head>
+  <body>
+    <h1>Rolling the Dice</h1>
+    <form
+      onSubmit="event.preventDefault();const form=new FormData(this);execute(Number(form.get('nSidedDie'))||6, Number(form.get('sumOfNRolls')) ||2, Number(form.get('nNumOfTimes')) ||1000)"
+    >
+      <fieldset style="display:flex;flex-direction:column">
+        <legend>Parameters</legend>
+        <label>N-sided Die:</label>
+        <input type="text" placeholder="6" name="nSidedDie" />
+        <label>Sum of N-rolls:</label>
+        <input type="text" placeholder="2" name="sumOfNRolls" />
+        <label>N-number of Times:</label>
+        <input type="text" placeholder="1000" name="nNumOfTimes" />
+        <button type="submit">Roll</button>
+      </fieldset>
+    </form>
+  </body>
+</html>
