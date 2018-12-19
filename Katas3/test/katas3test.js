@@ -1,9 +1,18 @@
-const katas3 = require("../katas3-framework.js");
+// const katas3 = require("../katas3.js");
+const fs = require("fs");
+let path;
+if (fs.existsSync("./test/s.js")) {
+  path = "./s.js";
+} else {
+  path = "../katas3.js";
+}
+katas3 = require(path);
+
 const chai = require("chai");
 const assert = chai.assert;
 const expect = chai.expect;
 const colors = require("mocha/lib/reporters/base").colors;
-colors["pending"] = "93";
+// colors["pending"] = "93";
 
 const sampleArray = [
   469,
@@ -30,13 +39,15 @@ const sampleArray = [
 colors["pending"] = "93";
 colors["green"] = "92";
 
-const isFunctionDefined = "Define a function";
+const isFunctionDefined = "Kata should define a function";
 const returnValueIsArray = "Function should return an array";
 const returnValueIsNumber = "Function should return a number";
-const arrayLengthMatches = "Length of Array is correct";
+const arrayLengthMatches = "Array should contain the correct amount of numbers";
 const arrayValuesAreCorrect = "Array values are correct";
 const returnValueIsCorrect = "Return Value is Correct";
 const TODO_WAITINGFORDOMRESEARCH = "DOM Question, look at the screen!";
+const notHardCodedAnswer =
+  "Answer should be generated dynamically and should NOT be hardcoded";
 // change this
 
 const twenty = Array.from(Array(20), (e, i) => i + 1);
@@ -50,14 +61,21 @@ describe("Display numbers on to page as html elements with for loops", function(
   describe("Kata 1", function() {
     const studentAnswer = katas3.kata1;
     const referenceAnswer = twenty;
+
     it("Kata Should be a function", function() {
       typeof studentAnswer === "function"
         ? assert.isFunction(studentAnswer)
         : this.skip();
     });
     if (typeof studentAnswer === "function") {
+      const stringFunction = studentAnswer.toString();
+      const restricted = /\[.*\d+,*.*\]/;
+      const test = restricted.test(stringFunction);
       it("Function should return an Array", () => {
         assert.isArray(studentAnswer());
+      });
+      it("Array should be generated dynamically and should NOT be hardcoded", () => {
+        expect(test).to.equal(false);
       });
       it("Array should contain the correct amount of numbers", () => {
         assert.strictEqual(referenceAnswer.length, studentAnswer().length);
@@ -85,8 +103,14 @@ describe("Display numbers on to page as html elements with for loops", function(
         : this.skip();
     });
     if (typeof studentAnswer === "function") {
-      it("Function Should return an Array", () => {
+      const stringFunction = studentAnswer.toString();
+      const restricted = /\[.*\d+,*.*\]/;
+      const test = restricted.test(stringFunction);
+      it("Function should return an Array", () => {
         assert.isArray(studentAnswer());
+      });
+      it("Array should be generated dynamically and should NOT be hardcoded", () => {
+        expect(test).to.equal(false);
       });
       it("Array Should contain the correct amount of numbers", () => {
         assert.strictEqual(referenceAnswer.length, studentAnswer().length);
@@ -115,8 +139,14 @@ describe("Display numbers on to page as html elements with for loops", function(
         : this.skip();
     });
     if (typeof studentAnswer === "function") {
-      it("Function Should return an Array", () => {
+      const stringFunction = studentAnswer.toString();
+      const restricted = /\[.*\d+,*.*\]/;
+      const test = restricted.test(stringFunction);
+      it("Function should return an Array", () => {
         assert.isArray(studentAnswer());
+      });
+      it("Array should be generated dynamically and should NOT be hardcoded", () => {
+        expect(test).to.equal(false);
       });
       it("Array Should contain the correct amount of numbers", () => {
         assert.strictEqual(referenceAnswer.length, studentAnswer().length);
@@ -145,8 +175,14 @@ describe("Display numbers on to page as html elements with for loops", function(
         : this.skip();
     });
     if (typeof studentAnswer === "function") {
-      it("Function Should return an Array", () => {
+      const stringFunction = studentAnswer.toString();
+      const restricted = /\[.*\d+,*.*\]/;
+      const test = restricted.test(stringFunction);
+      it("Function should return an Array", () => {
         assert.isArray(studentAnswer());
+      });
+      it("Array should be generated dynamically and should NOT be hardcoded", () => {
+        expect(test).to.equal(false);
       });
       it("Array Should contain the correct amount of numbers", () => {
         assert.strictEqual(referenceAnswer.length, studentAnswer().length);
@@ -174,8 +210,14 @@ describe("Display numbers on to page as html elements with for loops", function(
         : this.skip();
     });
     if (typeof studentAnswer === "function") {
-      it("Function Should return an Array", () => {
+      const stringFunction = studentAnswer.toString();
+      const restricted = /\[.*\d+,*.*\]/;
+      const test = restricted.test(stringFunction);
+      it("Function should return an Array", () => {
         assert.isArray(studentAnswer());
+      });
+      it("Array should be generated dynamically and should NOT be hardcoded", () => {
+        expect(test).to.equal(false);
       });
       it("Array Should contain the correct amount of numbers", () => {
         assert.strictEqual(referenceAnswer.length, studentAnswer().length);
@@ -201,8 +243,14 @@ describe("Display numbers on to page as html elements with for loops", function(
         : this.skip();
     });
     if (typeof studentAnswer === "function") {
-      it("Function Should return an Array", () => {
+      const stringFunction = studentAnswer.toString();
+      const restricted = /\[.*\d+,*.*\]/;
+      const test = restricted.test(stringFunction);
+      it("Function should return an Array", () => {
         assert.isArray(studentAnswer());
+      });
+      it("Array should be generated dynamically and should NOT be hardcoded", () => {
+        expect(test).to.equal(false);
       });
       it("Array Should contain the correct amount of numbers", () => {
         assert.strictEqual(referenceAnswer.length, studentAnswer().length);
@@ -228,8 +276,14 @@ describe("Display numbers on to page as html elements with for loops", function(
         : this.skip();
     });
     if (typeof studentAnswer === "function") {
-      it("Function Should return an Array", () => {
+      const stringFunction = studentAnswer.toString();
+      const restricted = /\[.*\d+,*.*\]/;
+      const test = restricted.test(stringFunction);
+      it("Function should return an Array", () => {
         assert.isArray(studentAnswer());
+      });
+      it("Array should be generated dynamically and should NOT be hardcoded", () => {
+        expect(test).to.equal(false);
       });
       it("Array Should contain the correct amount of numbers", () => {
         assert.strictEqual(referenceAnswer.length, studentAnswer().length);
@@ -254,8 +308,14 @@ describe("Display numbers on to page as html elements with for loops", function(
         : this.skip();
     });
     if (typeof studentAnswer === "function") {
-      it("Function Should return an Array", () => {
+      const stringFunction = studentAnswer.toString();
+      const restricted = /\[.*\d+,*.*\]/;
+      const test = restricted.test(stringFunction);
+      it("Function should return an Array", () => {
         assert.isArray(studentAnswer());
+      });
+      it("Array should be generated dynamically and should NOT be hardcoded", () => {
+        expect(test).to.equal(false);
       });
       it("Array Should contain the correct amount of numbers", () => {
         assert.strictEqual(referenceAnswer.length, studentAnswer().length);
@@ -281,8 +341,14 @@ describe("Display numbers on to page as html elements with for loops", function(
         : this.skip();
     });
     if (typeof studentAnswer === "function") {
-      it("Function Should return an Array", () => {
+      const stringFunction = studentAnswer.toString();
+      const restricted = /\[.*\d+,*.*\]/;
+      const test = restricted.test(stringFunction);
+      it("Function should return an Array", () => {
         assert.isArray(studentAnswer());
+      });
+      it("Array should be generated dynamically and should NOT be hardcoded", () => {
+        expect(test).to.equal(false);
       });
       it("Array Should contain the correct amount of numbers", () => {
         assert.strictEqual(referenceAnswer.length, studentAnswer().length);
@@ -310,8 +376,14 @@ describe("Display numbers on to page as html elements with for loops", function(
         : this.skip();
     });
     if (typeof studentAnswer === "function") {
-      it("Function Should return an Array", () => {
+      const stringFunction = studentAnswer.toString();
+      const restricted = /\[.*\d+,*.*\]/;
+      const test = restricted.test(stringFunction);
+      it("Function should return an Array", () => {
         assert.isArray(studentAnswer());
+      });
+      it("Array should be generated dynamically and should NOT be hardcoded", () => {
+        expect(test).to.equal(false);
       });
       it("Array Should contain the correct amount of numbers", () => {
         assert.strictEqual(referenceAnswer.length, studentAnswer().length);
@@ -338,12 +410,22 @@ describe("Display numbers on to page as html elements with for loops", function(
     if (typeof studentFunction === "function") {
       const studentAnswer = studentFunction();
 
+      const stringFunction = studentFunction.toString();
+      const restrictedOperator = /\[.*\d+,*.*\]/;
+      const test = restrictedOperator.test(stringFunction);
+      it(notHardCodedAnswer, function() {
+        expect(test).to.equal(false);
+      });
+
       it(returnValueIsArray, () => {
         assert.isArray(studentAnswer);
       });
 
       it(arrayLengthMatches, () => {
         assert.equal(studentAnswer.length, sampleArray.length);
+      });
+      it(arrayValuesAreCorrect, function() {
+        expect(studentAnswer).to.have.all.members(sampleArray);
       });
     }
   });
@@ -365,6 +447,12 @@ describe("Display numbers on to page as html elements with for loops", function(
           answer.push(sampleArray[i]);
         }
       }
+      const stringFunction = studentFunction.toString();
+      const restrictedOperator = /\[.*\d+,*.*\]/;
+      const test = restrictedOperator.test(stringFunction);
+      it(notHardCodedAnswer, function() {
+        expect(test).to.equal(false);
+      });
 
       it(returnValueIsArray, () => {
         assert.isArray(studentAnswer);
@@ -393,6 +481,13 @@ describe("Display numbers on to page as html elements with for loops", function(
       const studentAnswer = studentFunction();
       let answer = sampleArray.filter(item => item % 2 !== 0);
 
+      const stringFunction = studentFunction.toString();
+      const restrictedOperator = /\[.*\d+,*.*\]/;
+      const test = restrictedOperator.test(stringFunction);
+      it(notHardCodedAnswer, function() {
+        expect(test).to.equal(false);
+      });
+
       it(returnValueIsArray, () => {
         assert.isArray(studentAnswer);
       });
@@ -420,6 +515,12 @@ describe("Display numbers on to page as html elements with for loops", function(
       const studentAnswer = studentFunction();
       const answer = sampleArray.map(number => number * number);
 
+      const stringFunction = studentFunction.toString();
+      const restrictedOperator = /\[.*\d+,*.*\]/;
+      const test = restrictedOperator.test(stringFunction);
+      it(notHardCodedAnswer, function() {
+        expect(test).to.equal(false);
+      });
       it(returnValueIsArray, () => {
         assert.isArray(studentAnswer);
       });
@@ -448,6 +549,13 @@ describe("Display numbers on to page as html elements with for loops", function(
       let N = 21;
       let a = Array.apply(null, { length: N }).map(Number.call, Number);
       let answer = a.reduce(sum);
+      const stringFunction = studentFunction.toString();
+      const restrictedOperator = /\[.*\d+,*.*\]/;
+      const test = restrictedOperator.test(stringFunction);
+
+      it(notHardCodedAnswer, function() {
+        expect(test).to.equal(false);
+      });
       it(returnValueIsNumber, () => {
         assert.isNumber(studentAnswer);
       });
@@ -470,7 +578,13 @@ describe("Display numbers on to page as html elements with for loops", function(
       const studentAnswer = studentFunction();
       const sum = (total, num) => total + num;
       const answer = sampleArray.reduce(sum);
+      const stringFunction = studentFunction.toString();
+      const restrictedOperator = /9096/;
+      const test = restrictedOperator.test(stringFunction);
 
+      it(notHardCodedAnswer, function() {
+        expect(test).to.equal(false);
+      });
       it(returnValueIsNumber, () => {
         assert.isNumber(studentAnswer);
       });
@@ -491,6 +605,13 @@ describe("Display numbers on to page as html elements with for loops", function(
     if (typeof studentFunction === "function") {
       const studentAnswer = studentFunction();
       const answer = 20;
+      const stringFunction = studentFunction.toString();
+      const restrictedOperator = /20/;
+      const test = restrictedOperator.test(stringFunction);
+
+      it(notHardCodedAnswer, function() {
+        expect(test).to.equal(false);
+      });
 
       it(returnValueIsNumber, () => {
         assert.isNumber(studentAnswer);
@@ -511,6 +632,13 @@ describe("Display numbers on to page as html elements with for loops", function(
     if (typeof studentFunction === "function") {
       const studentAnswer = studentFunction();
       const answer = 940;
+      const stringFunction = studentFunction.toString();
+      const restrictedOperator = /940/;
+      const test = restrictedOperator.test(stringFunction);
+
+      it(notHardCodedAnswer, function() {
+        expect(test).to.equal(false);
+      });
       it(returnValueIsNumber, () => {
         assert.isNumber(studentAnswer);
       });
