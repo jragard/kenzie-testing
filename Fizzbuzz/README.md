@@ -15,6 +15,8 @@
 - This function will have one parameter - `fizzbuzzResult`.
 - This function should take the string you pass to it, `fizzBuzzResult`, and attach it to the DOM
 
+### IMPORTANT: If you do not name and export your functions correctly, the tests will not run and the submission will not be accepted.
+
 ## Bonus
 
 - Write a third function named `fizzbuzzPrime`.
