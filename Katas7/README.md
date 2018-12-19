@@ -10,6 +10,10 @@
 
 If you would like to test it on a dummy submission link, use `node run.js https://github.com/jragard/katas7test`
 
+## To Run These Tests as a Student
+
+Simply run `mocha test` from the command line in this directory
+
 
 # Katas 7 Instructions
 
@@ -31,7 +35,9 @@ Your task will be to reproduce the behavior of these Array methods with your own
 
 Name each of your functions accordingly: newForEach, newMap, newSome, newFind, newFindIndex, newEvery, newFilter
 
-IMPORTANT:  For testing/grading purposes, it's important that you name your functions according to the above standard.
+IMPORTANT:  For testing/grading purposes, it's important that you name your functions according to the above standard.  In order to run tests on your solutions, include the following code snippet at the bottom of your file:
+
+`module.exports = { newForEach, newMap, newSome, newFind, newFindIndex, newEvery, newFilter }`
 
 Your implementation of each of the above iteration methods must match *in arguments* and *in return value*.
 
