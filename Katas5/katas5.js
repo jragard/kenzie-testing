@@ -14,6 +14,15 @@ function testReverseString1() {
     })
 }
 
+function testReverseString2() {
+    let result = reverseString('strings');
+    console.assert(result === 'sgnirts', {
+        "function": "reverseString('strings')",
+        "expected": "sgnirts",
+        "result": result
+    })
+}
+
 function reverseSentence(sentence) {
     let arr = sentence.split(' ');
     let rev = arr.reverse();
@@ -25,7 +34,16 @@ function testReverseSentence1() {
     let result = reverseSentence('This is a happy path');
     console.assert(result === 'path happy a is This', {
         "function": "reverseSentence('This is a happy path')",
-        "expected": "wrongAnswer",
+        "expected": "path happy a is This",
+        "result": result
+    })
+}
+
+function testReverseSentence2() {
+    let result = reverseSentence('Another sentence to test');
+    console.assert(result === 'test to sentence Another', {
+        "function": "reverseSentence('Another sentence to test')",
+        "expected": "test to sentence Another",
         "result": result
     })
 }
@@ -50,6 +68,15 @@ function testMinimumValue1() {
     })
 }
 
+function testMinimumValue2() {
+    let result = minimumValue([45, 38, 9, 65, 23, 72]);
+    console.assert(result === 9, {
+        "function": "minimumValue([45, 38, 9, 65, 23, 72])",
+        "expected": 9,
+        "result": result
+    })
+}
+
 function maximumValue(arr) {
     let maximum = arr[0];
 
@@ -70,6 +97,15 @@ function testMaximumValue1() {
     })
 }
 
+function testMaximumValue2() {
+    let result = maximumValue([45, 38, 9, 65, 23, 72]);
+    console.assert(result === 72, {
+        "function": "maximumValue([45, 38, 9, 65, 23, 72])",
+        "expected": 72,
+        "result": result
+    })
+}
+
 function calculateRemainder(numerator, denominator) {
     return numerator % denominator;
 }
@@ -79,6 +115,15 @@ function testCalculateRemainder1() {
     console.assert(result === 3, {
         "function": "calculateRemainder(7, 4)",
         "expected": 3,
+        "result": result
+    })
+}
+
+function testCalculateRemainder2() {
+    let result = calculateRemainder(9, 7);
+    console.assert(result === 2, {
+        "function": "calculateRemainder(9, 7)",
+        "expected": 2,
         "result": result
     })
 }
@@ -100,6 +145,15 @@ function testDistinctValues1() {
     console.assert(result === "1 3 5 7", {
         "function": "distinctValues('1 3 5 3 7 3 1 1 5)",
         "expected": "1 3 5 7",
+        "result": result
+    })
+}
+
+function testDistinctValues2() {
+    let result = distinctValues("7 10 5 10 3 5 7")
+    console.assert(result === "7 10 5 3", {
+        "function": "distinctValues('7 10 5 10 3 5 7')",
+        "expected": "7 10 5 3",
         "result": result
     })
 }
@@ -130,8 +184,17 @@ function countValues(list) {
 function testCountValues1() {
     let result = countValues("1 3 5 3 7 3 1 1 5");
     console.assert(result === "1(3) 3(3) 5(2) 7(1)", {
-        "function": "distinctCount('1 3 5 3 7 3 1 1 5')",
+        "function": "countValues('1 3 5 3 7 3 1 1 5')",
         "expected": "1(3) 3(3) 5(2) 7(1)",
+        "result": result
+    })
+}
+
+function testCountValues2() {
+    let result = countValues("7 10 5 10 3 5 7");
+    console.assert(result === "7(2) 10(2) 5(2) 3(1)", {
+        "function": "countValues('7 10 5 10 3 5 7')",
+        "expected": "7(2) 10(2) 5(2) 3(1)",
         "result": result
     })
 }
@@ -153,4 +216,13 @@ function testEvaluateExpression1() {
     })
 }
 
-module.exports = { reverseString, testReverseString1, reverseSentence, testReverseSentence1, minimumValue, testMinimumValue1, maximumValue, testMaximumValue1, calculateRemainder, testCalculateRemainder1, distinctValues, testDistinctValues1, countValues, testCountValues1, evaluateExpression, testEvaluateExpression1 }
+function testEvaluateExpression2() {
+    let result = evaluateExpression("a - b + c - d", {a: 1, b: 7, c: 3, d: 14});
+    console.assert(result === -17, {
+        "function": "evaluateExpression('a - b + c - d')",
+        "expected": -17,
+        "result": result
+    })
+}
+
+module.exports = { reverseString, testReverseString1, testReverseString2, reverseSentence, testReverseSentence1, testReverseSentence2, minimumValue, testMinimumValue1, testMinimumValue2, maximumValue, testMaximumValue1, testMaximumValue2, calculateRemainder, testCalculateRemainder1, testCalculateRemainder2, distinctValues, testDistinctValues1, testDistinctValues2, countValues, testCountValues1, testCountValues2, evaluateExpression, testEvaluateExpression1, testEvaluateExpression2 }
