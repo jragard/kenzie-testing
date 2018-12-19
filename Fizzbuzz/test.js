@@ -1,9 +1,15 @@
-let fb = require("../fizzbuzz.js");
+// Used to test against function in local solution file
+// const { fizzbuzz, fizzbuzzPrime } = require("./fizzbuzz.js");
+
+// Used to test against function provided from run script
+const { fizzbuzz, fizzbuzzPrime } = require("./s.js");
+
 const chai = require("chai");
+const colors = require("mocha/lib/reporters/base").colors;
+
 const assert = chai.assert;
 const expect = chai.expect;
 
-const colors = require("mocha/lib/reporters/base").colors;
 colors["pending"] = "93";
 colors["green"] = "92";
 
@@ -18,7 +24,7 @@ const value1000 = 1000;
 const value10000 = 10000;
 
 describe("Fizzbuzz Test Suite", () => {
-  const studentFunction = fb.fizzbuzz;
+  const studentFunction = fizzbuzz;
 
   it(defineAFunction, function() {
     typeof studentFunction !== "function"
@@ -108,7 +114,7 @@ describe("Fizzbuzz Test Suite", () => {
 });
 
 describe("Bonus: FizzbuzzPrime Test Suite", () => {
-  const studentFunction = fb.fizzbuzzPrime;
+  const studentFunction = fizzbuzzPrime;
   it(defineAFunction, function() {
     typeof studentFunction !== "function"
       ? this.skip()

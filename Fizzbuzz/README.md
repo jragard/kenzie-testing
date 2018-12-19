@@ -1,4 +1,16 @@
-# Instructions
+## To Run These Tests
+
+1: Go to the test suite repo (here) and clone it to your machine.
+
+2: cd into the cloned directory and run `npm install` from the command line.
+
+3: Run `node run.js ___student's_repo_url___`. Upon execution the output of the test results will be written to your console.
+
+If you would like to test it on a dummy submission link, use `node run.js https://github.com/swkane/fizzbuzz d`
+
+# Assessment Instructions
+
+- Create a file called `fizzbuzz.js` (if you do not already have one)
 
 - Write a function named `fizzbuzz`.
 - This function will have one parameter - `maxValue`.
