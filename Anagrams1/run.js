@@ -11,7 +11,7 @@ const url = `https://raw.githubusercontent.com/${answer[1]}/${answer[2]}/master/
 axios.get(url)
     .then(response => {
         file.write('const { words } = require(\'./words\');\n');
-        file.write(response.data.replace(/use ['"]?strict['"]?/, ''));
+        file.write(response.data.replace(/['"]?use strict['"]?/, ''));
         file.write('\nmodule.exports = { getAnagramsOf };');
         spawn('mocha', ['anagramTest.js'], {stdio: 'inherit'})
             .on('exit', function (error) {
