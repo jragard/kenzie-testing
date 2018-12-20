@@ -4,7 +4,7 @@ function oneThroughTwenty() {
     for (let counter = 1; counter < 21; counter++) {
         numbers.push(counter)
     }
-    return numbers
+    return numbers;
 }
 
 function evensToTwenty() {
@@ -13,7 +13,7 @@ function evensToTwenty() {
     for (let counter = 2; counter < 21; counter += 2) {
         numbers.push(counter)
     }
-    return numbers
+    return numbers;
 }
 
 function oddsToTwenty() {
