@@ -1,0 +1,19 @@
+{
+  "name": "towerofhanoi",
+  "version": "1.0.0",
+  "description": "The Tower of Hanoi is a puzzle.",
+  "main": "towerofHanoi.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --require esm || exit 0"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "esm": "^3.0.84",
+    "mocha": "^5.2.0"
+  }
+}
