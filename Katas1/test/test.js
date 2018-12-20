@@ -1,9 +1,7 @@
 const katas1 = require('../solutions.js')
 const chai = require('chai')
 const expect = chai.expect;
-const assert = chai.assert;
 const colors = require('mocha/lib/reporters/base').colors;
-colors['pending'] = '93';
 colors['pending'] = '93';
 colors['green'] = '92';
 
