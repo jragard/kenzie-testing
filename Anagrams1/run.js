@@ -35,7 +35,9 @@ function gitTest(url) {
 function runTests(studentCode) {
   tempFileStream.write("const { words } = require('./words');\n");
   tempFileStream.write(studentCode.replace(/['"]?use strict['"]?/, ""));
-  tempFileStream.write("\nmodule.exports = { getAnagramsOf };");
+  tempFileStream.write(
+    "\nmodule.exports = { getAnagramsOf: (typeof getAnagramsOf) === 'function' && getAnagramsOf };"
+  );
   spawn("mocha", [], { stdio: "inherit" }).on("exit", function(error) {
     if (error) {
       console.log(error);
