@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "grade": "node run.js",
     "test": "node run.js"
   },
   "keywords": [],
