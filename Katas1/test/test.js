@@ -18,7 +18,7 @@ describe('Kata 1, Display an array with 1 - 20', function() {
         if (studentAnswer === undefined) {
             this.skip();
         }
-      });
+      })
 
     if (studentAnswer != undefined) {
 

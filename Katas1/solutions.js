@@ -96,4 +96,18 @@ function squareNumbersBackwards() {
     return numbers;
 }
 
+
+// All of the following code will be automatically injected by the run.js script
+
+(typeof oneThroughTwenty) === 'undefined' ? oneThroughTwenty = function oneThroughTwenty() {} : oneThroughTwenty = oneThroughTwenty;
+(typeof evensToTwenty) === 'undefined' ? evensToTwenty = function evensToTwenty() {} : evensToTwenty = evensToTwenty;
+(typeof oddsToTwenty) === 'undefined' ? oddsToTwenty = function oddsToTwenty() {} : oddsToTwenty = oddsToTwenty;
+(typeof multiplesOfFive) === 'undefined' ? multiplesOfFive = function multiplesOfFive() {} : multiplesOfFive = multiplesOfFive;
+(typeof squareNumbers) === 'undefined' ? squareNumbers = function squareNumbers() {} : squareNumbers = squareNumbers;
+(typeof countingBackwards) === 'undefined' ? countingBackwards = function countingBackwards() {} : countingBackwards = countingBackwards;
+(typeof evenNumbersBackwards) === 'undefined' ? evenNumbersBackwards = function evenNumbersBackwards() {} : evenNumbersBackwards = evenNumbersBackwards;
+(typeof oddNumbersBackwards) === 'undefined' ? oddNumbersBackwards = function oddNumbersBackwards() {} : oddNumbersBackwards = oddNumbersBackwards;
+(typeof multiplesOfFiveBackwards) === 'undefined' ? multiplesOfFiveBackwards = function multiplesOfFiveBackwards() {} : multiplesOfFiveBackwards = multiplesOfFiveBackwards;
+(typeof squareNumbersBackwards) === 'undefined' ? squareNumbersBackwards = function squareNumbersBackwards() {} : squareNumbersBackwards = squareNumbersBackwards;
+
 module.exports = { oneThroughTwenty, evensToTwenty, oddsToTwenty, multiplesOfFive, squareNumbers, countingBackwards, evenNumbersBackwards, oddNumbersBackwards, multiplesOfFiveBackwards, squareNumbersBackwards }

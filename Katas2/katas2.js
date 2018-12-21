@@ -1,30 +1,46 @@
 function add(x, y) {
-    return x + y
+    return x + y;
 }
 
 function multiply(x, y) {
+    if(x === 0 || y === 0) {
+        return 0;
+    }
+    else {
     let multiplier = x
     for(let counter = 1; counter < y; counter = add(counter, 1)) {
-        x = add(x, multiplier)
+        x = add(x, multiplier);
     }
     return x;
 }
+}
 
 function power(x, n) {
-    let total = x;
-    for(let counter = 1; counter < n; counter = add(counter, 1)) {
-        total = multiply(total, x)
+    if(n == 0) {
+        return 1;
+    } else if(n == 1) {
+        return x;
     }
-    return total;
+    else {
+        let total = x;
+        for(let counter = 1; counter < n; counter = add(counter, 1)) {
+            total = multiply(total, x);
+        }
+        return total;
+    }
 }
 
 function factorial(x) {
     let total = x;
     let inc = total;
 
+    if(x == 0) {
+        return 1;
+    } else {
     while(inc > 1) {
-        total = multiply(total, (inc - 1))
-        inc = inc - 1
+        total = multiply(total, (inc - 1));
+        inc = inc - 1;
+        }
     }
     return total;
 }
@@ -36,10 +52,10 @@ function fibonacci(n) {
     let next;
 
     if(n == 1) {
-        return a;
+        return 0;
     }
     else if(n == 2) {
-        return b;
+        return 1;
     }
     else {
         while(n >= 3) {
@@ -52,4 +68,12 @@ function fibonacci(n) {
     return next;
 }
 
-module.exports = { add, multiply, power, factorial, fibonacci }
+
+// This code will be injected by the run.js script
+module.exports = { 
+    add: (typeof add) === 'function' && add, 
+    multiply: (typeof multiply) === 'function' && multiply, 
+    power: (typeof power) === 'function' && power, 
+    factorial: (typeof factorial) === 'function' && factorial, 
+    fibonacci: (typeof fibonacci) === 'function' && fibonacci, 
+};

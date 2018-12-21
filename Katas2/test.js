@@ -1,12 +1,32 @@
 const katas2 = require('./s.js')
 const chai = require('chai')
 const expect = chai.expect;
+const colors = require('mocha/lib/reporters/base').colors;
+colors['pending'] = '93';
+colors['green'] = '92';
+
+const edgeSuccess = 'Edge case passed';
+const success = 'CORRECT!  Function passes all tests';
+const incorrect = 'Incorrect - Something has gone wrong';
 
 describe("Add, Write a function named 'add' that takes two arguments and returns their sum", function() {
 
-    it('CORRECT', function() {
-        expect(katas2.add(4, 7)).to.equal(11)
+    const studentAnswer1 = katas2.add(4, 7);
+    const studentAnswer2 = katas2.add(-4, 7);
+
+    it("Needs to return a value", function() {
+        if (studentAnswer1 === undefined || studentAnswer2 === undefined) {
+            this.skip();
+        }
     })
+
+    if(studentAnswer1 != undefined && studentAnswer2 != undefined) {
+
+        it((studentAnswer1 === 11 && studentAnswer2 === 3) ? success : incorrect, function() {
+            expect(studentAnswer1).to.equal(11);
+            expect(studentAnswer2).to.equal(3);
+        })
+    }
 })
 
 describe("Multiply, write a function that takes two arguments and returns their product", function() {
