@@ -9,7 +9,7 @@ const tempFileStream = fs.createWriteStream(tempFile);
 if (argv._.length === 0) {
   defaultTest();
 } else if (argv._[0].includes("github")) {
-  const answer = /.*github.com\/(\w*)\/(\w*)[.git]?$/.exec(argv._[0]);
+  const answer = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(argv._[0]);
   const url = `https://raw.githubusercontent.com/${answer[1]}/${
     answer[2]
   }/master/anagrams.js`;
