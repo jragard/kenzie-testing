@@ -25092,3 +25092,5 @@
 "zurich",
 "zygote"
 ]
+
+module.exports = { words };

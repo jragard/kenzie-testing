@@ -1,5 +1,5 @@
 const chai = require('chai');
-const expect = require('chai').expect;
+const expect = chai.expect;
 const { getAnagramsOf } = require('./s.js');
    
 describe('Anagrams 1', function() {

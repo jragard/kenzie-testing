@@ -18,14 +18,14 @@ The following repo has been set up as a sample test
 
 
 ## What this does
-words.js is the word list that the students are using to find anagrams.
-anagramTest.js contains tests.
+words.js is the word list that the students are using to find anagrams
+anagramTest.js contains tests
 run.js is a script that does the following:
   1. Creates a file stream to write to 's.js' in the current directory
   2. Parses the command line argument for the student repo, and generates the url for the raw version of anagrams.js
   3. makes a GET request for the raw version of anagrams.js
   4. writes `const { words } = require('./words')` to s.js in order to make the words array available to the students code
-  5. writes the student's anagrams.js to s.js
+  5. writes the students anagrams.js to s.js
   * any `use 'strict'` is removed, since this conflicts with module.exports  
   6. writes `module.exports = { getAnagramsOf }` to s.js
   * At this point, s.js is ready to be tested.  It contains the student's code along with the necessary import and export statements
@@ -35,7 +35,7 @@ run.js is a script that does the following:
 
 
 ### why?
-* Students currently gain access to the `words` array in words.js by placing the script tag `<script src="words.js"></script>` in their html document alongside `<script src="anagrams.js"></script>`.  words.js thus declares the `words` array on the global namespace of the browser, which makes it available to the student in anagrams.js.  By contrast, testing using node requires that the `words` array must be imported directly into anagrams.js.  By writing s.js to wrap the student's code in the necessary imports and exports, we get what we need for testing without forcing the students to add any superfluous code that shouldn't exist in code written for a browser.
+* Students currently gain access to the words array in words.js by placing the script tag `<script src="words.js"></script>` in their html document alongside `<script src="anagrams.js"></script>`.  words.js thus declares the words array on the global namespace of the browser, which makes it available to the student in anagrams.js.  By contrast, testing using node requires that the words array must be imported into anagrams.js.  This method allows us to get what we need for testing without forcing the students to add any superfluous code that shouldn't exist in code written for a browser.
 
 * This simplifies testing -- No more need to manually download each student's repo and then add the test files in order to run the test.  This test directory can be used for all students
 
