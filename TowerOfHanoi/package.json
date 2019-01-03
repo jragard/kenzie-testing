@@ -7,15 +7,11 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha --require esm || exit 0"
+    "test": "testcafe chrome:headless ./test/*"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "chai": "^4.2.0",
-    "esm": "^3.0.84",
-    "mocha": "^5.2.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "testcafe": "^0.23.3"
   }
