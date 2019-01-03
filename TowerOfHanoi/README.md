@@ -24,6 +24,16 @@ You will work **in pairs** to create a javascript version of the Tower of Hanoi.
 
 Your submission should be entirely the work of you and your partner - don't copy a solution written by someone else.
 
+## Initial Configuration
+
+The initial configuration of the game should be as follows:
+
+- You should have three "towers", which can be represented by `<div>` elements. From left to right, these elements should have id attributes equal to `startTower`, `middleTower`, `endTower`.
+- There should also be an element with id attribute equal to `status`, that you can use to display information to the user about the game's status.
+- The game status element must display text "You Win!" once the player has successfully moved all the disks to the winning tower. `endTower` is considered the "winning tower", so the player must move all the disks to this tower in order to win.
+- `startTower` should start out with all 4 disks on it
+- The disks on `startTower` should be ordered from smallest at the top to largest at the bottom.
+
 ## Hints
 
 - Make each tower a flex box that stacks elements from bottom to top using the following CSS properties:
