@@ -1,113 +1,122 @@
-function oneThroughTwenty() {
-    // Return an array with the numbers from 1 to 20
-    const numbers = []
-    for (let counter = 1; counter < 21; counter++) {
-        numbers.push(counter)
-    }
-    return numbers;
-}
+// function oneThroughTwenty() {
+//     // Return an array with the numbers from 1 to 20
+//     const numbers = []
+//     for (let counter = 1; counter < 21; counter++) {
+//         numbers.push(counter)
+//     }
+//     return numbers;
+// }
 
-function evensToTwenty() {
-    // Return an array with the even numbers from 1 to 20
-    const numbers = []
-    for (let counter = 2; counter < 21; counter += 2) {
-        numbers.push(counter)
-    }
-    return numbers;
-}
+// function evensToTwenty() {
+//     // Return an array with the even numbers from 1 to 20
+//     const numbers = []
+//     for (let counter = 2; counter < 21; counter += 2) {
+//         numbers.push(counter)
+//     }
+//     return numbers;
+// }
 
-function oddsToTwenty() {
-    // Return an array with the odd numbers from 1 - 20
-    const numbers = []
-    for (let counter = 1; counter < 20; counter += 2) {
-        numbers.push(counter)
-    }
+// function oddsToTwenty() {
+//     // Return an array with the odd numbers from 1 - 20
+//     const numbers = []
+//     for (let counter = 1; counter < 20; counter += 2) {
+//         numbers.push(counter)
+//     }
 
-    return numbers;
-}
+//     return numbers;
+// }
 
-function multiplesOfFive() {
-    // Return an array with the multiples of 5 up to 100
-    const numbers = []
-    for (let counter = 5; counter < 101; counter += 5) {
-        numbers.push(counter)
-    }
+// function multiplesOfFive() {
+//     // Return an array with the multiples of 5 up to 100
+//     const numbers = []
+//     for (let counter = 5; counter < 101; counter += 5) {
+//         numbers.push(counter)
+//     }
 
-    return numbers;
-}
+//     return numbers;
+// }
 
-function squareNumbers() {
-    // Return an array with square numbers up to 100
-    const numbers = []
-    for (let counter = 1; counter < 11; counter += 1) {
-        numbers.push(counter ** 2)
-    }
+// function squareNumbers() {
+//     // Return an array with square numbers up to 100
+//     const numbers = []
+//     for (let counter = 1; counter < 11; counter += 1) {
+//         numbers.push(counter ** 2)
+//     }
 
-    return numbers;
-}
+//     return numbers;
+// }
 
-function countingBackwards() {
-    // Return an array with the numbers counting backwards from 20 to 1
-    const numbers = []
-    for (let counter = 20; counter > 0; counter -= 1) {
-        numbers.push(counter)
-    }
+// function countingBackwards() {
+//     // Return an array with the numbers counting backwards from 20 to 1
+//     const numbers = []
+//     for (let counter = 20; counter > 0; counter -= 1) {
+//         numbers.push(counter)
+//     }
 
-    return numbers;
-}
+//     return numbers;
+// }
 
-function evenNumbersBackwards() {
-    // Return an array with the even numbers counting backwards from 20
-    const numbers = []
-    for (let counter = 20; counter > 1; counter -= 2) {
-        numbers.push(counter)
-    }
+// function evenNumbersBackwards() {
+//     // Return an array with the even numbers counting backwards from 20
+//     const numbers = []
+//     for (let counter = 20; counter > 1; counter -= 2) {
+//         numbers.push(counter)
+//     }
 
-    return numbers;
-}
+//     return numbers;
+// }
 
-function oddNumbersBackwards() {
-    // Return an array with the odd numbers counting backwards from 20 to 1
-    const numbers = []
-    for (let counter = 19; counter > 0; counter -= 2) {
-        numbers.push(counter)
-    }
+// function oddNumbersBackwards() {
+//     // Return an array with the odd numbers counting backwards from 20 to 1
+//     const numbers = []
+//     for (let counter = 19; counter > 0; counter -= 2) {
+//         numbers.push(counter)
+//     }
 
-    return numbers;
-}
+//     return numbers;
+// }
 
-function multiplesOfFiveBackwards() {
-    // Return an array with the multiples of five, counting backwards from 100
-    const numbers = []
-    for (let counter = 100; counter > 1; counter -= 5) {
-        numbers.push(counter)
-    }
+// function multiplesOfFiveBackwards() {
+//     // Return an array with the multiples of five, counting backwards from 100
+//     const numbers = []
+//     for (let counter = 100; counter > 1; counter -= 5) {
+//         numbers.push(counter)
+//     }
 
-    return numbers;
-}
+//     return numbers;
+// }
 
-function squareNumbersBackwards() {
-    // Return an array with square numbers, counting backwards from 100
-    const numbers = []
-    for (let counter = 10; counter > 0; counter -= 1) {
-        numbers.push(counter ** 2)
-    }
+// function squareNumbersBackwards() {
+//     // Return an array with square numbers, counting backwards from 100
+//     const numbers = []
+//     for (let counter = 10; counter > 0; counter -= 1) {
+//         numbers.push(counter ** 2)
+//     }
 
-    return numbers;
-}
+//     return numbers;
+// }
 
 
 // All of the following code will be automatically injected by the run.js script
 
-(typeof oneThroughTwenty) === 'undefined' ? oneThroughTwenty = function oneThroughTwenty() {} : oneThroughTwenty = oneThroughTwenty;
-(typeof evensToTwenty) === 'undefined' ? evensToTwenty = function evensToTwenty() {} : evensToTwenty = evensToTwenty;
-(typeof oddsToTwenty) === 'undefined' ? oddsToTwenty = function oddsToTwenty() {} : oddsToTwenty = oddsToTwenty;
-(typeof multiplesOfFive) === 'undefined' ? multiplesOfFive = function multiplesOfFive() {} : multiplesOfFive = multiplesOfFive;
-(typeof squareNumbers) === 'undefined' ? squareNumbers = function squareNumbers() {} : squareNumbers = squareNumbers;
-(typeof countingBackwards) === 'undefined' ? countingBackwards = function countingBackwards() {} : countingBackwards = countingBackwards;
-(typeof evenNumbersBackwards) === 'undefined' ? evenNumbersBackwards = function evenNumbersBackwards() {} : evenNumbersBackwards = evenNumbersBackwards;
-(typeof oddNumbersBackwards) === 'undefined' ? oddNumbersBackwards = function oddNumbersBackwards() {} : oddNumbersBackwards = oddNumbersBackwards;
-(typeof multiplesOfFiveBackwards) === 'undefined' ? multiplesOfFiveBackwards = function multiplesOfFiveBackwards() {} : multiplesOfFiveBackwards = multiplesOfFiveBackwards;
-(typeof squareNumbersBackwards) === 'undefined' ? squareNumbersBackwards = function squareNumbersBackwards() {} : squareNumbersBackwards = squareNumbersBackwards;
+// (typeof oneThroughTwenty) === 'undefined' ? oneThroughTwenty = function oneThroughTwenty() {} : oneThroughTwenty = oneThroughTwenty;
+// (typeof evensToTwenty) === 'undefined' ? evensToTwenty = function evensToTwenty() {} : evensToTwenty = evensToTwenty;
+// (typeof oddsToTwenty) === 'undefined' ? oddsToTwenty = function oddsToTwenty() {} : oddsToTwenty = oddsToTwenty;
+// (typeof multiplesOfFive) === 'undefined' ? multiplesOfFive = function multiplesOfFive() {} : multiplesOfFive = multiplesOfFive;
+// (typeof squareNumbers) === 'undefined' ? squareNumbers = function squareNumbers() {} : squareNumbers = squareNumbers;
+// (typeof countingBackwards) === 'undefined' ? countingBackwards = function countingBackwards() {} : countingBackwards = countingBackwards;
+// (typeof evenNumbersBackwards) === 'undefined' ? evenNumbersBackwards = function evenNumbersBackwards() {} : evenNumbersBackwards = evenNumbersBackwards;
+// (typeof oddNumbersBackwards) === 'undefined' ? oddNumbersBackwards = function oddNumbersBackwards() {} : oddNumbersBackwards = oddNumbersBackwards;
+// (typeof multiplesOfFiveBackwards) === 'undefined' ? multiplesOfFiveBackwards = function multiplesOfFiveBackwards() {} : multiplesOfFiveBackwards = multiplesOfFiveBackwards;
+// (typeof squareNumbersBackwards) === 'undefined' ? squareNumbersBackwards = function squareNumbersBackwards() {} : squareNumbersBackwards = squareNumbersBackwards;
 
-module.exports = { oneThroughTwenty, evensToTwenty, oddsToTwenty, multiplesOfFive, squareNumbers, countingBackwards, evenNumbersBackwards, oddNumbersBackwards, multiplesOfFiveBackwards, squareNumbersBackwards }
+module.exports = { oneThroughTwenty: (typeof oneThroughTwenty) === 'function' && oneThroughTwenty,
+                   evensToTwenty: (typeof evensToTwenty) === 'function' && evensToTwenty,
+                   oddsToTwenty: (typeof oddsToTwenty) === 'function' && oddsToTwenty,
+                   multiplesOfFive: (typeof multiplesOfFive) === 'function' && multiplesOfFive,
+                   squareNumbers: (typeof squareNumbers) === 'function' && squareNumbers,
+                   countingBackwards: (typeof countingBackwards) === 'function' && countingBackwards,
+                   evenNumbersBackwards: (typeof evenNumbersBackwards) === 'function' && evenNumbersBackwards,
+                   oddNumbersBackwards: (typeof oddNumbersBackwards) === 'function' && oddNumbersBackwards,
+                   multiplesOfFiveBackwards: (typeof multiplesOfFiveBackwards) === 'function' && multiplesOfFiveBackwards,
+                   squareNumbersBackwards: (typeof squareNumbersBackwards) === 'function' && squareNumbersBackwards, }

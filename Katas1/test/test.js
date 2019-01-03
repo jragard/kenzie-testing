@@ -4,6 +4,7 @@ const expect = chai.expect;
 const colors = require('mocha/lib/reporters/base').colors;
 colors['pending'] = '93';
 colors['green'] = '92';
+const isFunction = obj => Object.getPrototypeOf(obj)
 
 const edgeSuccess = 'Edge case passed';
 const success = 'CORRECT!  Function passes all tests';
@@ -11,16 +12,16 @@ const incorrect = 'Incorrect - Something has gone wrong';
 
 describe('Kata 1, Display an array with 1 - 20', function() {
 
-    const studentAnswer = katas1.oneThroughTwenty();
-    const correctAnswer = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-    
-    it("Needs to return a value", function() {
-        if (studentAnswer === undefined) {
+    it("should be a function", function() {
+        if(typeof isFunction(katas1.oneThroughTwenty) != 'function') {
             this.skip();
         }
-      })
+    })
+    console.log(typeof isFunction(katas1.oneThroughTwenty))
+    if(typeof isFunction(katas1.oneThroughTwenty) === 'function') {
 
-    if (studentAnswer != undefined) {
+        const studentAnswer = katas1.oneThroughTwenty();
+        const correctAnswer = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
         const startsEarly = 'Oops!  The array starts with 0...double check the start condition in your for loop';
         const endsLate = 'Oops!  The array includes an extra number 21...double check the end condition in your for loop';
