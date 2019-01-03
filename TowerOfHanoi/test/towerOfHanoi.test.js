@@ -43,6 +43,18 @@ test(`each disk in ${START_TOWER} should have a data-size attribute`, async t =>
   await t.expect(startTower.child("[data-size]").count).eql(4);
 });
 
+test(`the disks in ${START_TOWER} should be ordered from smallest at the top to largest at the bottom`, async t => {
+  await t
+    .expect(startTower.child(-1).getAttribute("data-size"))
+    .eql("1")
+    .expect(startTower.child(-2).getAttribute("data-size"))
+    .eql("2")
+    .expect(startTower.child(-3).getAttribute("data-size"))
+    .eql("3")
+    .expect(startTower.child(-4).getAttribute("data-size"))
+    .eql("4");
+});
+
 fixture`Game Rules`.page`../index.html`;
 test("only one disk can be moved at a time", async t => {
   const startCount = await startTower.childElementCount;
