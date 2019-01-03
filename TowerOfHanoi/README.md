@@ -32,7 +32,7 @@ The initial configuration of the game should be as follows:
 - There should also be an element with id attribute equal to `status`, that you can use to display information to the user about the game's status.
 - The game status element must display text "You Win!" once the player has successfully moved all the disks to the winning tower. `endTower` is considered the "winning tower", so the player must move all the disks to this tower in order to win.
 - `startTower` should start out with all 4 disks on it
-- The disks on `startTower` should be ordered from smallest at the top to largest at the bottom.
+- The disks on `startTower` should be ordered from smallest at the top to largest at the bottom by defining a `data-size` attribute on each of them, starting with `data-size="1"` for the smallest disk and incrementing up to `data-size="4"` for the largest disk.
 
 ## Hints
 
@@ -48,3 +48,4 @@ The initial configuration of the game should be as follows:
 - <span>Use the DOM property [childElementCount](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/childElementCount) to find how many disks are in a tower.</span>
 - <span>Use the DOM property [lastElementChild](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/lastElementChild) to find the disk on top of a tower.</span>
 - Use the DOM method [appendChild()](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild) to add a disk to a tower (you have already used this method many times in previous assignments). Note that when you use appendChild on an element that already has a parent, _it is automatically removed from the old parent and added to the new one._
+- Use the `data-size` attribute on the disk elements to determine whether one disk is larger than another.
