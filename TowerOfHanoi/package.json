@@ -1,0 +1,18 @@
+{
+  "name": "towerofhanoi",
+  "version": "1.0.0",
+  "description": "The Tower of Hanoi is a puzzle.",
+  "main": "towerofHanoi.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "testcafe chrome:headless ./test/* --sf"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "testcafe": "^0.23.3"
+  }
+}

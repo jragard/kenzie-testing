@@ -1,0 +1,47 @@
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.tower {
+    height: 100px;
+    width: 100px;
+    border: 2px solid blue;
+    background-color: pink;
+    flex-direction: column-reverse;
+    display: flex;
+    align-items: center;
+}
+
+.disc {
+    height: 10px;
+    border-radius: 5px;
+}
+
+#wrapper {
+    display: flex;
+    justify-content: center;
+    
+}
+
+#smallDisc {
+    background-color: blue;
+    width: 20px;
+}
+
+#mediumDisc {
+    background-color: purple;
+    width: 40px;
+
+}
+
+#largeDisc {
+    background-color: green;
+    width: 60px;
+}
+
+#xLargeDisc {
+    background-color: red;
+    width: 80px;
+}
