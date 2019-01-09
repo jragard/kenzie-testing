@@ -36,10 +36,12 @@ const sampleArray = [
   940,
   472
 ];
+//changes colors of warnings when run locally
 colors["pending"] = "93";
 colors["green"] = "92";
 
-const isFunctionDefined = "Kata should define a function";
+//Strings that are used in each kata describe/it for uniformity
+const isFunctionDefined = "Kata should be a defined a function";
 const returnValueIsArray = "Function should return an array";
 const returnValueIsNumber = "Function should return a number";
 const arrayLengthMatches = "Array should contain the correct amount of numbers";
@@ -48,8 +50,10 @@ const returnValueIsCorrect = "Return Value is Correct";
 const TODO_WAITINGFORDOMRESEARCH = "DOM Question, look at the screen!";
 const notHardCodedAnswer =
   "Answer should be generated dynamically and should NOT be hardcoded";
-// change this
+const arrayValuesInCorrectOrder =
+  "Array items should be in the Correct a Order";
 
+//used to check answers
 const twenty = Array.from(Array(20), (e, i) => i + 1);
 const hundred = Array.from(Array(100), (e, i) => i + 1);
 // create new reverse arrays so we do not mutate original by calling .reverse()
@@ -62,7 +66,7 @@ describe("Display numbers on to page as html elements with for loops", function(
     const studentAnswer = katas3.kata1;
     const referenceAnswer = twenty;
 
-    it("Kata Should be a function", function() {
+    it(isFunctionDefined, function() {
       typeof studentAnswer === "function"
         ? assert.isFunction(studentAnswer)
         : this.skip();
@@ -71,22 +75,22 @@ describe("Display numbers on to page as html elements with for loops", function(
       const stringFunction = studentAnswer.toString();
       const restricted = /\[.*\d+,*.*\]/;
       const test = restricted.test(stringFunction);
-      it("Function should return an Array", () => {
+      it(returnValueIsArray, () => {
         assert.isArray(studentAnswer());
       });
-      it("Array should be generated dynamically and should NOT be hardcoded", () => {
+      it(notHardCodedAnswer, () => {
         expect(test).to.equal(false);
       });
-      it("Array should contain the correct amount of numbers", () => {
+      it(arrayLengthMatches, () => {
         assert.strictEqual(referenceAnswer.length, studentAnswer().length);
       });
 
-      it("Array should contain only values 1-20", () => {
+      it(arrayValuesAreCorrect + " values 1-20", () => {
         studentAnswer().map(item => {
           assert.isTrue(referenceAnswer.includes(item));
         });
       });
-      it("Array items should be in the Correct Order", () => {
+      it(arrayValuesInCorrectOrder, () => {
         studentAnswer().forEach((item, i) => {
           assert.strictEqual(referenceAnswer[i], item);
         });
@@ -97,7 +101,7 @@ describe("Display numbers on to page as html elements with for loops", function(
   describe("Kata 2", function() {
     const studentAnswer = katas3.kata2;
     const referenceAnswer = twenty.filter(x => x % 2 === 0);
-    it("Kata Should be a function", function() {
+    it(isFunctionDefined, function() {
       typeof studentAnswer === "function"
         ? assert.isFunction(studentAnswer)
         : this.skip();
@@ -106,22 +110,22 @@ describe("Display numbers on to page as html elements with for loops", function(
       const stringFunction = studentAnswer.toString();
       const restricted = /\[.*\d+,*.*\]/;
       const test = restricted.test(stringFunction);
-      it("Function should return an Array", () => {
+      it(returnValueIsArray, () => {
         assert.isArray(studentAnswer());
       });
-      it("Array should be generated dynamically and should NOT be hardcoded", () => {
+      it(notHardCodedAnswer, () => {
         expect(test).to.equal(false);
       });
-      it("Array Should contain the correct amount of numbers", () => {
+      it(arrayLengthMatches, () => {
         assert.strictEqual(referenceAnswer.length, studentAnswer().length);
       });
 
-      it("Array should contain only even values 1-20", () => {
+      it(arrayValuesAreCorrect + " even values 1-20", () => {
         studentAnswer().map(item => {
           assert.isTrue(referenceAnswer.includes(item));
         });
       });
-      it("Array items should be in the Correct Order", () => {
+      it(arrayValuesInCorrectOrder, () => {
         studentAnswer().forEach((item, i) => {
           assert.strictEqual(referenceAnswer[i], item);
         });
@@ -133,7 +137,7 @@ describe("Display numbers on to page as html elements with for loops", function(
   describe("Kata 3", function() {
     const studentAnswer = katas3.kata3;
     const referenceAnswer = twenty.filter(x => x % 2 !== 0);
-    it("Kata Should be a function", function() {
+    it(isFunctionDefined, function() {
       typeof studentAnswer === "function"
         ? assert.isFunction(studentAnswer)
         : this.skip();
@@ -142,22 +146,22 @@ describe("Display numbers on to page as html elements with for loops", function(
       const stringFunction = studentAnswer.toString();
       const restricted = /\[.*\d+,*.*\]/;
       const test = restricted.test(stringFunction);
-      it("Function should return an Array", () => {
+      it(returnValueIsArray, () => {
         assert.isArray(studentAnswer());
       });
-      it("Array should be generated dynamically and should NOT be hardcoded", () => {
+      it(notHardCodedAnswer, () => {
         expect(test).to.equal(false);
       });
-      it("Array Should contain the correct amount of numbers", () => {
+      it(arrayLengthMatches, () => {
         assert.strictEqual(referenceAnswer.length, studentAnswer().length);
       });
 
-      it("Array should contain only Odd values 1-20", () => {
+      it(arrayValuesAreCorrect + " Odd values 1-20", () => {
         studentAnswer().map(item => {
           assert.isTrue(referenceAnswer.includes(item));
         });
       });
-      it("Array items should be in the Correct Order", () => {
+      it(arrayValuesInCorrectOrder, () => {
         studentAnswer().forEach((item, i) => {
           assert.strictEqual(referenceAnswer[i], item);
         });
@@ -169,7 +173,7 @@ describe("Display numbers on to page as html elements with for loops", function(
     const studentAnswer = katas3.kata4;
     const referenceAnswer = hundred.filter(x => x % 5 === 0);
 
-    it("Should be a function", function() {
+    it(isFunctionDefined, function() {
       typeof studentAnswer === "function"
         ? assert.isFunction(studentAnswer)
         : this.skip();
@@ -178,22 +182,22 @@ describe("Display numbers on to page as html elements with for loops", function(
       const stringFunction = studentAnswer.toString();
       const restricted = /\[.*\d+,*.*\]/;
       const test = restricted.test(stringFunction);
-      it("Function should return an Array", () => {
+      it(returnValueIsArray, () => {
         assert.isArray(studentAnswer());
       });
-      it("Array should be generated dynamically and should NOT be hardcoded", () => {
+      it(notHardCodedAnswer, () => {
         expect(test).to.equal(false);
       });
-      it("Array Should contain the correct amount of numbers", () => {
+      it(arrayLengthMatches, () => {
         assert.strictEqual(referenceAnswer.length, studentAnswer().length);
       });
 
-      it("Array should contain only multiples of 5 from 1-100", () => {
+      it(arrayValuesAreCorrect + " multiples of 5 from 1-100", () => {
         studentAnswer().map(item => {
           assert.isTrue(referenceAnswer.includes(item));
         });
       });
-      it("Array items should be in the Correct Order", () => {
+      it(arrayValuesInCorrectOrder, () => {
         studentAnswer().forEach((item, i) => {
           assert.strictEqual(referenceAnswer[i], item);
         });
@@ -204,7 +208,7 @@ describe("Display numbers on to page as html elements with for loops", function(
   describe("Kata 5", function() {
     const studentAnswer = katas3.kata5;
     const referenceAnswer = hundred.filter(x => Number.isInteger(Math.sqrt(x)));
-    it("Kata Should be a function", function() {
+    it(isFunctionDefined, function() {
       typeof studentAnswer === "function"
         ? assert.isFunction(studentAnswer)
         : this.skip();
@@ -213,20 +217,20 @@ describe("Display numbers on to page as html elements with for loops", function(
       const stringFunction = studentAnswer.toString();
       const restricted = /\[.*\d+,*.*\]/;
       const test = restricted.test(stringFunction);
-      it("Function should return an Array", () => {
+      it(returnValueIsArray, () => {
         assert.isArray(studentAnswer());
       });
-      it("Array should be generated dynamically and should NOT be hardcoded", () => {
+      it(notHardCodedAnswer, () => {
         expect(test).to.equal(false);
       });
-      it("Array Should contain the correct amount of numbers", () => {
+      it(arrayLengthMatches, () => {
         assert.strictEqual(referenceAnswer.length, studentAnswer().length);
       });
 
-      it("Array should contain only the square numbers from 1-100", () => {
+      it(arrayValuesAreCorrect + " the square numbers from 1-100", () => {
         expect(studentAnswer()).to.have.all.members(referenceAnswer);
       });
-      it("Array items should be in the Correct Order", () => {
+      it(arrayValuesInCorrectOrder, () => {
         studentAnswer().forEach((item, i) => {
           assert.strictEqual(referenceAnswer[i], item);
         });
@@ -237,7 +241,7 @@ describe("Display numbers on to page as html elements with for loops", function(
   describe("Kata 6", function() {
     const studentAnswer = katas3.kata6;
     const referenceAnswer = twentyReversed;
-    it("Kata Should be a function", function() {
+    it(isFunctionDefined, function() {
       typeof studentAnswer === "function"
         ? assert.isFunction(studentAnswer)
         : this.skip();
@@ -246,20 +250,20 @@ describe("Display numbers on to page as html elements with for loops", function(
       const stringFunction = studentAnswer.toString();
       const restricted = /\[.*\d+,*.*\]/;
       const test = restricted.test(stringFunction);
-      it("Function should return an Array", () => {
+      it(returnValueIsArray, () => {
         assert.isArray(studentAnswer());
       });
-      it("Array should be generated dynamically and should NOT be hardcoded", () => {
+      it(notHardCodedAnswer, () => {
         expect(test).to.equal(false);
       });
-      it("Array Should contain the correct amount of numbers", () => {
+      it(arrayLengthMatches, () => {
         assert.strictEqual(referenceAnswer.length, studentAnswer().length);
       });
 
-      it("Array should contain only numbers 1-20", () => {
+      it(arrayValuesAreCorrect + " numbers 1-20", () => {
         expect(studentAnswer()).to.have.all.members(referenceAnswer);
       });
-      it("Array items should be in the Correct Order (Descending)", () => {
+      it(arrayValuesInCorrectOrder + " (Descending)", () => {
         studentAnswer().forEach((item, i) => {
           assert.strictEqual(referenceAnswer[i], item);
         });
@@ -270,7 +274,7 @@ describe("Display numbers on to page as html elements with for loops", function(
   describe("Kata 7", function() {
     const studentAnswer = katas3.kata7;
     const referenceAnswer = twentyReversed.filter(x => x % 2 === 0);
-    it("Kata Should be a function", function() {
+    it(isFunctionDefined, function() {
       typeof studentAnswer === "function"
         ? assert.isFunction(studentAnswer)
         : this.skip();
@@ -279,19 +283,19 @@ describe("Display numbers on to page as html elements with for loops", function(
       const stringFunction = studentAnswer.toString();
       const restricted = /\[.*\d+,*.*\]/;
       const test = restricted.test(stringFunction);
-      it("Function should return an Array", () => {
+      it(returnValueIsArray, () => {
         assert.isArray(studentAnswer());
       });
-      it("Array should be generated dynamically and should NOT be hardcoded", () => {
+      it(notHardCodedAnswer, () => {
         expect(test).to.equal(false);
       });
-      it("Array Should contain the correct amount of numbers", () => {
+      it(arrayLengthMatches, () => {
         assert.strictEqual(referenceAnswer.length, studentAnswer().length);
       });
-      it("Array should contain only even numbers 1-20", () => {
+      it(arrayValuesAreCorrect + " even numbers 1-20", () => {
         expect(studentAnswer()).to.have.all.members(referenceAnswer);
       });
-      it("Array items should be in the Correct Order (Descending)", () => {
+      it(arrayValuesInCorrectOrder + "(Descending)", () => {
         studentAnswer().forEach((item, i) => {
           assert.strictEqual(referenceAnswer[i], item);
         });
@@ -302,7 +306,7 @@ describe("Display numbers on to page as html elements with for loops", function(
   describe("Kata 8", function() {
     const studentAnswer = katas3.kata8;
     const referenceAnswer = twentyReversed.filter(x => x % 2 !== 0);
-    it("Kata Should be a function", function() {
+    it(isFunctionDefined, function() {
       typeof studentAnswer === "function"
         ? assert.isFunction(studentAnswer)
         : this.skip();
@@ -311,20 +315,20 @@ describe("Display numbers on to page as html elements with for loops", function(
       const stringFunction = studentAnswer.toString();
       const restricted = /\[.*\d+,*.*\]/;
       const test = restricted.test(stringFunction);
-      it("Function should return an Array", () => {
+      it(returnValueIsArray, () => {
         assert.isArray(studentAnswer());
       });
-      it("Array should be generated dynamically and should NOT be hardcoded", () => {
+      it(notHardCodedAnswer, () => {
         expect(test).to.equal(false);
       });
-      it("Array Should contain the correct amount of numbers", () => {
+      it(arrayLengthMatches, () => {
         assert.strictEqual(referenceAnswer.length, studentAnswer().length);
       });
 
-      it("Array should contain only odd numbers 1-20", () => {
+      it(arrayValuesAreCorrect + " odd numbers 1-20", () => {
         expect(studentAnswer()).to.have.all.members(referenceAnswer);
       });
-      it("Array items should be in the Correct Order (Descending)", () => {
+      it(arrayValuesInCorrectOrder + "(Descending)", () => {
         studentAnswer().forEach((item, i) => {
           assert.strictEqual(referenceAnswer[i], item);
         });
@@ -335,7 +339,7 @@ describe("Display numbers on to page as html elements with for loops", function(
   describe("Kata 9", function() {
     const studentAnswer = katas3.kata9;
     const referenceAnswer = hundredReversed.filter(x => x % 5 === 0);
-    it("Kata Should be a function", function() {
+    it(isFunctionDefined, function() {
       typeof studentAnswer === "function"
         ? assert.isFunction(studentAnswer)
         : this.skip();
@@ -344,20 +348,20 @@ describe("Display numbers on to page as html elements with for loops", function(
       const stringFunction = studentAnswer.toString();
       const restricted = /\[.*\d+,*.*\]/;
       const test = restricted.test(stringFunction);
-      it("Function should return an Array", () => {
+      it(returnValueIsArray, () => {
         assert.isArray(studentAnswer());
       });
-      it("Array should be generated dynamically and should NOT be hardcoded", () => {
+      it(notHardCodedAnswer, () => {
         expect(test).to.equal(false);
       });
-      it("Array Should contain the correct amount of numbers", () => {
+      it(arrayLengthMatches, () => {
         assert.strictEqual(referenceAnswer.length, studentAnswer().length);
       });
 
-      it("Array should contain only multiples of 5 from 1-100", () => {
+      it(arrayValuesAreCorrect + " multiples of 5 from 1-100", () => {
         expect(studentAnswer()).to.have.all.members(referenceAnswer);
       });
-      it("Array items should be in the Correct Order (Descending)", () => {
+      it(arrayValuesInCorrectOrder + "(Descending)", () => {
         studentAnswer().forEach((item, i) => {
           assert.strictEqual(referenceAnswer[i], item);
         });
@@ -370,7 +374,7 @@ describe("Display numbers on to page as html elements with for loops", function(
     const referenceAnswer = hundredReversed.filter(x =>
       Number.isInteger(Math.sqrt(x))
     );
-    it("Kata Should be a function", function() {
+    it(isFunctionDefined, function() {
       typeof studentAnswer === "function"
         ? assert.isFunction(studentAnswer)
         : this.skip();
@@ -379,20 +383,20 @@ describe("Display numbers on to page as html elements with for loops", function(
       const stringFunction = studentAnswer.toString();
       const restricted = /\[.*\d+,*.*\]/;
       const test = restricted.test(stringFunction);
-      it("Function should return an Array", () => {
+      it(returnValueIsArray, () => {
         assert.isArray(studentAnswer());
       });
-      it("Array should be generated dynamically and should NOT be hardcoded", () => {
+      it(notHardCodedAnswer, () => {
         expect(test).to.equal(false);
       });
-      it("Array Should contain the correct amount of numbers", () => {
+      it(arrayLengthMatches, () => {
         assert.strictEqual(referenceAnswer.length, studentAnswer().length);
       });
 
-      it("Array should contain only square numbers from 1-100", () => {
+      it(arrayValuesAreCorrect + " square numbers from 1-100", () => {
         expect(studentAnswer()).to.have.all.members(referenceAnswer);
       });
-      it("Array items should be in the Correct Order (Descending)", () => {
+      it(arrayValuesInCorrectOrder + "(Descending)", () => {
         studentAnswer().forEach((item, i) => {
           assert.strictEqual(referenceAnswer[i], item);
         });

@@ -10,12 +10,13 @@ Note that the first 10 katas should seem familiar: they are a repeat of the ones
 The values returned from each kata function MUST be generated dynamically; You cannot simply return an array of 'hard-coded' values
 
 You should name each Kata function following this convention:
-// function kata1 () {
-// return "Hello";
-// },
-//function kata2 () {
-// return "World";
-// },
+
+function kata1 () {
+return "Hello";
+}
+function kata2 () {
+return "World";
+}
 
 This means Your submission will have 23 individual 'kata' functions
 You may also write any number of additional 'helper' functions to assist you with appending elements to the page
