@@ -38,11 +38,10 @@ fs.readdir(`${__dirname}/Tests`, (err, items) => {
             const installPackages = exec('npm i')
             installPackages.on('exit', () => {
                 process.exit
-            })
-            
-            const { gitlink } = args
-            exec(`npm run test ${gitlink ? gitlink : ''}`, (error, stdout, stderr) => {
+                const { gitlink } = args
+                exec(`npm run test ${gitlink ? gitlink : ''}`, (error, stdout, stderr) => {
                 console.log(stdout)
+            })
             })
         }
     })
