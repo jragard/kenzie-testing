@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha || exit 0"
+    "grade": "node run.js",
+    "test": "node run.js"
   },
   "repository": {
     "type": "git",

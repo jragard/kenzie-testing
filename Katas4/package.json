@@ -4,7 +4,8 @@
   "description": "",
   "main": "katas4.js",
   "scripts": {
-    "test": "mocha || exit"
+    "test": "node run.js",
+    "grade": "node run.js"
   },
   "author": "Ryan Agard",
   "license": "ISC",

@@ -67,13 +67,3 @@ function fibonacci(n) {
     }
     return next;
 }
-
-
-// This code will be injected by the run.js script
-module.exports = { 
-    add: (typeof add) === 'function' && add, 
-    multiply: (typeof multiply) === 'function' && multiply, 
-    power: (typeof power) === 'function' && power, 
-    factorial: (typeof factorial) === 'function' && factorial, 
-    fibonacci: (typeof fibonacci) === 'function' && fibonacci, 
-};

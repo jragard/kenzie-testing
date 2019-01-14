@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node run.js",
+    "grade": "node run.js"
   },
   "author": "Ryan Agard",
   "license": "ISC"

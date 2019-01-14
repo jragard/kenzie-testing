@@ -4,7 +4,8 @@
   "description": "Testing for Javascript Katas 2",
   "main": "katas2.js",
   "scripts": {
-    "test": "mocha || exit 0"
+    "test": "node run.js",
+    "grade": "node run.js"
   },
   "repository": {
     "type": "git",
