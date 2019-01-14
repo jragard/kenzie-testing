@@ -225,4 +225,4 @@ function testEvaluateExpression2() {
     })
 }
 
-module.exports = { reverseString, testReverseString1, testReverseString2, reverseSentence, testReverseSentence1, testReverseSentence2, minimumValue, testMinimumValue1, testMinimumValue2, maximumValue, testMaximumValue1, testMaximumValue2, calculateRemainder, testCalculateRemainder1, testCalculateRemainder2, distinctValues, testDistinctValues1, testDistinctValues2, countValues, testCountValues1, testCountValues2, evaluateExpression, testEvaluateExpression1, testEvaluateExpression2 }
+
