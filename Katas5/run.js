@@ -48,7 +48,7 @@ function runTests(studentCode) {
                           testMinimumValue2: (typeof testMinimumValue2) === 'function' && testMinimumValue2, \
                           maximumValue: (typeof maximumValue) === 'function' && maximumValue, \
                           testMaximumValue1: (typeof testMaximumValue1) === 'function' && testMaximumValue1, \
-                          testMaximumValue1: (typeof testMaximumValue2) === 'function' && testMaximumValue2, \
+                          testMaximumValue2: (typeof testMaximumValue2) === 'function' && testMaximumValue2, \
                           calculateRemainder: (typeof calculateRemainder) === 'function' && calculateRemainder, \
                           testCalculateRemainder1: (typeof testCalculateRemainder1) === 'function' && testCalculateRemainder1, \
                           testCalculateRemainder2: (typeof testCalculateRemainder2) === 'function' && testCalculateRemainder2, \
