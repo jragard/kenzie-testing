@@ -1,6 +1,6 @@
  # Katas 1 Tests
 
-## To Run These Tests
+## To Run These Tests as a Grader
 
 1: Go to the test suite repo (here) and clone it to your machine.
 
@@ -9,6 +9,10 @@
 3: Run `node run.js ___student's_repo_url___`.  Upon execution the output of the test results will be written to your console.
 
 If you would like to test it on a dummy submission link, use `node run.js https://github.com/jragard/katas1runtest`
+
+## To Run These Tests as a Student
+
+Simply run `mocha test` from the command line in this directory
 
 # Katas 1 Instructions
 

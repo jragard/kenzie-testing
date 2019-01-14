@@ -1,6 +1,6 @@
 # Katas 4 Tests
 
-## To Run These Tests
+## To Run These Tests as a Grader
 
 1: Go to the test suite repo (here) and clone it to your machine.
 
@@ -9,6 +9,10 @@
 3: Run `node run.js ___student's_repo_url___`.  Upon execution the output of the test results will be written to your console.
 
 If you would like to test it on a dummy submission link, use `node run.js https://github.com/jragard/katas4test`
+
+## To Run These Tests as a Student
+
+Simply run `mocha test` from the command line in this directory
 
 # Katas 4 Instructions
 
@@ -24,10 +28,15 @@ Several of the katas will use the following sample variables, which you can copy
 
 `const bestThing = "The best thing about a boolean is even if you are wrong you are only off by a bit"`
 
+Name each function kata1, kata2, kata3, etc.  It is important to follow this instruction so the tests will run properly.  In order to run the tests, include this code snippet at the bottom of your file:
+
+`module.exports = { kata1, kata2, kata3, kata4, kata5, kata6, kata7, kata8, kata9, kata10, kata11, kata12, kata13, kata14, kata15, kata16, kata17, kata18, kata19, kata20, kata21, kata22, kata23, kata24, kata25, kata26, kata27, kata28, kata29, kata30, kata31, kata32 }`
+
+Then simply run `mocha test` from the test directory.
+
 
 ### Part 1: Katas
 1.  Write a function that returns an array with the cities in 'gotCitiesCSV'
-
 2.  Write a function that returns an array of words from the sentence in 'bestThing'
 3.  Write a function that returns a string separated by semi-colons instead of commas from 'gotCitiesCSV'
 4.  Write a function that returns a CSV (comma-separated) string from the 'lotrCitiesArray'  
