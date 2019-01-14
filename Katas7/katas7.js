@@ -58,5 +58,3 @@ function newFilter(array, callback) {
     }
     return result;
 }
-
-module.exports = { newForEach, newMap, newSome, newFind, newFindIndex, newEvery, newFilter }

@@ -1,6 +1,9 @@
-const katas7 = require('../katas7.js')
+const katas7 = require('./s.js')
 const chai = require('chai')
 const expect = chai.expect
+const colors = require('mocha/lib/reporters/base').colors;
+colors['pending'] = '93';
+colors['green'] = '92';
 
 const numbers = [1, 2, 3, 4, 5, 6]
 const oddNumbers = [1, 3, 5, 7, 9, 11]
@@ -17,6 +20,14 @@ let lettersResults = [];
 let wordsResults = [];
 
 describe("forEach, should reproduce the built-in method 'forEach' using a callback function, and without using the built-in version", function() {
+
+    it("should be a function", function() {
+        if(typeof katas7.newForEach != 'function') {
+            this.skip();
+        }
+    })
+
+    if(typeof katas7.newForEach === 'function') {
 
     afterEach(function() {
         lettersCallbackCounter = 0;
@@ -71,10 +82,19 @@ describe("forEach, should reproduce the built-in method 'forEach' using a callba
         })
         expect(wordsResults).to.eql(['spray-modified', 'limit-modified', 'elite-modified', 'exuberant-modified', 'destruction-modified', 'present-modified'])
     })
+}
 })
 
 
 describe("map, should reproduce the built-in method 'map' using a callback function, and without using the built-in version", function() {
+
+    it("should be a function", function() {
+        if(typeof katas7.newMap != 'function') {
+            this.skip();
+        }
+    })
+
+    if(typeof katas7.newMap === 'function') {
 
     afterEach(function() {
         lettersCallbackCounter = 0;
@@ -123,10 +143,18 @@ describe("map, should reproduce the built-in method 'map' using a callback funct
             return word + '-modified'
         })).to.eql(['spray-modified', 'limit-modified', 'elite-modified', 'exuberant-modified', 'destruction-modified', 'present-modified'])
     })
-    
+}
 })
 
 describe("some, should reproduce the built-in method 'some' using a callback function, and without using the built-in version", function() {
+
+    it("should be a function", function() {
+        if(typeof katas7.newSome != 'function') {
+            this.skip();
+        }
+    })
+
+    if(typeof katas7.newSome === 'function') {
 
     afterEach(function() {
         lettersCallbackCounter = 0;
@@ -175,9 +203,18 @@ describe("some, should reproduce the built-in method 'some' using a callback fun
             }
         })).to.equal(false)
     })
+}
 })
 
 describe("find, should reproduce the built-in method 'find' using a callback function, and without using the built-in version", function() {
+
+    it("should be a function", function() {
+        if(typeof katas7.newFind != 'function') {
+            this.skip();
+        }
+    })
+
+    if(typeof katas7.newFind === 'function') {
 
     afterEach(function() {
         lettersCallbackCounter = 0;
@@ -238,9 +275,18 @@ describe("find, should reproduce the built-in method 'find' using a callback fun
             }
         })).to.equal(undefined)
     })
+}
 })
 
 describe("findIndex, should reproduce the built-in method 'findIndex' using a callback function, and without using the built-in version", function() {
+
+    it("should be a function", function() {
+        if(typeof katas7.newFindIndex != 'function') {
+            this.skip();
+        }
+    })
+
+    if(typeof katas7.newFindIndex === 'function') {
 
     afterEach(function() {
         lettersCallbackCounter = 0;
@@ -288,9 +334,18 @@ describe("findIndex, should reproduce the built-in method 'findIndex' using a ca
             }
         })).to.equal(-1)
     })
+ }
 })
 
 describe("every, should reproduce the built-in method 'every' using a callback function, and without using the built-in version", function() {
+
+    it("should be a function", function() {
+        if(typeof katas7.newEvery != 'function') {
+            this.skip();
+        }
+    })
+
+    if(typeof katas7.newEvery === 'function') {
 
     afterEach(function() {
         lettersCallbackCounter = 0;
@@ -339,9 +394,18 @@ describe("every, should reproduce the built-in method 'every' using a callback f
             }
         })).to.equal(true)
     })
+}
 })
 
 describe("filter, should reproduce the built-in method 'filter' using a callback function, and without using the built-in version", function() {
+
+    it("should be a function", function() {
+        if(typeof katas7.newFilter != 'function') {
+            this.skip();
+        }
+    })
+
+    if(typeof katas7.newFilter === 'function') {
     
     afterEach(function() {
         lettersCallbackCounter = 0;
@@ -390,4 +454,5 @@ describe("filter, should reproduce the built-in method 'filter' using a callback
             }
         })).to.eql([2, 4, 6])
     })
+}
 })
