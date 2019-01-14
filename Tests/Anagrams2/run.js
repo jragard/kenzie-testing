@@ -38,7 +38,7 @@ function runTests(studentCode) {
   tempFileStream.write(
     "\nmodule.exports = { getSetsOfFiveAnagrams: (typeof getSetsOfFiveAnagrams) === 'function' && getSetsOfFiveAnagrams };"
   );
-  spawn("mocha", [], { stdio: "inherit" }).on("exit", function(error) {
+  spawn("mocha", ['--colors'], { stdio: "inherit" }).on("exit", function(error) {
     if (error) {
       console.log(error);
     }

@@ -62,7 +62,7 @@ function runTests(studentCode) {
                           testEvaluateExpression1: (typeof testEvaluateExpression1) === 'function' && testEvaluateExpression1, \
                           testEvaluateExpression2: (typeof testEvaluateExpression2) === 'function' && testEvaluateExpression2 }"
     );
-    spawn("mocha", [], { stdio: "inherit" }).on("exit", function(error) {
+    spawn("mocha", ['--colors'], { stdio: "inherit" }).on("exit", function(error) {
     if (error) {
         console.log(error);
     }
