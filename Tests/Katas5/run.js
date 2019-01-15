@@ -23,7 +23,7 @@ if (argv._.length === 0) {
 }
     
 function defaultTest() {
-    studentCode = fs.readFileSync("./katas5.js", { encoding: "utf8" });
+    studentCode = fs.readFileSync("../../temp.js", { encoding: "utf8" });
     runTests(studentCode);
 }
     
