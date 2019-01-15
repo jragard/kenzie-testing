@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/jragard/kenzie-testing#readme",
   "dependencies": {
-    "argparse": "^1.0.10"
+    "argparse": "^1.0.10",
+    "urijs": "^1.19.1"
   }
 }
