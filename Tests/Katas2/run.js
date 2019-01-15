@@ -37,7 +37,7 @@ function runTests(studentCode) {
   tempFileStream.write(
     "\nmodule.exports = { add: (typeof add) === 'function' && add, multiply: (typeof multiply) === 'function' && multiply, power: (typeof power) === 'function' && power, factorial: (typeof factorial) === 'function' && factorial, fibonacci: (typeof fibonacci) === 'function' && fibonacci, };"
   );
-  spawn("mocha", [], { stdio: "inherit" }).on("exit", function(error) {
+  spawn("mocha", ['--colors'], { stdio: "inherit" }).on("exit", function(error) {
     if (error) {
       console.log(error);
     }
