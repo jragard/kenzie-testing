@@ -2,12 +2,13 @@
   "name": "fizzbuzz",
   "version": "1.0.0",
   "description": "Testing for fizzbuzz assignment.",
-  "main": "fizzbuzz-framework.js",
+  "main": "fizzbuzz.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "mocha || exit 0"
+    "grade": "node run.js",
+    "test": "node run.js"
   },
   "repository": {
     "type": "git",
