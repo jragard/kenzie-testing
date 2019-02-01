@@ -1,8 +1,5 @@
-// Used to test against function in local solution file
-// const { fizzbuzz, fizzbuzzPrime } = require("./fizzbuzz.js");
-
 // Used to test against function provided from run script
-const { fizzbuzz, fizzbuzzPrime } = require("../fizzbuzz.js");
+const { fizzbuzz, fizzbuzzPrime } = require("./s.js");
 
 const chai = require("chai");
 const colors = require("mocha/lib/reporters/base").colors;

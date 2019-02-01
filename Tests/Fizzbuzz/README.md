@@ -1,12 +1,10 @@
-## To Run These Tests
+Instructions to Run Tests (with Katas1 as example assignment)
 
-1: Go to the test suite repo (here) and clone it to your machine.
+# How To Run Tests
 
-2: cd into the cloned directory and run `npm install` from the command line.
-
-3: Run `node run.js ___student's_repo_url___`. Upon execution the output of the test results will be written to your console.
-
-If you would like to test it on a dummy submission link, use `node run.js https://github.com/swkane/fizzbuzz d`
+1.  Run `npm install --global git+https://github.com/jragard/kenzie-testing`
+2.  To test local file, the file should be named according to assignment instructions (e.g. fizzbuzz.js). Then run `kenzie-test fizzbuzz` (or appropriate assignment name)
+3.  To test a completed assignment from a github or gitlab link, run `kenzie-test fizzbuzz -g https://github.com/swkane/fizzbuzz` (or whatever the submitted github or gitlab link happens to be)
 
 # Assessment Instructions
 
@@ -23,14 +21,10 @@ If you would like to test it on a dummy submission link, use `node run.js https:
 - This function should return this string after 1000 iterations of the loop.
 - If implemented correctly, the string you return should have a trailing comma, leave this comma
 
-- Write a second function named `writeToDOM`.
-- This function will have one parameter - `fizzbuzzResult`.
-- This function should take the string you pass to it, `fizzBuzzResult`, and attach it to the DOM
-
 ### IMPORTANT: If you do not name and export your functions correctly, the tests will not run and the submission will not be accepted.
 
 ## Bonus
 
-- Write a third function named `fizzbuzzPrime`.
+- Write a second function named `fizzbuzzPrime`.
 - This function will follow all of the rules of your fizzbuzz function and 1 additional rule:
   - If a number is a prime number, concatenate "Prime," to the end of your string
