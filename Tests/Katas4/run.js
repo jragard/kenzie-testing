@@ -13,12 +13,11 @@ const tempFile = "test/s.js";
 const tempFileStream = fs.createWriteStream(tempFile);
 
 const arg = argv._
-console.log(arg)
+console.log(arg[0] + 3)
 
 if (argv._.length === 0) {
-  console.log('0000')
   defaultTest();
-} else if (arg[0].includes("github")) {
+} else if (String(arg[0]).includes("github")) {
   const answer = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(argv._[0]);
   const url = `https://raw.githubusercontent.com/${answer[1]}/${
     answer[2]
@@ -26,6 +25,7 @@ if (argv._.length === 0) {
   gitTest(url);
 } else {
   const url = "https://gitlab.com/api/v4/projects/" + arg[0] + "/repository/files/katas4%2Ejs?ref=master"
+  console.log('heyyyyyy')
   gitTest(url);
 }
 
