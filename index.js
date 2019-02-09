@@ -31,6 +31,8 @@ const startDir = process.cwd();
 
 const caseInsensitivePattern = new RegExp(args.assessment, 'i')
 
+console.log('index is running')
+
 fs.readdir(`${__dirname}/Tests`, (err, items) => {
     items.forEach((item) => {
         if (caseInsensitivePattern.test(item)) {
