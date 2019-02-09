@@ -28,7 +28,7 @@ if (argv._.length === 0) {
 }
 
 function defaultTest() {
-  studentCode = fs.readFileSync("../../temp.js", {
+  studentCode = fs.readFileSync("./test/temp.js", {
     encoding: "utf8"
   });
   runTests(studentCode);
@@ -102,5 +102,6 @@ function runTests(studentCode) {
       console.log(error);
     }
     exec(`rm ${tempFile}`);
+    exec(`rm ./test/temp.js`);
   });
 }

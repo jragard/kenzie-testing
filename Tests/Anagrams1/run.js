@@ -3,7 +3,7 @@ const axios = require("axios");
 const { exec, spawn } = require("child_process");
 const { argv } = require("yargs");
 
-const tempFile = "./test/s.js";
+const tempFile = "test/s.js";
 const tempFileStream = fs.createWriteStream(tempFile);
 
 const arg = argv._
@@ -27,9 +27,28 @@ function defaultTest() {
 }
 
 function gitTest(url) {
+  if(url.includes("github")) {
   axios.get(url).then(response => {
     runTests(response.data);
   });
+}
+  else {
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'PRIVATE-TOKEN': '5ZHEYQdoa5Tgx3yjpdP3'
+      }
+    })
+    .then(function(response) {
+      let res = response.body._readableState.buffer.head.data;
+      let regex = /"content"/;
+      let index = res.toString().search(regex);
+      let content = res.toString().slice(index + 11);
+      let decodedContent = Buffer.from(content, 'base64').toString();
+      runTests(decodedContent);
+    })
+  }
+
 }
 
 function runTests(studentCode) {
