@@ -1,4 +1,4 @@
-'use strict';
+;
 
 function getAnagramsOf(input) {
     const result = [];

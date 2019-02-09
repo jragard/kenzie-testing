@@ -13,7 +13,6 @@ const tempFile = "test/s.js";
 const tempFileStream = fs.createWriteStream(tempFile);
 
 const arg = argv._
-console.log(arg[0] + 3)
 
 if (argv._.length === 0) {
   defaultTest();
@@ -25,7 +24,6 @@ if (argv._.length === 0) {
   gitTest(url);
 } else {
   const url = "https://gitlab.com/api/v4/projects/" + arg[0] + "/repository/files/katas4%2Ejs?ref=master"
-  console.log('heyyyyyy')
   gitTest(url);
 }
 
