@@ -1,5 +1,6 @@
 const fs = require('fs');
 const axios = require('axios');
+const fetch = require('node-fetch');
 const {
   exec,
   spawn
@@ -11,19 +12,21 @@ const {
 const tempFile = "test/s.js";
 const tempFileStream = fs.createWriteStream(tempFile);
 
+const arg = argv._
+console.log(arg)
+
 if (argv._.length === 0) {
+  console.log('0000')
   defaultTest();
-} else if (argv._[0].includes("github")) {
+} else if (arg[0].includes("github")) {
   const answer = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(argv._[0]);
   const url = `https://raw.githubusercontent.com/${answer[1]}/${
     answer[2]
   }/master/katas4.js`;
   gitTest(url);
-} else if (argv._[0].includes("gitlab")) {
-  const url = argv._[0] + "/raw/master/katas4.js";
-  gitTest(url);
 } else {
-  console.log(`invalid command line parameter: ${argv._[0]}`);
+  const url = "https://gitlab.com/api/v4/projects/" + arg[0] + "/repository/files/katas4%2Ejs?ref=master"
+  gitTest(url);
 }
 
 function defaultTest() {
@@ -34,9 +37,28 @@ function defaultTest() {
 }
 
 function gitTest(url) {
+  if(url.includes("github")) {
   axios.get(url).then(response => {
     runTests(response.data);
   });
+}
+  else {
+    fetch(url, {
+      method: 'GET',
+      headers: {
+          'PRIVATE-TOKEN': '5ZHEYQdoa5Tgx3yjpdP3'
+      }
+  })
+      .then(function(response) {
+      let res = response.body._readableState.buffer.head.data
+      let regex = /"content"/
+      let index = res.toString().search(regex)
+      let content = res.toString().slice(index + 11)
+      let decodedContent = Buffer.from(content, 'base64').toString();
+      runTests(decodedContent)
+    })
+    
+  }
 }
 
 function runTests(studentCode) {
