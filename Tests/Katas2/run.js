@@ -18,7 +18,7 @@ if (argv._.length === 0) {
   }/master/katas2.js`;
   gitTest(url);
 } else {
-  const url = "https://gitlab.com/api/v4/projects/" + arg[0] + "/repository/files/katas4%2Ejs?ref=master";
+  const url = "https://gitlab.com/api/v4/projects/" + arg[0] + "/repository/files/katas2%2Ejs?ref=master";
   gitTest(url);
 } 
 

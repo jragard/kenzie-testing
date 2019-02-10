@@ -1,6 +1,10 @@
 const chai = require("chai");
 const expect = chai.expect;
 const { getAnagramsOf } = require("./s.js");
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const dom = new JSDOM("<!DOCTYPE html><html lang='en'><body><div><input type='text' id='input' size=40><button id='findButton'>Find Anagrams</button></div><script type='text/javascript' src='words.js'></script><script type='text/javascript' src='anagrams1.js'></script></body></html>")
+global.document = dom.window.document;
 const colors = require("mocha/lib/reporters/base").colors;
 colors["pending"] = "93";
 colors["green"] = "92";

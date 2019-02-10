@@ -1,19 +1,18 @@
 # Katas 2 Tests
 
-## To Run These Tests as a Grader
+## To Run Tests as a Grader
 
-1: Go to the test suite repo (here) and clone it to your machine.
+1.  If you haven't already installed the kenzie-test npm package, from your terminal run `npm install --global git+https://github.com/jragard/kenzie-testing`
 
-2: cd into the cloned directory and run `npm install` from the command line.
+2.  To test a completed assignment from a Gitlab Project ID submission, run `kenzie-test katas2 -g <Project ID>`  (The student will need to submit their gitlab project ID number, and share their project with KA_SE5 Gitlab account) For example, `kenzie-test katas2 -g 10771144` will grab the contents of the file at https://gitlab.com/jragard/katas2.
 
-3: Run `node run.js ___student's_repo_url___`.  Upon execution the output of the test results will be written to your console.
+3. To test a completed assignment from a github link, run `kenzie-test katas2 -g https://github.com/jragard/katas2` (or whatever the submitted github link happens to be)
 
-If you would like to test it on a dummy submission link, use `https://github.com/jragard/katas2test`
+4. To test a local file, the file and parent directory should be named according to assignment instructions (e.g. `katas2.js` and `katas2`).  Then run `kenzie-test katas2` (or appropriate assignment name)
 
-## To Run These Tests as a Student
+## TESTING BUG ##
 
-Simply run `mocha test` from the command line in this directory
-  
+As of now, our command line tool will sometimes get confused if you are trying to test a file from a github/gitlab link, while in the same directory of a local version of the same file (or a file/directory with the same name).  For now, when running tests on github/gitlab submissions, you will want to make sure you aren't in the same directory as any local version of the assignment you are trying to test.
 
 # Katas 2 Instructions
 
@@ -41,7 +40,7 @@ For example, calling *add*(2, 4) should return a result of 6.
 
 Write a function named "multiply" that takes two arguments and returns their product.
 
-You **may not** use built-in arithmetic operators or functions. Instead, you'll need a for loop which calls the "add" function you wrote earlier.
+You **may not** use built-in arithmetic operators or functions (like the `*` built-in operator for multiplication). Instead, you'll need a for loop which calls the "add" function you wrote earlier.
 
 For example, calling *multiply*(6, 8) should return a result of 48.
 
@@ -50,7 +49,7 @@ For example, calling *multiply*(6, 8) should return a result of 48.
 
 Write a function named "power" that takes two arguments (x and n) and returns the the result of raising x to the nth power.
 
-You **may not** use built-in arithmetic operators or functions. Instead, use functions you wrote in earlier katas to write this function.
+You **may not** use built-in arithmetic operators or functions. Instead, use functions you wrote in earlier katas to write this function (like the `*` built-in operator for multiplication, or the `**` operator for power/exponentiation).
 
 Another word for this is "exponentiation". For example, if we called *power*(2, 8), we return 256 by multiplying 2 by itself 8 times:
 
@@ -64,9 +63,9 @@ See [this](https://simple.wikipedia.org/wiki/Exponentiation) Wikipedia article f
 
 # Factorial
 
-Write a function named "factorial" that takes a single argument and returns the factorial of that argument.
+Write a function named "factorial" that takes a single argument and returns the factorial of that argument .
 
-You **may not** use built-in arithmetic operators or functions. Instead, use functions you wrote in earlier katas to write this function.
+You **may not** use built-in arithmetic operators or functions. Instead, use functions you wrote in earlier katas to write this function (like the `*` built-in operator for multiplication).
 
 For example, calling *factorial*(4) should return a result of 24.
 
@@ -74,7 +73,7 @@ For example, calling *factorial*(4) should return a result of 24.
 
 Write a function named "fibonacci" that takes an argument n and returns the nth [Fibonacci number](https://simple.wikipedia.org/wiki/Fibonacci_number). 
 
-You **may not** use built-in arithmetic operators or functions. Instead, use functions you wrote in earlier katas to write this function.
+You **may not** use built-in arithmetic operators or functions. Instead, use functions you wrote in earlier katas to write this function (like the `*` built-in operator for multiplication).
 
 For example, calling *fibonacci*(8) should return a result of 13.
 

@@ -1,18 +1,18 @@
 # Katas 7 Tests
 
-## To Run These Tests
+## To Run Tests as a Grader
 
-1: Go to the test suite repo (here) and clone it to your machine.
+1.  If you haven't already installed the kenzie-test npm package, from your terminal run `npm install --global git+https://github.com/jragard/kenzie-testing`
 
-2: cd into the cloned directory and run `npm install` from the command line.
+2.  To test a completed assignment from a Gitlab Project ID submission, run `kenzie-test katas7 -g <Project ID>`  (The student will need to submit their gitlab project ID number, and share their project with KA_SE5 Gitlab account) For example, `kenzie-test katas7 -g 10771151` will grab the contents of the file at https://gitlab.com/jragard/katas7.
 
-3: Run `node run.js ___student's_repo_url___`.  Upon execution the output of the test results will be written to your console.
+3. To test a completed assignment from a github link, run `kenzie-test katas7 -g https://github.com/jragard/katas7` (or whatever the submitted github link happens to be)
 
-If you would like to test it on a dummy submission link, use `node run.js https://github.com/jragard/katas7test`
+4. To test a local file, the file and parent directory should be named according to assignment instructions (e.g. `katas7.js` and `katas7`).  Then run `kenzie-test katas7` (or appropriate assignment name)
 
-## To Run These Tests as a Student
+## TESTING BUG ##
 
-Simply run `mocha test` from the command line in this directory
+As of now, our command line tool will sometimes get confused if you are trying to test a file from a github/gitlab link, while in the same directory of a local version of the same file (or a file/directory with the same name).  For now, when running tests on github/gitlab submissions, you will want to make sure you aren't in the same directory as any local version of the assignment you are trying to test.
 
 
 # Katas 7 Instructions
@@ -23,7 +23,7 @@ JavaScript provides us several "iteration methods" based on the same sort of cal
 
 ## Your Task, Should You Choose to Submit It
 
-Your task will be to reproduce the behavior of these Array methods with your own functions - *without* using JavaScript's *built-in* versions:
+Your task will be to reproduce the behavior of these Array methods with your own callback functions - *without* using JavaScript's *built-in* versions:
 
 1. [forEach()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach)
 2. [map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)

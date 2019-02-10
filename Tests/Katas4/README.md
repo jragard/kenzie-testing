@@ -1,5 +1,19 @@
 # Assessment: JavaScript Katas 4 #
 
+## To Run Tests as a Grader
+
+1.  If you haven't already installed the kenzie-test npm package, from your terminal run `npm install --global git+https://github.com/jragard/kenzie-testing`
+
+2.  To test a completed assignment from a Gitlab Project ID submission, run `kenzie-test katas4 -g <Project ID>`  (The student will need to submit their gitlab project ID number, and share their project with KA_SE5 Gitlab account) For example, `kenzie-test katas4 -g 10739614` will grab the contents of the file at https://gitlab.com/jragard/katas4.
+
+3. To test a completed assignment from a github link, run `kenzie-test katas4 -g https://github.com/jragard/katas4` (or whatever the submitted github link happens to be)
+
+4. To test a local file, the file and parent directory should be named according to assignment instructions (e.g. `katas4.js` and `katas4`).  Then run `kenzie-test katas4` (or appropriate assignment name)
+
+## TESTING BUG ##
+
+As of now, our command line tool will sometimes get confused if you are trying to test a file from a github/gitlab link, while in the same directory of a local version of the same file (or a file/directory with the same name).  For now, when running tests on github/gitlab submissions, you will want to make sure you aren't in the same directory as any local version of the assignment you are trying to test.
+
 ### Overview ###
 
 A [kata](https://en.wikipedia.org/wiki/Kata_(programming)) is an individual exercise where you practice a programming skill through repetition. Today you will practice using JavaScript loops, conditionals, expressions and arrays through a series of katas.
