@@ -1,5 +1,6 @@
 const fs = require("fs");
 const axios = require("axios");
+const fetch = require("node-fetch");
 const { exec, spawn } = require("child_process");
 const { argv } = require("yargs");
 
