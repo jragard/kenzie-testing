@@ -18,7 +18,7 @@ if (argv._.length === 0) {
   }/master/anagrams.js`;
   gitTest(url);
 } else  {
-  const url = "https://gitlab.com/api/v4/projects/" + arg[0] + "/repository/files/anagrams%2Ejs?ref=master";
+  const url = "https://gitlab.com/api/v4/projects/" + arg[0] + "/repository/files/anagrams1%2Ejs?ref=master";
   gitTest(url);
 }
 
