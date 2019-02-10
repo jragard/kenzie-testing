@@ -21,6 +21,7 @@
   "homepage": "https://github.com/jragard/kenzie-testing#readme",
   "dependencies": {
     "argparse": "^1.0.10",
+    "jsdom": "^13.2.0",
     "node-fetch": "^2.3.0",
     "urijs": "^1.19.1"
   }

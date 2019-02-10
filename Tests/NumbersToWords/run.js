@@ -15,10 +15,11 @@ if (argv._.length === 0) {
   const answer = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(argv._[0]);
   const url = `https://raw.githubusercontent.com/${answer[1]}/${
     answer[2]
-  }/master/numberstowords.js`;
+  }/master/numbersToWords.js`;
+  console.log(url)
   gitTest(url);
 } else {
-  const url = "https://gitlab.com/api/v4/projects/" + arg[0] + "/repository/files/numberstowords%2Ejs?ref=master";
+  const url = "https://gitlab.com/api/v4/projects/" + arg[0] + "/repository/files/numbersToWords%2Ejs?ref=master";
   gitTest(url);
 }
 
@@ -33,6 +34,7 @@ function gitTest(url) {
     runTests(response.data);
   });
 } else {
+  console.log(url)
   fetch(url, {
     method: 'GET',
     headers: {
@@ -41,16 +43,19 @@ function gitTest(url) {
   })
   .then(function(response) {
     let res = response.body._readableState.buffer.head.data
+    console.log(res.toString())
     let regex = /"content"/
     let index = res.toString().search(regex)
     let content = res.toString().slice(index + 11)
     let decodedContent = Buffer.from(content, 'base64').toString();
+    console.log(decodedContent)
     runTests(decodedContent)
   })
 }
 }
 
 function runTests(studentCode) {
+  console.log('runTests running')
   tempFileStream.write(studentCode.replace(/['"]?use strict['"]?/, ""));
   tempFileStream.write(
     "\nmodule.exports = { numbersToWords: (typeof numbersToWords) === 'function' && numbersToWords }"
