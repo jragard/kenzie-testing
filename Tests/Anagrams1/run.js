@@ -60,7 +60,7 @@ function runTests(studentCode) {
   tempFileStream.write('const jsdom = require("jsdom");\n');
   tempFileStream.write('const { JSDOM } = jsdom;\n');
   tempFileStream.write("const dom = new JSDOM(\"" + html + "\")\n");
-  tempFileStream.write('global.document = dom.window.document;\n')
+  tempFileStream.write('global.document = dom.window.document;\n');
   tempFileStream.write(studentCode.replace(/['"]?use strict['"]?/, ""));
 
   tempFileStream.write(

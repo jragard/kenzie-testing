@@ -51,7 +51,14 @@ function gitTest(url) {
 }
 
 function runTests(studentCode) {
+
+  let html = "<!DOCTYPE html><html lang='en'><body><div><input type='text' id='input' size=40><button id='findButton'>Find Anagrams</button></div><script type='text/javascript' src='words.js'></script><script type='text/javascript' src='anagrams1.js'></script></body></html>"
+
   tempFileStream.write("const { words } = require('./words');\n");
+  tempFileStream.write('const jsdom = require("jsdom");\n');
+  tempFileStream.write('const { JSDOM } = jsdom;\n');
+  tempFileStream.write("const dom = new JSDOM(\"" + html + "\")\n");
+  tempFileStream.write('global.document = dom.window.document;\n');
   tempFileStream.write(studentCode.replace(/['"]?use strict['"]?/, ""));
   tempFileStream.write(
     "\nmodule.exports = { getSetsOfFiveAnagrams: (typeof getSetsOfFiveAnagrams) === 'function' && getSetsOfFiveAnagrams };"
@@ -62,5 +69,6 @@ function runTests(studentCode) {
     }
     exec(`rm ${tempFile}`);
     exec(`rm ./test/temp.js`);
+    exec(`rm ./test/temp.html`);
   });
 }
