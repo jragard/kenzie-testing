@@ -15,7 +15,7 @@ if (argv._.length === 0) {
   const answer = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(argv._[0]);
   const url = `https://raw.githubusercontent.com/${answer[1]}/${
     answer[2]
-  }/master/anagrams.js`;
+  }/master/anagrams1.js`;
   gitTest(url);
 } else  {
   const url = "https://gitlab.com/api/v4/projects/" + arg[0] + "/repository/files/anagrams1%2Ejs?ref=master";
