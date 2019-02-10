@@ -1,8 +1,19 @@
-const numbersToWords = require('../numbersToWords.js');
+const numbersToWords = require('./s.js');
 const chai = require('chai');
 const expect = chai.expect;
+const colors = require('mocha/lib/reporters/base').colors;
+colors['pending'] = '93';
+colors['green'] = '92';
 
 describe("Numbers To Words, write a function that returns an array with all the numbers from 1 through 1000 in words", function() {
+
+    it("should be a function", function() {
+        if(typeof numbersToWords.numbersToWords != 'function') {
+            this.skip();
+        }
+    });
+
+    if(typeof numbersToWords.numbersToWords === 'function') {
 
     const results = numbersToWords.numbersToWords();
 
@@ -182,4 +193,5 @@ describe("Numbers To Words, write a function that returns an array with all the 
     it("Last value in results is 1000", function() {
         expect(oneThousand.includes(results[999])).to.equal(true)
     })
+}
 })
