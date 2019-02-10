@@ -8,6 +8,8 @@ const tempFile = "test/coinObject.js";
 const tempFileStream = fs.createWriteStream(tempFile);
 const arg = argv._
 
+console.log('run.js is running')
+
 if (argv._.length === 0) {
   defaultTest();
 } else if (String(arg[0]).includes("github")) {
@@ -54,7 +56,7 @@ function runTests(studentCode) {
   tempFileStream.write('const jsdom = require("jsdom");\n');
   tempFileStream.write('const { JSDOM } = jsdom;\n');
   tempFileStream.write("const dom = new JSDOM(\"" + html + "\")\n");
-  tempFileStream.write('global.document = dom.window.document;');
+  tempFileStream.write('global.document = dom.window.document;\n');
   tempFileStream.write(studentCode.replace(/['"]?use strict['"]?/, ""));
   tempFileStream.write(
     "\nmodule.exports = { coin: coin, display20Flips: (typeof display20Flips) === 'function' && display20Flips, display20Images: (typeof display20Images) === 'function' && display20Images }"
