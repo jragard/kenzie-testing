@@ -1,18 +1,24 @@
-# Coin Object Tests
+# Coin Object
 
-## To Run These Tests
+# Testing Tools
 
-1: Go to the test suite repo (here) and clone it to your machine.
+1. If you already have node/npm installed, skip this step.  If not, open your terminal and run the command `brew install node`. Verify the install completed by running `node --version` (You should see something like `v8.12.0` or similar), then `npm --version` (You should see something like `6.4.1` or similar)
 
-2: cd into the cloned directory and run `npm install` from the command line.
+2. If you have already installed the kenzie-testing npm package, skip this step.  If not, in your terminal run the command `npm install --global git+https://github.com/jragard/kenzie-testing`
 
-3: Run `node run.js ___student's_repo_url___`.  Upon execution the output of the test results will be written to your console.
+3. You can test the functions in your coinObject.js file by navigating to the coinObject directory that holds your file.  When you are in the same directory as your `coinObject.js` file, run the terminal command `kenzie-test coinObject`.  You will receive instant feedback in your terminal.  You can run these tests repeatedly as you work on the assessment to verify that your solutions are correct.
 
-If you would like to test it on a dummy submission link, use `node run.js https://github.com/jragard/coinObject`
+## For Graders
+
+1. To test a completed assignment from a gitlab repo, run `kenzie-test coinObject -g <Project ID>`  (The student will need to submit their gitlab project ID number, and share their project with the KA_SE5 Gitlab account) For example, `kenzie-test katas4 -g 10739614` will grab the contents of the file at https://gitlab.com/jragard/katas4.
+
+2. To test a completed assignment from a github repo link, run `kenzie-test katas4 -g https://github.com/jragard/coinObject` (or whatever the submitted github repo link happens to be)
 
 # Coin Object Instructions
 
 Today you will practice what you've read about [objects in JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics) by creating a coin object. The coin object will represent whether a single coin is heads or tails. You will add several methods to it to support flipping the coin and displaying which side is currently facing up.
+
+Create a directory called 'coinObject', and a JS file called coinObject.js.  **It is important to follow these naming instructions, or the testing/grading tools may not work.**
 
 Start from the following code template, and fill in the incomplete or missing code indicated by the comments:
 
@@ -57,5 +63,8 @@ Test and demonstrate that your coin object is complete doing the following:
 - *One point:* Write a function called *display20Flips* that uses a loop to flip the coin 20 times.  Each time the coin flips, display the result of each flip as a string on the page (make use of your toString() method) and also push the result of the flip to an empty array.  After your loop completes, return the results array.
 
 - *One point:* Write a function called *display20Images*, again using a loop to flip the coin 20 times...but this time instead of displaying the result as a string, display the result of each flip as an HTML IMG element on the page (make use of your toHTML() method).  Also push each result to an empty array and return the array after your loop completes.
+
+**Your HTML file should have nothing in the body except for your script tag.  Instead of hard-coding HTML elements, create them dynamically with Javascript and append them to your HTML**
+
 
 

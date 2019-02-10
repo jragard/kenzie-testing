@@ -48,10 +48,21 @@ fs.readdir(`${__dirname}/Tests`, (err, items) => {
                     const studentCode = fs.readFileSync(src, {
                         encoding: "utf8"
                     })
+                    // console.log(studentCode)
                     let tempFile = './test/temp.js'
                     let tempFileStream = fs.createWriteStream(tempFile);
 
                     tempFileStream.write(studentCode.replace(/['"]?use strict['"]?/, ""));
+                }
+                if (file.includes(".html")) {
+                    let htmlFile = file;
+                    let src = path.join(startDir, htmlFile)
+                    const htmlContent = fs.readFileSync(src, {
+                        encoding: "utf-8"
+                    })
+                    let tempHTML = './test/temp.html'
+                    let tempHTMLStream = fs.createWriteStream(tempHTML);
+                    tempHTMLStream.write(htmlContent);
                 }
             })
 

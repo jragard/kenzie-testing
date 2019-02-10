@@ -1,11 +1,13 @@
-const coinObject = require('./s.js');
+const coinObject = require('./coinObject.js');
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const dom = new JSDOM("<!DOCTYPE html><html lang='en'><body></body></html>")
+global.document = dom.window.document;
 const chai = require('chai');
 const expect = chai.expect;
 const colors = require('mocha/lib/reporters/base').colors;
 colors['pending'] = '93';
 colors['green'] = '92';
-
-console.log('test is running')
 
 describe("The flip method randomly sets the coin object's state to either 0 or 1", function() {
     
