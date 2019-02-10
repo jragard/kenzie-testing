@@ -48,7 +48,6 @@ fs.readdir(`${__dirname}/Tests`, (err, items) => {
                     const studentCode = fs.readFileSync(src, {
                         encoding: "utf8"
                     })
-                    // console.log(studentCode)
                     let tempFile = './test/temp.js'
                     let tempFileStream = fs.createWriteStream(tempFile);
 
