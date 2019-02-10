@@ -1,18 +1,18 @@
  # Katas 1 Tests
 
-## To Run These Tests as a Grader
+## To Run Tests as a Grader
 
-1: Go to the test suite repo (here) and clone it to your machine.
+1.  If you haven't already installed the kenzie-test npm package, from your terminal run `npm install --global git+https://github.com/jragard/kenzie-testing`
 
-2: cd into the cloned directory and run `npm install` from the command line.
+2.  To test a completed assignment from a Gitlab Project ID submission, run `kenzie-test katas1 -g <Project ID>`  (The student will need to submit their gitlab project ID number, and share their project with KA_SE5 Gitlab account) For example, `kenzie-test katas1 -g 10771136` will grab the contents of the file at https://gitlab.com/jragard/katas1.
 
-3: Run `node run.js ___student's_repo_url___`.  Upon execution the output of the test results will be written to your console.
+3. To test a completed assignment from a github link, run `kenzie-test katas1 -g https://github.com/jragard/katas1` (or whatever the submitted github link happens to be)
 
-If you would like to test it on a dummy submission link, use `node run.js https://github.com/jragard/katas1runtest`
+4. To test a local file, the file and parent directory should be named according to assignment instructions (e.g. `katas1.js` and `katas1`).  Then run `kenzie-test katas1` (or appropriate assignment name)
 
-## To Run These Tests as a Student
+## TESTING BUG ##
 
-Simply run `mocha test` from the command line in this directory
+As of now, our command line tool will sometimes get confused if you are trying to test a file from a github/gitlab link, while in the same directory of a local version of the same file (or a file/directory with the same name).  For now, when running tests on github/gitlab submissions, you will want to make sure you aren't in the same directory as any local version of the assignment you are trying to test.
 
 # Katas 1 Instructions
 
