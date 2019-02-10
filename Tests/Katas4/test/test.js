@@ -4,7 +4,6 @@ const expect = chai.expect;
 const colors = require('mocha/lib/reporters/base').colors;
 colors['pending'] = '93';
 colors['green'] = '92';
-// const isFunction = obj => Object.getPrototypeOf(obj)
 
 const success = 'CORRECT!  Function passes all tests';
 const incorrect = 'Incorrect - Something has gone wrong'

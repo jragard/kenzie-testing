@@ -39,23 +39,30 @@ fs.readdir(`${__dirname}/Tests`, (err, items) => {
             
             process.chdir(`${__dirname}/Tests/${item}`)
             
-            
             const arrayOfFiles = fs.readdirSync(startDir)
 
             arrayOfFiles.forEach(file => {
                 if (caseInsensitivePattern.test(file)) {
                     let filename = file;
                     let src = path.join(startDir, filename)
-                    console.log(src)
                     const studentCode = fs.readFileSync(src, {
                         encoding: "utf8"
                     })
-                    let tempFile = '../../temp.js'
-                    fs.appendFile(tempFile, studentCode, (err) => {
-                        if(err){
-                            console.log(err)
-                        }
+                    // console.log(studentCode)
+                    let tempFile = './test/temp.js'
+                    let tempFileStream = fs.createWriteStream(tempFile);
+
+                    tempFileStream.write(studentCode.replace(/['"]?use strict['"]?/, ""));
+                }
+                if (file.includes(".html")) {
+                    let htmlFile = file;
+                    let src = path.join(startDir, htmlFile)
+                    const htmlContent = fs.readFileSync(src, {
+                        encoding: "utf-8"
                     })
+                    let tempHTML = './test/temp.html'
+                    let tempHTMLStream = fs.createWriteStream(tempHTML);
+                    tempHTMLStream.write(htmlContent);
                 }
             })
 
@@ -66,12 +73,11 @@ fs.readdir(`${__dirname}/Tests`, (err, items) => {
                 const {
                     gitlink
                 } = args
-                exec(`npm run test ${gitlink ? gitlink : ''}`, (error, stdout, stderr) => {
+                exec(`node run.js ${gitlink ? gitlink : ''}`, (error, stdout, stderr) => {
                     if(error){
                         console.log(error)
                     }
                     console.log(stdout)
-                    exec('rm ../../temp.js')
                 })
             })
 

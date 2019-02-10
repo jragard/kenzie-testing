@@ -1,8 +1,8 @@
 {
-  "name": "ndown",
+  "name": "anagrams1",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "anagrams.js",
   "scripts": {
     "grade": "node run.js",
     "test": "node run.js"
@@ -13,8 +13,10 @@
   "dependencies": {
     "ansi-256-colors": "^1.1.0",
     "axios": "^0.18.0",
-    "yargs": "^12.0.5",
+    "chai": "^4.2.0",
+    "fetch": "^1.1.0",
     "mocha": "^5.2.0",
-    "chai": "^4.2.0"
+    "node-fetch": "^2.3.0",
+    "yargs": "^12.0.5"
   }
 }
