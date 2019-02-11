@@ -67,7 +67,7 @@ fs.readdir(`${__dirname}/Tests`, (err, items) => {
             })
 
             // This installs all required npm modules and awaits the install before continuing to next exec call
-            const installPackages = exec('sudo npm i')
+            const installPackages = exec('npm i')
             installPackages.on('exit', () => {
                 process.exit
                 const {
