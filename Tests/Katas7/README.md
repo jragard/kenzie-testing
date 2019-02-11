@@ -10,9 +10,9 @@
 
 4. To test a local file, the file and parent directory should be named according to assignment instructions (e.g. `katas7.js` and `katas7`).  Then run `kenzie-test katas7` (or appropriate assignment name)
 
-## TESTING BUG ##
+## IMPORTANT TESTING BUG ##
 
-As of now, our command line tool will sometimes get confused if you are trying to test a file from a github/gitlab link, while in the same directory of a local version of the same file (or a file/directory with the same name).  For now, when running tests on github/gitlab submissions, you will want to make sure you aren't in the same directory as any local version of the assignment you are trying to test.
+Currently, when testing a file from a gitlab or github repo, the test won't run properly if the student doesn't name their file exactly `katas7.js` (this is case sensitive).  We already have been instructing students to name files specifically for our tests to work, but I could see the case sensitive issue coming up if students, for instance, name their file `Katas7.js`.  This is something I plan to fix at some point, but it's good to be aware of.  This issue stems from lines 19 and 22 in the run.js for this test suite.
 
 
 # Katas 7 Instructions

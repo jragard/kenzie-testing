@@ -1,14 +1,18 @@
 # Assessment: Convert Numbers To Words
 
-## To Run These Tests
+## To Run Tests as a Grader
 
-1: Go to the test suite repo (here) and clone it to your machine.
+1.  If you haven't already installed the kenzie-test npm package, from your terminal run `npm install --global git+https://github.com/jragard/kenzie-testing`
 
-2: cd into the cloned directory and run `npm install` from the command line.
+2.  To test a completed assignment from a Gitlab Project ID submission, run `kenzie-test numbersToWords -g <Project ID>`  (The student will need to submit their gitlab project ID number, and share their project with KA_SE5 Gitlab account) For example, `kenzie-test numbersToWords -g 10771158` will grab the contents of the file at https://gitlab.com/jragard/numbersToWords.
 
-3: Run `node run.js ___student's_repo_url___`.  Upon execution the output of the test results will be written to your console.
+3. To test a completed assignment from a github link, run `kenzie-test numbersToWords -g https://github.com/jragard/numbersToWords` (or whatever the submitted github link happens to be)
 
-If you would like to test it on a dummy submission link, use `node run.js https://github.com/jragard/numberstowordstest`
+4. To test a local file, the file and parent directory should be named according to assignment instructions (e.g. `numbersToWords.js` and `numbersToWords`).  Then run `kenzie-test numbersToWords`
+
+## IMPORTANT TESTING BUG ##
+
+Currently, when testing a file from a gitlab or github repo, the test won't run properly if the student doesn't name their file exactly `numbersToWords.js` (this is case sensitive).  We already have been instructing students to name files specifically for our tests to work, but I could see the case sensitive issue coming up if students, for instance, name their file `NumbersToWords.js` or `numberstowords.js`.  This is something I plan to fix at some point, but it's good to be aware of.  This issue stems from lines 19 and 22 in the run.js for this test suite.
 
 # Assignment Instructions
 
