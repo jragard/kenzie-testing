@@ -29,7 +29,7 @@ Because this is a classic puzzle, it's easy to look up solutions online. It will
   - If a number is even and a multiple of 3 concatenate "FizzBuzz," to the end of your string.
   - If a number is none of these things, concatenate the number itself and a "," to the end of your string.
 - This function should return this string after 1000 iterations of the loop.
-- If implemented correctly, the string you return should have a trailing comma, leave this comma.
+- If implemented correctly, the string you return should have a trailing comma; please leave this comma here.
 
 ### IMPORTANT: If you do not name and export your functions correctly, the tests will not run and the submission will not be accepted.
 
