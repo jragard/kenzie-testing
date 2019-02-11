@@ -19,15 +19,15 @@ describe("Numbers To Words, write a function that returns an array with all the 
 
     it("Return value is an array with 1000 elements", function() {
         expect(results.length).to.equal(1000);
-    })
+    });
 
     it("Returns expected ones values", function() {
         expect(results.slice(0, 9)).to.eql(['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']);
-    })
+    });
 
     it("Returns expected teens (10 - 19) values", function() {
         expect(results.slice(9, 19)).to.eql(['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']);
-    })
+    });
 
     it("Returns expected tens values", function() {
         expect(results[19]).to.eql('twenty');
@@ -38,7 +38,7 @@ describe("Numbers To Words, write a function that returns an array with all the 
         expect(results[69]).to.eql('seventy');
         expect(results[79]).to.eql('eighty');
         expect(results[89]).to.eql('ninety');
-    })
+    });
 
     const oneHundred = ["one hundred", "one-hundred"];
     const twoHundred = ["two hundred", "two-hundred"];
@@ -62,7 +62,7 @@ describe("Numbers To Words, write a function that returns an array with all the 
         expect(eightHundred.includes(results[799])).to.equal(true);
         expect(nineHundred.includes(results[899])).to.equal(true);
         expect(oneThousand.includes(results[999])).to.equal(true);
-    })
+    });
 
     const oneNineteen = ["one hundred nineteen", "one-hundred-nineteen"];
     const oneThirtyEight = ["one hundred thirty eight", "one-hundred-thirty-eight"];
@@ -76,13 +76,13 @@ describe("Numbers To Words, write a function that returns an array with all the 
         expect(oneFiftySeven.includes(results[156])).to.equal(true);
         expect(oneSeventyNine.includes(results[178])).to.equal(true);
         expect(oneNinetyFour.includes(results[193])).to.equal(true);
-    })
+    });
 
     const twoSixteen = ["two hundred sixteen", "two-hundred-sixteen"];
     const twoFortyOne = ["two hundred forty one", "two-hundred-forty-one"];
     const twoSixtyThree = ["two hundred sixty three", "two-hundred-sixty-three"];
     const twoEightyTwo = ["two hundred eighty two", "two-hundred-eighty-two"];
-    const twoNinetySeven = ["two hundred ninety seven", "two-hundred-ninety-seven"]
+    const twoNinetySeven = ["two hundred ninety seven", "two-hundred-ninety-seven"];
 
     it("Returns 5 values correctly between 200 - 300", function() {
         expect(twoSixteen.includes(results[215])).to.equal(true);
@@ -90,7 +90,7 @@ describe("Numbers To Words, write a function that returns an array with all the 
         expect(twoSixtyThree.includes(results[262])).to.equal(true);
         expect(twoEightyTwo.includes(results[281])).to.equal(true);
         expect(twoNinetySeven.includes(results[296])).to.equal(true);
-    })
+    });
 
     const threeHundredNine = ["three hundred nine", "three-hundred-nine"];
     const threeSeventeen = ["three hundred seventeen", "three-hundred-seventeen"];
@@ -100,11 +100,11 @@ describe("Numbers To Words, write a function that returns an array with all the 
 
     it("Returns 5 values correctly between 300 - 400", function() {
         expect(threeHundredNine.includes(results[308])).to.equal(true);
-        expect(threeSeventeen.includes(results[316])).to.equal(true)
-        expect(threeThirtyEight.includes(results[337])).to.equal(true)
-        expect(threeFiftyTwo.includes(results[351])).to.equal(true)
+        expect(threeSeventeen.includes(results[316])).to.equal(true);
+        expect(threeThirtyEight.includes(results[337])).to.equal(true);
+        expect(threeFiftyTwo.includes(results[351])).to.equal(true);
         expect(threeSeventySeven.includes(results[376])).to.equal(true)
-    })
+    });
 
     const fourHundredFifteen = ["four hundred fifteen", "four-hundred-fifteen"];
     const fourThirtyNine = ["four hundred thirty nine", "four-hundred-thirty-nine"];
@@ -114,11 +114,11 @@ describe("Numbers To Words, write a function that returns an array with all the 
 
     it("Returns 5 values correctly between 400 - 500", function() {
         expect(fourHundredFifteen.includes(results[414])).to.equal(true);
-        expect(fourThirtyNine.includes(results[438])).to.equal(true)
-        expect(fourSixtyOne.includes(results[460])).to.equal(true)
-        expect(fourEightySeven.includes(results[486])).to.equal(true)
+        expect(fourThirtyNine.includes(results[438])).to.equal(true);
+        expect(fourSixtyOne.includes(results[460])).to.equal(true);
+        expect(fourEightySeven.includes(results[486])).to.equal(true);
         expect(fourNinetyOne.includes(results[490])).to.equal(true)
-    })
+    });
 
     const fiveHundredNine = ["five hundred nine", "five-hundred-nine"];
     const fiveNineteen = ["five hundred nineteen", "five-hundred-nineteen"];
@@ -128,11 +128,11 @@ describe("Numbers To Words, write a function that returns an array with all the 
 
     it("Returns 5 values correctly between 500 - 600", function() {
         expect(fiveHundredNine.includes(results[508])).to.equal(true);
-        expect(fiveNineteen.includes(results[518])).to.equal(true)
-        expect(fiveSixtySeven.includes(results[566])).to.equal(true)
-        expect(fiveEightyNine.includes(results[588])).to.equal(true)
+        expect(fiveNineteen.includes(results[518])).to.equal(true);
+        expect(fiveSixtySeven.includes(results[566])).to.equal(true);
+        expect(fiveEightyNine.includes(results[588])).to.equal(true);
         expect(fiveNinetyEight.includes(results[597])).to.equal(true)
-    })
+    });
 
     const sixHundredSeven = ["six hundred seven", "six-hundred-seven"];
     const sixTwentyNine = ["six hundred twenty nine", "six-hundred-twenty-nine"];
@@ -142,11 +142,11 @@ describe("Numbers To Words, write a function that returns an array with all the 
 
     it("Returns 5 values correctly between 600 - 700", function() {
         expect(sixHundredSeven.includes(results[606])).to.equal(true);
-        expect(sixTwentyNine.includes(results[628])).to.equal(true)
-        expect(sixFortySix.includes(results[645])).to.equal(true)
-        expect(sixSixtyEight.includes(results[667])).to.equal(true)
+        expect(sixTwentyNine.includes(results[628])).to.equal(true);
+        expect(sixFortySix.includes(results[645])).to.equal(true);
+        expect(sixSixtyEight.includes(results[667])).to.equal(true);
         expect(sixEightyTwo.includes(results[681])).to.equal(true)
-    })
+    });
 
     const sevenThirtyTwo = ["seven hundred thirty two", "seven-hundred-thirty-two"];
     const sevenFortyOne = ["seven hundred forty one", "seven-hundred-forty-one"];
@@ -156,11 +156,11 @@ describe("Numbers To Words, write a function that returns an array with all the 
 
     it("Returns 5 values correctly between 700 - 800", function() {
         expect(sevenThirtyTwo.includes(results[731])).to.equal(true);
-        expect(sevenFortyOne.includes(results[740])).to.equal(true)
-        expect(sevenSixtyEight.includes(results[767])).to.equal(true)
-        expect(sevenNinetySix.includes(results[795])).to.equal(true)
+        expect(sevenFortyOne.includes(results[740])).to.equal(true);
+        expect(sevenSixtyEight.includes(results[767])).to.equal(true);
+        expect(sevenNinetySix.includes(results[795])).to.equal(true);
         expect(sevenNinetyNine.includes(results[798])).to.equal(true)
-    })
+    });
 
     const eightHundredEight = ["eight hundred eight", "eight-hundred-eight"];
     const eightThirtySeven = ["eight hundred thirty seven", "eight-hundred-thirty-seven"];
@@ -170,11 +170,11 @@ describe("Numbers To Words, write a function that returns an array with all the 
 
     it("Returns 5 values correctly between 800 - 900", function() {
         expect(eightHundredEight.includes(results[807])).to.equal(true);
-        expect(eightThirtySeven.includes(results[836])).to.equal(true)
-        expect(eightFiftyNine.includes(results[858])).to.equal(true)
-        expect(eightSeventySix.includes(results[875])).to.equal(true)
+        expect(eightThirtySeven.includes(results[836])).to.equal(true);
+        expect(eightFiftyNine.includes(results[858])).to.equal(true);
+        expect(eightSeventySix.includes(results[875])).to.equal(true);
         expect(eightEightyEight.includes(results[887])).to.equal(true)
-    })
+    });
 
     const nineHundredTwo = ["nine hundred two", "nine-hundred-two"];
     const nineSeventeen = ["nine hundred seventeen", "nine-hundred-seventeen"];
@@ -184,14 +184,14 @@ describe("Numbers To Words, write a function that returns an array with all the 
 
     it("Returns 5 values correctly between 900 - 999", function() {
         expect(nineHundredTwo.includes(results[901])).to.equal(true);
-        expect(nineSeventeen.includes(results[916])).to.equal(true)
-        expect(nineFiftyFive.includes(results[954])).to.equal(true)
-        expect(nineSeventyNine.includes(results[978])).to.equal(true)
+        expect(nineSeventeen.includes(results[916])).to.equal(true);
+        expect(nineFiftyFive.includes(results[954])).to.equal(true);
+        expect(nineSeventyNine.includes(results[978])).to.equal(true);
         expect(nineEightyEight.includes(results[987])).to.equal(true)
-    })
+    });
 
     it("Last value in results is 1000", function() {
         expect(oneThousand.includes(results[999])).to.equal(true)
     })
 }
-})
+});
