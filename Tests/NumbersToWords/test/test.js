@@ -1,4 +1,4 @@
-const numbersToWords = require('./s.js');
+const { numbersToWords } = require('./s.js');
 const chai = require('chai');
 const expect = chai.expect;
 const colors = require('mocha/lib/reporters/base').colors;
