@@ -32,6 +32,7 @@ const startDir = process.cwd();
 const caseInsensitivePattern = new RegExp(args.assessment, 'i')
 
 
+
 fs.readdir(`${__dirname}/Tests`, (err, items) => {
     items.forEach((item) => {
         if (caseInsensitivePattern.test(item)) {
@@ -39,9 +40,12 @@ fs.readdir(`${__dirname}/Tests`, (err, items) => {
             process.chdir(`${__dirname}/Tests/${item}`)
             
             const arrayOfFiles = fs.readdirSync(startDir)
+            
+            let studentFile
 
             arrayOfFiles.forEach(file => {
                 if (caseInsensitivePattern.test(file)) {
+                    studentFile = file
                     let filename = file;
                     let src = path.join(startDir, filename)
                     const studentCode = fs.readFileSync(src, {
@@ -73,9 +77,7 @@ fs.readdir(`${__dirname}/Tests`, (err, items) => {
                     if(error){
                         console.log(error)
                     }
-                    // console.log(process.cwd())
-                    // console.log(startDir)
-                    console.log(`Testing ${assessment} in ${startDir}:`)
+                    console.log(`Testing ${studentFile} in ${startDir}:`)
                     console.log(stdout)
                 })
             })
