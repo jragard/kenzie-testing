@@ -55,7 +55,7 @@ function runTests(studentCode) {
   tempFileStream.write(
     "\nmodule.exports = { add: (typeof add) === 'function' && add, multiply: (typeof multiply) === 'function' && multiply, power: (typeof power) === 'function' && power, factorial: (typeof factorial) === 'function' && factorial, fibonacci: (typeof fibonacci) === 'function' && fibonacci, };"
   );
-  spawn("mocha", ['--colors'], { stdio: "inherit" }).on("exit", function(error) {
+  spawn("npm run", ['--colors'], { stdio: "inherit" }).on("exit", function(error) {
     if (error) {
       console.log(error);
     }
@@ -63,3 +63,5 @@ function runTests(studentCode) {
     exec(`rm ./test/temp.js`);
   });
 }
+
+module.exports = { kata1: (typeof kata1) === 'function' && kata1, kata2: (typeof kata2) === 'function' && kata2, kata3: (typeof kata3) === 'function' && kata3, kata1: (typeof kata1) === 'function' && kata1, kata1: (typeof kata1) === 'function' && kata1, kata1: (typeof kata1) === 'function' && kata1, kata1: (typeof kata1) === 'function' && kata1, kata1: (typeof kata1) === 'function' && kata1, kata1: (typeof kata1) === 'function' && kata1, kata1: (typeof kata1) === 'function' && kata1, };
