@@ -51,6 +51,8 @@ function gitTest(url) {
 }
 
 function runTests(studentCode) {
+  console.log('run tests');
+  console.log(studentCode)
   tempFileStream.write(studentCode.replace(/['"]?use strict['"]?/, ""));
   tempFileStream.write(
     "\nmodule.exports = { add: (typeof add) === 'function' && add, multiply: (typeof multiply) === 'function' && multiply, power: (typeof power) === 'function' && power, factorial: (typeof factorial) === 'function' && factorial, fibonacci: (typeof fibonacci) === 'function' && fibonacci, };"
