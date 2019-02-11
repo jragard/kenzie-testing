@@ -62,9 +62,15 @@ fs.readdir(`${__dirname}/Tests`, (err, items) => {
                     const htmlContent = fs.readFileSync(src, {
                         encoding: "utf-8"
                     })
-                    let tempHTML = './test/temp.html'
-                    let tempHTMLStream = fs.createWriteStream(tempHTML);
-                    tempHTMLStream.write(htmlContent);
+                    // console.log(arrayOfFiles)
+                    // console.log(htmlContent)
+                    let oneLineHTML = htmlContent.replace(/\n|\t/g, '')
+
+                    console.log(JSON.stringify(oneLineHTML))
+
+                    let tempTXT = './test/temp.txt'
+                    let tempTXTStream = fs.createWriteStream(tempTXT);
+                    tempTXTStream.write(JSON.stringify(oneLineHTML));
                 }
             })
 

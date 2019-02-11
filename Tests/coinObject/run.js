@@ -52,7 +52,10 @@ function gitTest(url) {
 }
 
 function runTests(studentCode) {
-  let html = "<!DOCTYPE html><html lang='en'><body></body></html>"
+  let html = fs.readFileSync('./test/temp.txt', {
+      encoding: "utf8"
+  })
+
   tempFileStream.write('const jsdom = require("jsdom");\n');
   tempFileStream.write('const { JSDOM } = jsdom;\n');
   tempFileStream.write("const dom = new JSDOM(\"" + html + "\")\n");
@@ -67,6 +70,6 @@ function runTests(studentCode) {
     }
     exec(`rm ${tempFile}`);
     exec(`rm ./test/temp.js`);
-    exec(`rm ./test/temp.html`);
+    exec(`rm ./test/temp.txt`);
   });
 }
