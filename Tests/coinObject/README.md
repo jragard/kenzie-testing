@@ -2,7 +2,7 @@
 
 ## To Run Tests as a Grader
 
-1.  If you haven't already installed the kenzie-test npm package, from your terminal run `npm install --global git+https://github.com/jragard/kenzie-testing`
+1.  If you haven't already installed the kenzie-test npm package, from your terminal run `sudo npm install --global git+https://github.com/jragard/kenzie-testing`
 
 2.  To test a completed assignment from a Gitlab Project ID submission, run `kenzie-test coinObject -g <Project ID>`  (The student will need to submit their gitlab project ID number, and share their project with KA_SE5 Gitlab account) For example, `kenzie-test coinObject -g 10771130` will grab the contents of the file at https://gitlab.com/jragard/katas4.
 
@@ -14,7 +14,7 @@
 
 Currently, when testing a file from a gitlab or github repo, the test won't run properly if the student doesn't name their file exactly `coinObject.js` (this is case sensitive).  We already have been instructing students to name files specifically for our tests to work, but I could see the case sensitive issue coming up if students, for instance, name their file `coinobject.js`.  This is something I plan to fix at some point, but it's good to be aware of.  This issue stems from lines 19 and 22 in the run.js for this test suite, and could come up in other situations if students don't name their files the way we ask.  (`Katas1.js` instead of `katas1.js` for instance)
 
-# Coin Object Instructions
+# Assessment Instructions
 
 Today you will practice what you've read about [objects in JavaScript](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Basics) by creating a coin object. The coin object will represent whether a single coin is heads or tails. You will add several methods to it to support flipping the coin and displaying which side is currently facing up.
 

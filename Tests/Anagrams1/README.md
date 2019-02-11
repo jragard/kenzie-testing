@@ -2,7 +2,7 @@
 
 ## To Run Tests as a Grader
 
-1.  If you haven't already installed the kenzie-test npm package, from your terminal run `npm install --global git+https://github.com/jragard/kenzie-testing`
+1.  If you haven't already installed the kenzie-test npm package, from your terminal run `sudo npm install --global git+https://github.com/jragard/kenzie-testing`
 
 2.  To test a completed assignment from a Gitlab Project ID submission, run `kenzie-test anagrams1 -g <Project ID>`  (The student will need to submit their gitlab project ID number, and share their project with KA_SE5 Gitlab account) For example, `kenzie-test anagrams1 -g 10771115` will grab the contents of the file at https://gitlab.com/jragard/anagrams1.
 
