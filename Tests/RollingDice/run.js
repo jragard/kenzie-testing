@@ -60,6 +60,7 @@ function gitTest(url) {
 }
 
 function runTests(studentCode) {
+  console.log('runTest working')
   let html = "<!DOCTYPE html><html lang='en'><body></body></html>";
   tempFileStream.write('const jsdom = require("jsdom");\n');
   tempFileStream.write('const { JSDOM } = jsdom;\n');

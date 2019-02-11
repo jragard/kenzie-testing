@@ -1,4 +1,4 @@
-import { randomInteger, times, createKeyCount } from './s.js';
+const { randomInteger, times, createKeyCount } = require('./s.js');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const dom = new JSDOM("<!DOCTYPE html><html lang='en'><body></body></html>")
@@ -8,7 +8,8 @@ const assert = chai.assert;
 const colors = require('mocha/lib/reporters/base').colors;
 colors['pending'] = '93';
 colors['green'] = '92';
-import spies from "chai-spies";
+const spies = require('chai-spies')
+// import spies from "chai-spies";
 
 chai.should();
 chai.use(spies);
