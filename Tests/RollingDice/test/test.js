@@ -1,23 +1,48 @@
-import { randomInteger, times, createKeyCount } from "../rollingDice";
-import chai from "chai";
+import { randomInteger, times, createKeyCount } from './s.js';
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const dom = new JSDOM("<!DOCTYPE html><html lang='en'><body></body></html>")
+global.document = dom.window.document;
+const chai = require('chai');
 const assert = chai.assert;
-import FunctionAnalyzer from "function-analyzer";
+const colors = require('mocha/lib/reporters/base').colors;
+colors['pending'] = '93';
+colors['green'] = '92';
 import spies from "chai-spies";
 
 chai.should();
 chai.use(spies);
 
 describe("randomInteger", () => {
-  it("should use Math.floor(Math.random() * max) + 1", () => {
-    assert(
-      new FunctionAnalyzer(randomInteger).includes(
-        "Math.floor(Math.random() * max) + 1"
-      )
-    );
-  });
+
+  it("should be a function", function() {
+    if(typeof randomInteger != 'function') {
+        this.skip();
+    }
+})
+
+// if(typeof randomInteger === 'function') {
+
+//   it("should use Math.floor(Math.random() * max) + 1", () => {
+//     assert(
+//       new FunctionAnalyzer(randomInteger).includes(
+//         "Math.floor(Math.random() * max) + 1"
+//       )
+//     );
+//   });
+// }
 });
 
 describe("times", () => {
+
+  it("should be a function", function() {
+    if(typeof times != 'function') {
+        this.skip();
+    }
+})
+
+  if(typeof times === 'function') {
+
   const randomNum = Math.floor(Math.random() * 100) + 1;
   const fnSpy = chai.spy(() => randomNum);
 
@@ -33,8 +58,18 @@ describe("times", () => {
     const result = times(fnSpy, randomNum);
     assert(result.every(val => val === randomNum));
   });
+}
 });
+
 describe("createKeyCount", () => {
+
+  it("should be a function", function() {
+    if(typeof createKeyCount != 'function') {
+        this.skip();
+    }
+})
+
+if(typeof createKeyCount === 'function') {
   const testArr = Array(Math.floor(Math.random() * 100) + 1)
     .fill()
     .map(_ => Math.floor(Math.random() * 100) + 1);
@@ -53,5 +88,6 @@ describe("createKeyCount", () => {
       )
     );
   });
+}
 });
-describe("createBarGraph", () => {});
+// describe("createBarGraph", () => {});
