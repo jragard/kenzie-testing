@@ -63,12 +63,12 @@ function runTests(studentCode) {
   tempFileStream.write(
     "\nmodule.exports = { getSetsOfFiveAnagrams: (typeof getSetsOfFiveAnagrams) === 'function' && getSetsOfFiveAnagrams };"
   );
-  spawn("mocha", ['--colors'], { stdio: "inherit" }).on("exit", function(error) {
+  spawn("./node_modules/.bin/mocha", ['--colors'], { stdio: "inherit" }).on("exit", function(error) {
     if (error) {
       console.log(error);
     }
     exec(`rm ${tempFile}`);
     exec(`rm ./test/temp.js`);
-    exec(`rm ./test/temp.html`);
+    exec(`rm ./test/temp.txt`);
   });
 }

@@ -95,7 +95,7 @@ function runTests(studentCode) {
                           kata31: (typeof kata31) === 'function' && kata31, \
                           kata32: (typeof kata31) === 'function' && kata32};"
   );
-  spawn("mocha", ['--colors'], {
+  spawn("./node_modules/.bin/mocha", ['--colors'], {
     stdio: "inherit"
   }).on("exit", function (error) {
     if (error) {
