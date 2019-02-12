@@ -13,14 +13,23 @@ if (argv._.length === 0) {
   defaultTest();
 } else if (String(arg[0]).includes("github")) {
   const answer = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(argv._[0]);
-  const url = `https://raw.githubusercontent.com/${answer[1]}/${
-    answer[2]
-  }/master/katas1.js`;
-  gitTest(url);
+  const fetchInfoUrl = `https://api.github.com/repos/${answer[1]}/${answer[2]}/contents`;
+
+  let fileToTest;
+  let url;
+
+  axios.get(fetchInfoUrl).then(response => {
+    fileToTest = response.data[0].name;
+    url = `https://raw.githubusercontent.com/${answer[1]}/${answer[2]}/master/${fileToTest}`;
+    gitTest(url);
+  });
+
 } else {
   const url = "https://gitlab.com/api/v4/projects/" + argv._[0] + "/repository/files/katas1%2Ejs?ref=master";
   gitTest(url);
 }
+
+
 
 function defaultTest() {
   studentCode = fs.readFileSync("./test/temp.js", { encoding: "utf8" });

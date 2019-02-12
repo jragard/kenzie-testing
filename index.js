@@ -23,6 +23,8 @@ parser.addArgument(
     }
 );
 
+console.log('index.js running')
+
 const args = parser.parseArgs();
 const userLocalDir = process.cwd();
 const argMatchesAssessment = new RegExp(args.assessment, 'i');
@@ -36,17 +38,12 @@ fs.readdir(assessmentTests, (err, testDirs) => {
             let testLocation = `${assessmentTests}/${testDir}`
             process.chdir(testLocation)
 
-            // Need to add logic to see if there are -g or -gitlink args.  If not, then go ahead and do what is below,
-            // reading the filenames in the user's cwd() and testing them.  If so, we can skip that part and just do the 
-            // run.js stuff. Currently, if the user supplies a -g or -gitlink arg signalling they want to grab the files 
-            // from a gitlab or github repo, and they also happen to be in the same directory as their local file, this 
-            // will grab the contents of their cwd() first and tends to mess up the script
-
             const filesInUserLocalDir = fs.readdirSync(userLocalDir);
             
             let userLocalFile;
 
             filesInUserLocalDir.forEach(file => {
+                
                 let validLocalFile = argMatchesAssessment.test(file);
 
                 if (validLocalFile) {
