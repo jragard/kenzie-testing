@@ -66,7 +66,7 @@ fs.readdir(`${__dirname}/Tests`, (err, items) => {
                     // console.log(htmlContent)
                     let oneLineHTML = htmlContent.replace(/\n|\t/g, '')
 
-                    console.log(JSON.stringify(oneLineHTML))
+                    // console.log(JSON.stringify(oneLineHTML))
 
                     let tempTXT = './test/temp.txt'
                     let tempTXTStream = fs.createWriteStream(tempTXT);
