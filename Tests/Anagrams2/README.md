@@ -160,7 +160,7 @@ Students will have to start with a template directory that includes the test dir
   * anagrams.js will be required to contain a function getSetsOfFiveAnagrams() that returns a nested array containing all sets of 5 anagrams.  This is the method that is tested
 5. type `npm run test ___student's_repo_address___` or `npm run grade ___student's_repo_address___`
 
-The output of the test will be writen to your console.
+The output of the test will be written to your console.
 
 ## Example
 The following repo has been set up as a sample test
