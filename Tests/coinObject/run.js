@@ -69,15 +69,17 @@ function runTests(studentCode) {
 
   htmlPromise.then(function (value) {
 
+    let html = "<!DOCTYPE html><html lang='en'><body></body></html>"
     value = value.substring(1, value.length - 1);
-
+    console.log(value)
     tempFileStream.write('const jsdom = require("jsdom");\n');
     tempFileStream.write('const { JSDOM } = jsdom;\n');
-    tempFileStream.write("const dom = new JSDOM(\"" + value + "\")\n");
+    // tempFileStream.write("const dom = new JSDOM(\"" + value + "\")\n");
+    tempFileStream.write("const dom = new JSDOM(\"" + html + "\")\n");
     tempFileStream.write('global.document = dom.window.document;\n');
     tempFileStream.write(studentCode.replace(/['"]?use strict['"]?/, ""));
     tempFileStream.write(
-      "\nmodule.exports = { coin: coin, display20Flips: (typeof display20Flips) === 'function' && display20Flips, display20Images: (typeof display20Images) === 'function' && display20Images }"
+      "\nmodule.exports = { coin: (typeof coin) === 'object' && coin, display20Flips: (typeof display20Flips) === 'function' && display20Flips, display20Images: (typeof display20Images) === 'function' && display20Images }"
     );
     spawn("mocha", ['--colors'], {
       stdio: "inherit"
