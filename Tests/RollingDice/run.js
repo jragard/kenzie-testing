@@ -76,8 +76,8 @@ function runTests(studentCode) {
     if (error) {
       console.log(error);
     }
-    // exec(`rm ${tempFile}`);
-    // exec(`rm ./test/temp.js`);
-    // exec(`rm ./test/temp.html`);
+    exec(`rm ${tempFile}`);
+    exec(`rm ./test/temp.js`);
+    exec(`rm ./test/temp.html`);
   });
 }
