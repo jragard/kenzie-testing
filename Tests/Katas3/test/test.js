@@ -650,7 +650,7 @@ describe("Display numbers on to page as html elements with for loops", function(
 
   describe("Kata 19", function() {
     const studentFunction = katas3.kata19;
-    it(isFunctionDefined + " " + TODO_WAITINGFORDOMRESEARCH, function() {
+    it(TODO_WAITINGFORDOMRESEARCH, function() {
       typeof studentFunction !== "function"
         ? this.skip()
         : assert.isFunction(studentFunction);
@@ -659,7 +659,7 @@ describe("Display numbers on to page as html elements with for loops", function(
 
   describe("Kata 20", function() {
     const studentFunction = katas3.kata20;
-    it(isFunctionDefined + " " + TODO_WAITINGFORDOMRESEARCH, function() {
+    it(TODO_WAITINGFORDOMRESEARCH, function() {
       typeof studentFunction !== "function"
         ? this.skip()
         : assert.isFunction(studentFunction);
@@ -668,7 +668,7 @@ describe("Display numbers on to page as html elements with for loops", function(
 
   describe("Kata 21", function() {
     const studentFunction = katas3.kata21;
-    it(isFunctionDefined + " " + TODO_WAITINGFORDOMRESEARCH, function() {
+    it(TODO_WAITINGFORDOMRESEARCH, function() {
       typeof studentFunction !== "function"
         ? this.skip()
         : assert.isFunction(studentFunction);
@@ -677,7 +677,7 @@ describe("Display numbers on to page as html elements with for loops", function(
 
   describe("Kata 22", function() {
     const studentFunction = katas3.kata22;
-    it(isFunctionDefined + " " + TODO_WAITINGFORDOMRESEARCH, function() {
+    it(TODO_WAITINGFORDOMRESEARCH, function() {
       typeof studentFunction !== "function"
         ? this.skip()
         : assert.isFunction(studentFunction);
@@ -686,7 +686,7 @@ describe("Display numbers on to page as html elements with for loops", function(
 
   describe("Kata 23", function() {
     const studentFunction = katas3.kata23;
-    it(isFunctionDefined + " " + TODO_WAITINGFORDOMRESEARCH, function() {
+    it(TODO_WAITINGFORDOMRESEARCH, function() {
       typeof studentFunction !== "function"
         ? this.skip()
         : assert.isFunction(studentFunction);
