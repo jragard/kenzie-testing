@@ -11,6 +11,11 @@ colors['green'] = '92';
 
 describe("The flip method randomly sets the coin object's state to either 0 or 1", function() {
     
+    // it("coin should be an object", function() {
+    //     if(typeof coinObject.coin != 'object') {
+    //         this.skip();
+    //     }
+    // })
     function flip50() {
         const results = [];
         for (let i = 0; i < 50; i++) {

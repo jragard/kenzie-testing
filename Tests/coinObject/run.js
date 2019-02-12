@@ -72,11 +72,12 @@ function runTests(studentCode) {
 
     htmlPromise.then((value) => {
 
-        value = value.substring(1, value.length - 1);
 
+        value = value.substring(1, value.length - 1);
+        let html = "<!DOCTYPE html><html lang='en'><body></body></html>"
         tempFileStream.write('const jsdom = require("jsdom");\n');
         tempFileStream.write('const { JSDOM } = jsdom;\n');
-        tempFileStream.write("const dom = new JSDOM(\"" + value + "\")\n");
+        tempFileStream.write("const dom = new JSDOM(\"" + html + "\")\n");
         tempFileStream.write('global.document = dom.window.document;\n');
         tempFileStream.write(studentCode.replace(/['"]?use strict['"]?/, ""));
         tempFileStream.write(
@@ -92,5 +93,6 @@ function runTests(studentCode) {
             exec(`rm ./test/temp.js`);
             exec(`rm ./test/temp.txt`);
         });
+
     });
 }
