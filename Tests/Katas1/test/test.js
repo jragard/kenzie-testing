@@ -15,7 +15,7 @@ describe('Kata 1, Display an array with 1 - 20', function() {
         if(typeof katas1.oneThroughTwenty != 'function') {
             this.skip();
         }
-    })
+    });
    
     if(typeof katas1.oneThroughTwenty === 'function') {
 
