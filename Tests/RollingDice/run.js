@@ -70,7 +70,7 @@ function runTests(studentCode) {
   tempFileStream.write(
     "\nmodule.exports = { randomInteger: (typeof randomInteger) === 'function' && randomInteger, times: (typeof times) === 'function' && times, createKeyCount: (typeof createKeyCount) === 'function' && createKeyCount, createBarGraph: (typeof createBarGraph) === 'function' && createBarGraph, execute: (typeof execute) === 'function' && execute }"
   );
-  spawn("mocha", ['--colors'], {
+  spawn("./node_modules/.bin/mocha", ['--colors'], {
     stdio: "inherit"
   }).on("exit", function (error) {
     if (error) {

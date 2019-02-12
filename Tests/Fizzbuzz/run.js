@@ -54,7 +54,7 @@ function runTests(studentCode) {
   tempFileStream.write(
     "\nmodule.exports = {  fizzbuzz: (typeof fizzbuzz) === 'function' && fizzbuzz,  fizzbuzzPrime: (typeof fizzbuzzPrime) === 'function' && fizzbuzzPrime }"
   );
-  spawn("mocha", ["--colors"], { stdio: "inherit" }).on("exit", function(
+  spawn("./node_modules/.bin/mocha", ["--colors"], { stdio: "inherit" }).on("exit", function(
     error
   ) {
     if (error) {

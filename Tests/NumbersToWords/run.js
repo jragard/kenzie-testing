@@ -55,7 +55,7 @@ function runTests(studentCode) {
   tempFileStream.write(
     "\nmodule.exports = { numbersToWords: (typeof numbersToWords) === 'function' && numbersToWords }"
   );
-  spawn("mocha", ['--colors'], { stdio: "inherit" }).on("exit", function(error) {
+  spawn("./node_modules/.bin/mocha", ['--colors'], { stdio: "inherit" }).on("exit", function(error) {
     if (error) {
       console.log(error);
     }

@@ -55,7 +55,7 @@ function runTests(studentCode) {
   tempFileStream.write(
     "\nmodule.exports = { newForEach: (typeof newForEach) === 'function' && newForEach, newMap: (typeof newMap) === 'function' && newMap, newSome: (typeof newSome) === 'function' && newSome, newFind: (typeof newFind) === 'function' && newFind, newFindIndex: (typeof newFindIndex) === 'function' && newFindIndex, newEvery: (typeof newEvery) === 'function' && newEvery, newFilter: (typeof newFilter) === 'function' && newFilter };"
   );
-  spawn("mocha", ['--colors'], { stdio: "inherit" }).on("exit", function(error) {
+  spawn("./node_modules/.bin/mocha", ['--colors'], { stdio: "inherit" }).on("exit", function(error) {
     if (error) {
       console.log(error);
     }
