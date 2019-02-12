@@ -1,12 +1,12 @@
 const fs = require("fs");
 const axios = require("axios");
-const fetch = require('node-fetch')
+const fetch = require('node-fetch');
 const { exec, spawn } = require("child_process");
 const { argv } = require("yargs");
 
 const tempFile = "test/s.js";
 const tempFileStream = fs.createWriteStream(tempFile);
-const arg = argv._
+const arg = argv._;
 
 if (argv._.length === 0) {
   defaultTest();
@@ -39,10 +39,10 @@ function gitTest(url) {
     }
   })
   .then(function(response) {
-    let res = response.body._readableState.buffer.head.data
-    let regex = /"content"/
-    let index = res.toString().search(regex)
-    let content = res.toString().slice(index + 11)
+    let res = response.body._readableState.buffer.head.data;
+    let regex = /"content"/;
+    let index = res.toString().search(regex);
+    let content = res.toString().slice(index + 11);
     let decodedContent = Buffer.from(content, 'base64').toString();
     runTests(decodedContent)
   });
