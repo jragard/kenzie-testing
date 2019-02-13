@@ -7,25 +7,27 @@ const { argv } = require('yargs');
 const tempFile = "test/s.js";
 const tempFileStream = fs.createWriteStream(tempFile);
 
-const arg = argv._
+const args = argv._[0]
 
-if (argv._.length === 0) {
+if (args == null) {
   defaultTest();
-} else if (String(arg[0]).includes("github")) {
-  const answer = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(argv._[0]);
-  const fetchInfoUrl = `https://api.github.com/repos/${answer[1]}/${answer[2]}/contents`;
-
+} else if (String(args).includes("github")) {
   let fileToTest;
   let url;
+  const argVars = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(args);
+  const gitUser = argVars[1];
+  const gitRepo = argVars[2];
 
-  axios.get(fetchInfoUrl).then(response => {
+  const gitFetchUrl = `https://api.github.com/repos/${gitUser}/${gitRepo}/contents`;
+
+  axios.get(gitFetchUrl).then(response => {
     fileToTest = response.data[0].name;
-    url = `https://raw.githubusercontent.com/${answer[1]}/${answer[2]}/master/${fileToTest}`;
+    url = `https://raw.githubusercontent.com/${gitUser}/${gitRepo}/master/${fileToTest}`;
     gitTest(url);
   });
 
 } else {
-  const url = "https://gitlab.com/api/v4/projects/" + argv._[0] + "/repository/files/katas1%2Ejs?ref=master";
+  const url = "https://gitlab.com/api/v4/projects/" + arg[0] + "/repository/files/katas1%2Ejs?ref=master";
   gitTest(url);
 }
 
