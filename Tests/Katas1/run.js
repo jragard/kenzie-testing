@@ -1,8 +1,13 @@
 const fs = require('fs');
 const axios = require('axios');
 const fetch = require('node-fetch');
-const { exec, spawn } = require('child_process');
-const { argv } = require('yargs');
+const {
+  exec,
+  spawn
+} = require('child_process');
+const {
+  argv
+} = require('yargs');
 
 const tempFile = "test/s.js";
 const tempFileStream = fs.createWriteStream(tempFile);
@@ -27,44 +32,70 @@ if (args == null) {
   });
 
 } else {
-  const url = "https://gitlab.com/api/v4/projects/" + arg[0] + "/repository/files/katas1%2Ejs?ref=master";
-  gitTest(url);
+
+  // I'm trying to fetch the html content of a gitlab repo to grab its project ID to make a url
+
+  const argVars = /.*gitlab.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(args);
+  const gitUser = argVars[1];
+  const gitRepo = argVars[2];
+
+  let repoUrl = `https://gitlab.com/api/v4/projects/${gitUser}%2F${gitRepo}`;
+
+  fetch(repoUrl, {
+    method: 'GET',
+    headers: {
+      'PRIVATE-TOKEN': 'YiszMsh_vtySaoLLRZLd'
+    }
+  }).then(res => {
+    return res.json();
+  }).then(data => {
+    // console.log(data)
+    let projectId = data.id;
+    let assessmentUrl = "https://gitlab.com/api/v4/projects/" + projectId + "/repository/files/katas1%2Ejs?ref=master";
+    gitTest(assessmentUrl);
+  });
 }
 
 function defaultTest() {
-  studentCode = fs.readFileSync("./test/temp.js", { encoding: "utf8" });
+  console.log('defaultTest')
+  studentCode = fs.readFileSync("./test/temp.js", {
+    encoding: "utf8"
+  });
   runTests(studentCode);
 }
 
 function gitTest(url) {
-  if(url.includes("github")) {
-  axios.get(url).then(response => {
-    runTests(response.data);
-  });
-} else {
-  fetch(url, {
-    method: 'GET',
-    headers: {
-      'PRIVATE-TOKEN': '5ZHEYQdoa5Tgx3yjpdP3'
-    }
-  })
-  .then(function(response) {
-    let res = response.body._readableState.buffer.head.data
-    let regex = /"content"/
-    let index = res.toString().search(regex)
-    let content = res.toString().slice(index + 11)
-    let decodedContent = Buffer.from(content, 'base64').toString();
-    runTests(decodedContent)
-  })
-}
+  console.log('gitTest')
+  if (url.includes("github")) {
+    axios.get(url).then(response => {
+      runTests(response.data);
+    });
+  } else {
+    console.log('fetching Gitlab URL')
+    fetch(url, {
+        method: 'GET',
+        headers: {
+          'PRIVATE-TOKEN': '5ZHEYQdoa5Tgx3yjpdP3'
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        let content = data.content
+        let decodedContent = Buffer.from(content, 'base64').toString();
+        runTests(decodedContent);
+      });
+  }
 }
 
 function runTests(studentCode) {
+  console.log('runTests')
   tempFileStream.write(studentCode.replace(/['"]?use strict['"]?/, ""));
   tempFileStream.write(
     "\nmodule.exports = { oneThroughTwenty: (typeof oneThroughTwenty) === 'function' && oneThroughTwenty, evensToTwenty: (typeof evensToTwenty) === 'function' && evensToTwenty, oddsToTwenty: (typeof oddsToTwenty) === 'function' && oddsToTwenty, multiplesOfFive: (typeof multiplesOfFive) === 'function' && multiplesOfFive, squareNumbers: (typeof squareNumbers) === 'function' && squareNumbers, countingBackwards: (typeof countingBackwards) === 'function' && countingBackwards, evenNumbersBackwards: (typeof evenNumbersBackwards) === 'function' && evenNumbersBackwards, oddNumbersBackwards: (typeof oddNumbersBackwards) === 'function' && oddNumbersBackwards, multiplesOfFiveBackwards: (typeof multiplesOfFiveBackwards) === 'function' && multiplesOfFiveBackwards, squareNumbersBackwards: (typeof squareNumbersBackwards) === 'function' && squareNumbersBackwards, }"
   );
-  spawn("./node_modules/.bin/mocha", ['--colors'], { stdio: "inherit" }).on("exit", function(error) {
+  spawn("./node_modules/.bin/mocha", ['--colors'], {
+    stdio: "inherit"
+  }).on("exit", function (error) {
     if (error) {
       console.log(error);
     }

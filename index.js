@@ -62,9 +62,7 @@ fs.readdir(assessmentTests, (err, testDirs) => {
                         let tempFileStream = fs.createWriteStream(tempFile);
 
                         tempFileStream.write(studentCode.replace(/['"]?use strict['"]?/, ""));
-                    } else {
-
-                    }
+                    } 
                     if (file.includes(".html")) {
                         let htmlFile = file;
                         let pathToHTMLFile = path.join(userLocalDir, htmlFile);
