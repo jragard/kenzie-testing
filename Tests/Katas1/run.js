@@ -31,8 +31,6 @@ if (args == null) {
   gitTest(url);
 }
 
-
-
 function defaultTest() {
   studentCode = fs.readFileSync("./test/temp.js", { encoding: "utf8" });
   runTests(studentCode);
