@@ -23,69 +23,87 @@ parser.addArgument(
     }
 );
 
-console.log('index.js running')
-
 const args = parser.parseArgs();
 const userLocalDir = process.cwd();
-const argMatchesAssessment = new RegExp(args.assessment, 'i');
+const assessment = new RegExp(args.assessment, 'i');
 const assessmentTests = `${__dirname}/Tests`
+
+let localTest;
+let userLocalFile;
 
 fs.readdir(assessmentTests, (err, testDirs) => {
     testDirs.forEach((testDir) => {
-        let validTestDir = argMatchesAssessment.test(testDir);
+
+        let validTestDir = assessment.test(testDir);
 
         if (validTestDir) {
-            let testLocation = `${assessmentTests}/${testDir}`
-            process.chdir(testLocation)
-
-            const filesInUserLocalDir = fs.readdirSync(userLocalDir);
             
-            let userLocalFile;
+            const testLocation = `${assessmentTests}/${testDir}`;
+            process.chdir(testLocation);
 
-            filesInUserLocalDir.forEach(file => {
-                
-                let validLocalFile = argMatchesAssessment.test(file);
+            if(args.gitlink === null) {
+                localTest = true;
 
-                if (validLocalFile) {
-                    userLocalFile = file
-                    let pathToUserFile = path.join(userLocalDir, userLocalFile);
+                fs.readdir(userLocalDir, (err, localFiles) => {
 
-                    const studentCode = fs.readFileSync(pathToUserFile, {
-                        encoding: "utf8"
-                    });
+                localFiles.forEach(file => {
 
-                    let tempFile = './test/temp.js'
-                    let tempFileStream = fs.createWriteStream(tempFile);
+                    let validLocalFile = assessment.test(file);
 
-                    tempFileStream.write(studentCode.replace(/['"]?use strict['"]?/, ""));
-                }
-                if (file.includes(".html")) {
-                    let htmlFile = file;
-                    let pathToHTMLFile = path.join(userLocalDir, htmlFile);
+                    if (validLocalFile) {
+                        userLocalFile = file
+                        let pathToUserFile = path.join(userLocalDir, userLocalFile);
 
-                    const htmlContent = fs.readFileSync(pathToHTMLFile, {
-                        encoding: "utf-8"
-                    })
+                        const studentCode = fs.readFileSync(pathToUserFile, {
+                            encoding: "utf8"
+                        });
+
+                        let tempFile = './test/temp.js'
+                        let tempFileStream = fs.createWriteStream(tempFile);
+
+                        tempFileStream.write(studentCode.replace(/['"]?use strict['"]?/, ""));
+                    } else {
+
+                    }
+                    if (file.includes(".html")) {
+                        let htmlFile = file;
+                        let pathToHTMLFile = path.join(userLocalDir, htmlFile);
+
+                        const htmlContent = fs.readFileSync(pathToHTMLFile, {
+                            encoding: "utf-8"
+                        })
                     
                     // For converting user HTML to a temp dom instance to test with jsdom, we might not use this soon
-                    let oneLineHTML = htmlContent.replace(/\n|\t/g, '')
-                    let tempTXT = './test/temp.txt'
-                    let tempTXTStream = fs.createWriteStream(tempTXT);
-                    tempTXTStream.write(JSON.stringify(oneLineHTML));
-                }
-            })
+                        let oneLineHTML = htmlContent.replace(/\n|\t/g, '')
+                        let tempTXT = './test/temp.txt'
+                        let tempTXTStream = fs.createWriteStream(tempTXT);
+                        tempTXTStream.write(JSON.stringify(oneLineHTML));
+                    }
+                });
 
-            // This installs all required npm modules and awaits the install before continuing to next exec call
+
+
+              });
+            } else {
+                let tempFile = './test/temp.js'
+                fs.createWriteStream(tempFile);
+            }
+
             const installPackages = exec('npm i')
+            
             installPackages.on('exit', () => {
                 process.exit
-                const {gitlink, assessment} = args
+                const {gitlink} = args
                 exec(`node run.js ${gitlink ? gitlink : ''}`, (error, stdout, stderr) => {
                     if(error){
                         console.log(error)
                     }
-                    // This code will console log this even if we are testing github/gitlab links, I believe
-                    console.log(`Testing ${userLocalFile} in ${userLocalDir}:`)
+                    if(localTest === true) {
+                        console.log(`Testing ${userLocalFile} in ${userLocalDir}:`)
+                    }
+                    else {
+                        console.log('Testing gitlink file')
+                    }
                     console.log(stdout)
                 })
             })
