@@ -107,8 +107,8 @@ function testBaseResults() {
 
   it("numbers that are not even or divisible by 3 should be added to the string", () => {
     expect(studentFunction(value10).split(",")[0]).to.equal("1");
-    expect(studentFunction(value10).split(",")[24]).to.equal("25");
-    expect(studentFunction(value100).split(",")[334]).to.equal("335");
+    expect(studentFunction(value100).split(",")[24]).to.equal("25");
+    expect(studentFunction(value1000).split(",")[334]).to.equal("335");
     expect(studentFunction(value10000).split(",")[6000]).to.equal("6001");
   });
 
