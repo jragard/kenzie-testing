@@ -25,10 +25,15 @@ if (args == null) {
   const gitFetchUrl = `https://api.github.com/repos/${gitUser}/${gitRepo}/contents`;
 
   axios.get(gitFetchUrl).then(response => {
-    fileToTest = response.data[0].name;
-    url = `https://raw.githubusercontent.com/${gitUser}/${gitRepo}/master/${fileToTest}`;
-    gitTest(url);
-  });
+    for (let i = 0; i < response.data.length; i++) {
+      let name = response.data[i].name
+      if (name.substring(name.length - 2) == 'js') {
+        fileToTest = name
+        let url = `https://raw.githubusercontent.com/${gitUser}/${gitRepo}/master/${fileToTest}`;
+        gitTest(url);
+      } 
+    }
+  })
 
 } else {
 
