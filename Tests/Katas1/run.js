@@ -8,6 +8,7 @@ const {
 const {
   argv
 } = require('yargs');
+// const { assessment } = require('../../index.js');
 
 const tempFile = "test/s.js";
 const tempFileStream = fs.createWriteStream(tempFile);
@@ -17,6 +18,25 @@ const args = argv._[0]
 if (args == null) {
   defaultTest();
 } else if (String(args).includes("github")) {
+
+  // getSha returns a url which is used to fetch the filename
+  const getSha = function() {
+
+    let promise = new Promise(function(resolve, reject) {
+      let sha = fetch(shaURL, {
+        method: 'GET',
+        headers: {
+          'PRIVATE-TOKEN': 'YiszMsh_vtySaoLLRZLd'
+        }
+      });
+      resolve(`https://api.github.com/repos/jragard/katas1/git/trees/7a346f8fe0e8b67f733ef7b93213e5db3f3c75b7`);
+    });
+    return promise;
+  }
+
+
+
+
   let fileToTest;
   let url;
   const argVars = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(args);
@@ -39,25 +59,58 @@ if (args == null) {
   const gitUser = argVars[1];
   const gitRepo = argVars[2];
 
-  let repoUrl = `https://gitlab.com/api/v4/projects/${gitUser}%2F${gitRepo}`;
+  const assessment = new RegExp(gitRepo, 'i');
 
-  fetch(repoUrl, {
-    method: 'GET',
-    headers: {
-      'PRIVATE-TOKEN': 'YiszMsh_vtySaoLLRZLd'
-    }
-  }).then(res => {
-    return res.json();
-  }).then(data => {
-    // console.log(data)
-    let projectId = data.id;
-    let assessmentUrl = "https://gitlab.com/api/v4/projects/" + projectId + "/repository/files/katas1%2Ejs?ref=master";
-    gitTest(assessmentUrl);
-  });
+  let getID = `https://gitlab.com/api/v4/projects/${gitUser}%2F${gitRepo}`
+  const urlConstructor = {}
+
+  const getFinalUrl = function() {
+    let promise = new Promise(function(resolve, reject) {
+
+      let result = fetch(getID, {
+        method: 'GET',
+      headers: {
+        'PRIVATE-TOKEN': 'YiszMsh_vtySaoLLRZLd'
+      }
+      }).then(result => {
+        return result.json()
+      }).then(result => {
+        urlConstructor['project_id'] = result.id
+        return urlConstructor
+      })
+      resolve(result)
+    })
+    return promise
+  }
+
+  getFinalUrl().then(result => {
+    let projectID = urlConstructor['project_id'];
+    fetch(`https://gitlab.com/api/v4/projects/${projectID}/repository/tree`, {
+      method: 'GET',
+  headers: {
+    'PRIVATE-TOKEN': 'YiszMsh_vtySaoLLRZLd'
+  }
+    }).then(result => {
+      return result.json()
+    }).then(result => {
+      urlConstructor['filename'] = result[0].name;
+      return urlConstructor;
+    }).then(result => {
+      let filename = urlConstructor['filename'];
+      let projectID = urlConstructor['project_id'];
+      let extRegex = /\./;
+      let extIndex = extRegex.exec(filename).index;
+      let extension = filename.slice(extIndex+1);
+      let fileString = filename.slice(0, extIndex);
+      let fileContentsUrl = `https://gitlab.com/api/v4/projects/${projectID}/repository/files/${fileString}%2E${extension}?ref=master`
+      return fileContentsUrl;
+    }).then(result => {
+      gitTest(result);
+    })
+  })
 }
 
 function defaultTest() {
-  console.log('defaultTest')
   studentCode = fs.readFileSync("./test/temp.js", {
     encoding: "utf8"
   });
@@ -65,13 +118,13 @@ function defaultTest() {
 }
 
 function gitTest(url) {
-  console.log('gitTest')
+
   if (url.includes("github")) {
     axios.get(url).then(response => {
       runTests(response.data);
     });
   } else {
-    console.log('fetching Gitlab URL')
+
     fetch(url, {
         method: 'GET',
         headers: {
