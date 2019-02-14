@@ -19,29 +19,56 @@ if (args == null) {
   defaultTest();
 } else if (String(args).includes("github")) {
 
-  // getSha returns a url which is used to fetch the filename
-  const getSha = function() {
-
-    let promise = new Promise(function(resolve, reject) {
-      let sha = fetch(shaURL, {
-        method: 'GET',
-        headers: {
-          'PRIVATE-TOKEN': 'YiszMsh_vtySaoLLRZLd'
-        }
-      });
-      resolve(`https://api.github.com/repos/jragard/katas1/git/trees/7a346f8fe0e8b67f733ef7b93213e5db3f3c75b7`);
-    });
-    return promise;
-  }
-
-
-
-
-  let fileToTest;
-  let url;
   const argVars = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(args);
   const gitUser = argVars[1];
   const gitRepo = argVars[2];
+
+  // getSha returns a url which is used to fetch the filename
+  // let shaUrl = `https://api.github.com/repos/${gitUser}/${gitRepo}/commits`;
+
+  // const getSha = function() {
+
+  //   let promise = new Promise(function(resolve, reject) {
+
+  //     let result = fetch(shaUrl, {
+  //       method: 'GET',
+  //       headers: {
+  //         'PRIVATE-TOKEN': 'YiszMsh_vtySaoLLRZLd'
+  //       }
+  //     }).then(result => {
+  //       return result.json();
+  //     }).then(result => {
+  //       let filenameUrl = result[0].commit.tree.url;
+  //       return filenameUrl;
+  //     })
+  //     resolve(result);
+  //   });
+  //   return promise;
+  // }
+
+  // getSha().then(result => {
+  //   fetch(result, {
+  //     method: 'GET',
+  //       headers: {
+  //         'PRIVATE-TOKEN': 'YiszMsh_vtySaoLLRZLd'
+  //       }
+  //   }).then(result => {
+  //     return result.json()
+  //   }).then(result => {
+  //     let filename = result.tree[0].path;
+  //     let url = `https://raw.githubusercontent.com/${gitUser}/${gitRepo}/master/${filename}`;
+  //     console.log(url)
+  //   })
+  // })
+
+
+
+
+  // let fileToTest;
+  // let url;
+  // const argVars = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(args);
+  // const gitUser = argVars[1];
+  // const gitRepo = argVars[2];
 
   const gitFetchUrl = `https://api.github.com/repos/${gitUser}/${gitRepo}/contents`;
 
@@ -50,10 +77,8 @@ if (args == null) {
     url = `https://raw.githubusercontent.com/${gitUser}/${gitRepo}/master/${fileToTest}`;
     gitTest(url);
   });
-
+  
 } else {
-
-  // I'm trying to fetch the html content of a gitlab repo to grab its project ID to make a url
 
   const argVars = /.*gitlab.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(args);
   const gitUser = argVars[1];
