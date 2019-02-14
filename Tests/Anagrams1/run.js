@@ -27,7 +27,8 @@ if (args == null) {
   axios.get(gitFetchUrl).then(response => {
     for (let i = 0; i < response.data.length; i++) {
       let name = response.data[i].name
-      if (name.substring(name.length - 2) == 'js') {
+      console.log(name.substring(0, name.length - 3))
+      if (name.substring(name.length - 2) == 'js' && name.substring(0, name.length - 3) != 'words') {
         fileToTest = name
         let url = `https://raw.githubusercontent.com/${gitUser}/${gitRepo}/master/${fileToTest}`;
         gitTest(url);
@@ -98,7 +99,7 @@ function defaultTest() {
 }
 
 function gitTest(url) {
-  console.log('gitTest running');
+  // console.log('gitTest running');
   if (url.includes("github")) {
     axios.get(url).then(response => {
       runTests(response.data);
