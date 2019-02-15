@@ -150,6 +150,6 @@ function runTests(studentCode) {
     }
     exec(`rm ${tempFile}`);
     exec(`rm ./test/temp.js`);
-    exec(`rm ./test/temp.html`);
+    exec(`rm ./test/temp.txt`);
   });
 }
