@@ -1,13 +1,13 @@
 const fs = require('fs');
-const axios = require('axios');
-const fetch = require('node-fetch');
+const axios = require('../../node_modules/axios');
+const fetch = require('../../node_modules/node-fetch');
 const {
   exec,
   spawn
 } = require('child_process');
 const {
   argv
-} = require('yargs');
+} = require('../../node_modules/yargs');
 
 const tempFile = "test/s.js";
 const tempFileStream = fs.createWriteStream(tempFile);
@@ -135,12 +135,11 @@ function runTests(studentCode) {
   tempFileStream.write(
     "\nmodule.exports = { getAnagramsOf: (typeof getAnagramsOf) === 'function' && getAnagramsOf };"
   );
-  spawn("./node_modules/.bin/mocha", ['--colors'], { stdio: "inherit" }).on("exit", function(error) {
+  spawn("../../node_modules/.bin/mocha", ['--colors'], { stdio: "inherit" }).on("exit", function(error) {
     if (error) {
       console.log(error);
     }
     exec(`rm ${tempFile}`);
     exec(`rm ./test/temp.js`);
-    exec(`rm ./test/temp.txt`);
   });
 }
