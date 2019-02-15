@@ -108,13 +108,13 @@ function defaultTest() {
 }
 
 function gitTest(url) {
-  // console.log('gitTest running');
   if (url.includes("github")) {
+    console.log('Testing file from github repository - ' + url)
     axios.get(url).then(response => {
       runTests(response.data);
     });
   } else {
-
+    console.log('Testing file from gitlab repository - ' + url)
     fetch(url, {
         method: 'GET',
         headers: {
@@ -139,5 +139,7 @@ function runTests(studentCode) {
     if (error) {
       console.log(error);
     }
+    exec(`rm ${tempFile}`);
+    exec(`rm ./test/temp.js`);
   });
 }
