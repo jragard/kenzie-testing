@@ -27,7 +27,8 @@ if (args == null) {
   axios.get(gitFetchUrl).then(response => {
     for (let i = 0; i < response.data.length; i++) {
       let name = response.data[i].name
-      if (name.substring(name.length - 2) == 'js') {
+      console.log(name.substring(0, name.length - 3))
+      if (name.substring(name.length - 2) == 'js' && name.substring(0, name.length - 3) != 'words') {
         fileToTest = name
         let url = `https://raw.githubusercontent.com/${gitUser}/${gitRepo}/master/${fileToTest}`;
         gitTest(url);
@@ -73,10 +74,19 @@ if (args == null) {
     }).then(result => {
       return result.json()
     }).then(result => {
-      urlConstructor['filename'] = result[0].name;
+      for (let i = 0; i < result.length; i++) {
+        let name = result[i].name
+        
+        if (name.substring(name.length - 2) == 'js' && name.substring(0, name.length - 3) != 'words') {
+          fileToTest = name
+        } 
+      }
+      
+      urlConstructor['filename'] = fileToTest;
       return urlConstructor;
     }).then(result => {
       let filename = urlConstructor['filename'];
+      
       let projectID = urlConstructor['project_id'];
       let extRegex = /\./;
       let extIndex = extRegex.exec(filename).index;
@@ -98,7 +108,7 @@ function defaultTest() {
 }
 
 function gitTest(url) {
-
+  // console.log('gitTest running');
   if (url.includes("github")) {
     axios.get(url).then(response => {
       runTests(response.data);
@@ -129,7 +139,5 @@ function runTests(studentCode) {
     if (error) {
       console.log(error);
     }
-    exec(`rm ${tempFile}`);
-    exec(`rm ./test/temp.js`);
   });
 }
