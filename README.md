@@ -7,10 +7,7 @@ This package is used to run tests on students assessments at Kenzie Academy.  St
 
 ## Installation Instructions
 
-1. Currently, the `mocha` npm package must be installed globally on your machine for the command line tool to work (we don't currently understand why ¯\\_(ツ)_/¯ ): from your terminal run `sudo npm install -g mocha`
-
-2.  Run `npm install -g git+https://github.com/jragard/kenzie-testing`, if this fails, try adding `sudo` to the beginning of the aforementioned command.
-
+Run `npm install -g git+https://github.com/jragard/kenzie-testing`, if this fails, try adding `sudo` to the beginning of the aforementioned command.
 
 
 # Commands
