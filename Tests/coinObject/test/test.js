@@ -1,4 +1,4 @@
-const coinObject = require('./coinObject.js');
+const coinObject = require('./s.js');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 const dom = new JSDOM("<!DOCTYPE html><html lang='en'><body></body></html>")
