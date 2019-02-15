@@ -62,23 +62,7 @@ fs.readdir(assessmentTests, (err, testDirs) => {
                         let tempFileStream = fs.createWriteStream(tempFile);
 
                         tempFileStream.write(studentCode.replace(/['"]?use strict['"]?/, ""));
-                    } else {
-
-                    }
-                    if (file.includes(".html")) {
-                        let htmlFile = file;
-                        let pathToHTMLFile = path.join(userLocalDir, htmlFile);
-
-                        const htmlContent = fs.readFileSync(pathToHTMLFile, {
-                            encoding: "utf-8"
-                        })
-                    
-                    // For converting user HTML to a temp dom instance to test with jsdom, we might not use this soon
-                        let oneLineHTML = htmlContent.replace(/\n|\t/g, '')
-                        let tempTXT = './test/temp.txt'
-                        let tempTXTStream = fs.createWriteStream(tempTXT);
-                        tempTXTStream.write(JSON.stringify(oneLineHTML));
-                    }
+                    } 
                 });
 
 
@@ -100,9 +84,6 @@ fs.readdir(assessmentTests, (err, testDirs) => {
                     }
                     if(localTest === true) {
                         console.log(`Testing ${userLocalFile} in ${userLocalDir}:`)
-                    }
-                    else {
-                        console.log('Testing gitlink file')
                     }
                     console.log(stdout)
                 })

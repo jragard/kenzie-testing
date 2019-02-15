@@ -1,6 +1,6 @@
 const fs = require('fs');
 const axios = require('axios');
-const fetch = require('node-fetch')
+const fetch = require('node-fetch');
 const {
     exec,
     spawn
@@ -9,90 +9,145 @@ const {
     argv
 } = require('yargs');
 
-const tempFile = "test/coinObject.js";
+const tempFile = "test/s.js";
 const tempFileStream = fs.createWriteStream(tempFile);
-const arg = argv._
 
-console.log('run.js is running')
+const args = argv._[0]
 
-if (argv._.length === 0) {
+if (args == null) {
     defaultTest();
-} else if (String(arg[0]).includes("github")) {
-    const answer = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(argv._[0]);
-    const url = `https://raw.githubusercontent.com/${answer[1]}/${
-    answer[2]
-  }/master/coinObject.js`;
-    gitTest(url);
+} else if (String(args).includes("github")) {
+
+    const argVars = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(args);
+    const gitUser = argVars[1];
+    const gitRepo = argVars[2];
+
+    const gitFetchUrl = `https://api.github.com/repos/${gitUser}/${gitRepo}/contents`;
+
+    axios.get(gitFetchUrl).then(response => {
+
+        for (let i = 0; i < response.data.length; i++) {
+            let name = response.data[i].name
+            if (name.substring(name.length - 2) == 'js') {
+                let fileToTest = name
+                let url = `https://raw.githubusercontent.com/${gitUser}/${gitRepo}/master/${fileToTest}`;
+                gitTest(url);
+            }
+        }
+    })
+
 } else {
-    const url = "https://gitlab.com/api/v4/projects/" + arg[0] + "/repository/files/coinObject%2Ejs?ref=master";
-    gitTest(url);
+
+    const argVars = /.*gitlab.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(args);
+    const gitUser = argVars[1];
+    const gitRepo = argVars[2];
+
+    let getID = `https://gitlab.com/api/v4/projects/${gitUser}%2F${gitRepo}`
+    const urlConstructor = {}
+
+    const getFinalUrl = function () {
+        let promise = new Promise(function (resolve, reject) {
+
+            let result = fetch(getID, {
+                method: 'GET',
+                headers: {
+                    'PRIVATE-TOKEN': 'YiszMsh_vtySaoLLRZLd'
+                }
+            }).then(result => {
+                return result.json()
+            }).then(result => {
+                urlConstructor['project_id'] = result.id
+                return urlConstructor
+            })
+            resolve(result)
+        })
+        return promise
+    }
+
+    getFinalUrl().then(result => {
+        let projectID = urlConstructor['project_id'];
+    
+        fetch(`https://gitlab.com/api/v4/projects/${projectID}/repository/tree`, {
+            method: 'GET',
+            headers: {
+                'PRIVATE-TOKEN': 'YiszMsh_vtySaoLLRZLd'
+            }
+        }).then(result => {
+            return result.json()
+        }).then(result => {
+            for (let i = 0; i < result.length; i++) {
+                let name = result[i].name;
+                if (name.substring(name.length - 2) == 'js') {
+                    urlConstructor['filename'] = name;
+                }
+            }
+            return urlConstructor;
+        }).then(result => {
+            let filename = urlConstructor['filename'];
+            let projectID = urlConstructor['project_id'];
+            let extRegex = /\./;
+            let extIndex = extRegex.exec(filename).index;
+            let extension = filename.slice(extIndex + 1);
+            let fileString = filename.slice(0, extIndex);
+            let fileContentsUrl = `https://gitlab.com/api/v4/projects/${projectID}/repository/files/${fileString}%2E${extension}?ref=master`
+            return fileContentsUrl;
+        }).then(result => {
+            gitTest(result);
+        })
+    })
 }
 
 function defaultTest() {
-    let studentCode = fs.readFileSync("./test/temp.js", {
+    studentCode = fs.readFileSync("./test/temp.js", {
         encoding: "utf8"
     });
     runTests(studentCode);
 }
 
 function gitTest(url) {
-    // console.log('gitTest running')
+    
     if (url.includes("github")) {
+        console.log('Testing file from github repository - ' + url);
         axios.get(url).then(response => {
+            // console.log(response.data)
             runTests(response.data);
         });
     } else {
+        console.log('Testing file from gitlab repository - ' + url)
         fetch(url, {
                 method: 'GET',
                 headers: {
                     'PRIVATE-TOKEN': '5ZHEYQdoa5Tgx3yjpdP3'
                 }
             })
-            .then(function (response) {
-                let res = response.body._readableState.buffer.head.data
-                let regex = /"content"/
-                let index = res.toString().search(regex)
-                let content = res.toString().slice(index + 11)
+            .then(res => res.json())
+            .then(data => {
+                let content = data.content
                 let decodedContent = Buffer.from(content, 'base64').toString();
-                runTests(decodedContent)
-            })
+                runTests(decodedContent);
+            });
     }
 }
 
 function runTests(studentCode) {
 
-    const htmlPromise = new Promise((resolve, reject) => {
-        if (reject) {
-            console.log(reject)
+    let html = "<!DOCTYPE html><html lang='en'><body></body></html>"
+    tempFileStream.write('const jsdom = require("jsdom");\n');
+    tempFileStream.write('const { JSDOM } = jsdom;\n');
+    tempFileStream.write("const dom = new JSDOM(\"" + html + "\")\n");
+    tempFileStream.write('global.document = dom.window.document;\n');
+    tempFileStream.write(studentCode.replace(/['"]?use strict['"]?/, ""));
+    tempFileStream.write(
+        "\nmodule.exports = { coin: coin, display20Flips: (typeof display20Flips) === 'function' && display20Flips, display20Images: (typeof display20Images) === 'function' && display20Images }"
+    );
+    spawn("./node_modules/.bin/mocha", ['--colors'], {
+        stdio: "inherit"
+    }).on("exit", function (error) {
+        if (error) {
+            console.log(error);
         }
-        resolve(fs.readFileSync('./test/temp.txt', {
-            encoding: "utf8"
-        }));
-    });
-
-    htmlPromise.then((value) => {
-
-
-        value = value.substring(1, value.length - 1);
-        let html = "<!DOCTYPE html><html lang='en'><body></body></html>"
-        tempFileStream.write('const jsdom = require("jsdom");\n');
-        tempFileStream.write('const { JSDOM } = jsdom;\n');
-        tempFileStream.write("const dom = new JSDOM(\"" + html + "\")\n");
-        tempFileStream.write('global.document = dom.window.document;\n');
-        tempFileStream.write(studentCode.replace(/['"]?use strict['"]?/, ""));
-        tempFileStream.write(
-            "\nmodule.exports = { coin: coin, display20Flips: (typeof display20Flips) === 'function' && display20Flips, display20Images: (typeof display20Images) === 'function' && display20Images }"
-        );
-        spawn("./node_modules/.bin/mocha", ['--colors'], {
-            stdio: "inherit"
-        }).on("exit", function (error) {
-            if (error) {
-                console.log(error);
-            }
-            exec(`rm ${tempFile}`);
-            exec(`rm ./test/temp.js`);
-            exec(`rm ./test/temp.txt`);
-        });
-
+        exec(`rm ${tempFile}`);
+        exec(`rm ./test/temp.js`);
+        exec(`rm ./test/temp.txt`);
     });
 }

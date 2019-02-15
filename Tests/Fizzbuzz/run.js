@@ -6,47 +6,114 @@ const { argv } = require("yargs");
 
 const tempFile = "test/s.js";
 const tempFileStream = fs.createWriteStream(tempFile);
-const arg = argv._
 
-if (argv._.length === 0) {
+const args = argv._[0]
+
+if (args == null) {
   defaultTest();
-} else if (String(arg[0]).includes("github")) {
-  const answer = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(argv._[0]);
-  const url = `https://raw.githubusercontent.com/${answer[1]}/${
-    answer[2]
-  }/master/fizzbuzz.js`;
-  gitTest(url);
-} else  {
-  const url = "https://gitlab.com/api/v4/projects/" + arg[0] + "/repository/files/fizzbuzz%2Ejs?ref=master";
-  gitTest(url);
-} 
+} else if (String(args).includes("github")) {
+
+  const argVars = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(args);
+  const gitUser = argVars[1];
+  const gitRepo = argVars[2];
+
+  const gitFetchUrl = `https://api.github.com/repos/${gitUser}/${gitRepo}/contents`;
+
+  axios.get(gitFetchUrl).then(response => {
+    for (let i = 0; i < response.data.length; i++) {
+      let name = response.data[i].name
+      if (name.substring(name.length - 2) == 'js') {
+        fileToTest = name
+        let url = `https://raw.githubusercontent.com/${gitUser}/${gitRepo}/master/${fileToTest}`;
+        gitTest(url);
+      } 
+    }
+  })
+
+} else {
+
+  const argVars = /.*gitlab.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(args);
+  const gitUser = argVars[1];
+  const gitRepo = argVars[2];
+
+  let getID = `https://gitlab.com/api/v4/projects/${gitUser}%2F${gitRepo}`
+  const urlConstructor = {}
+
+  const getFinalUrl = function() {
+    let promise = new Promise(function(resolve, reject) {
+
+      let result = fetch(getID, {
+        method: 'GET',
+      headers: {
+        'PRIVATE-TOKEN': 'YiszMsh_vtySaoLLRZLd'
+      }
+      }).then(result => {
+        return result.json()
+      }).then(result => {
+        urlConstructor['project_id'] = result.id
+        return urlConstructor
+      })
+      resolve(result)
+    })
+    return promise
+  }
+
+  getFinalUrl().then(result => {
+    let projectID = urlConstructor['project_id'];
+    fetch(`https://gitlab.com/api/v4/projects/${projectID}/repository/tree`, {
+      method: 'GET',
+  headers: {
+    'PRIVATE-TOKEN': 'YiszMsh_vtySaoLLRZLd'
+  }
+    }).then(result => {
+      return result.json()
+    }).then(result => {
+      urlConstructor['filename'] = result[0].name;
+      return urlConstructor;
+    }).then(result => {
+      let filename = urlConstructor['filename'];
+      let projectID = urlConstructor['project_id'];
+      let extRegex = /\./;
+      let extIndex = extRegex.exec(filename).index;
+      let extension = filename.slice(extIndex+1);
+      let fileString = filename.slice(0, extIndex);
+      let fileContentsUrl = `https://gitlab.com/api/v4/projects/${projectID}/repository/files/${fileString}%2E${extension}?ref=master`
+      return fileContentsUrl;
+    }).then(result => {
+      gitTest(result);
+    })
+  })
+}
 
 function defaultTest() {
-  studentCode = fs.readFileSync("./test/temp.js", { encoding: "utf8" });
+  studentCode = fs.readFileSync("./test/temp.js", {
+    encoding: "utf8"
+  });
   runTests(studentCode);
 }
 
 function gitTest(url) {
-  if(url.includes("github")) {
-  axios.get(url).then(response => {
-    runTests(response.data);
-  });
-} else {
-  fetch(url, {
-    method: 'GET',
-    headers: {
-      'PRIVATE-TOKEN': '5ZHEYQdoa5Tgx3yjpdP3'
-    }
-  })
-  .then(function(response) {
-    let res = response.body._readableState.buffer.head.data
-    let regex = /"content"/
-    let index = res.toString().search(regex)
-    let content = res.toString().slice(index + 11)
-    let decodedContent = Buffer.from(content, 'base64').toString();
-    runTests(decodedContent)
-  });
-}
+
+  if (url.includes("github")) {
+    console.log('Testing file from github repository - ' + url)
+    axios.get(url).then(response => {
+      runTests(response.data);
+    });
+  } else {
+    console.log('Testing file from gitlab repository - ' + url)
+    fetch(url, {
+        method: 'GET',
+        headers: {
+          'PRIVATE-TOKEN': '5ZHEYQdoa5Tgx3yjpdP3'
+        }
+      })
+      .then(res => res.json())
+      .then(data => {
+        let content = data.content
+        let decodedContent = Buffer.from(content, 'base64').toString();
+        runTests(decodedContent);
+      });
+  }
 }
 
 function runTests(studentCode) {
