@@ -21,11 +21,9 @@ To test a local file on your computer, the file should be named according to ass
 
 **Grading Student Submissions**
 
-For the tests/assignments we have covered so far, students will submit either a **Github repository url (Ex: https://github.com/jragard/katas4)** or a **Gitlab Project ID (Ex:  Project ID: 10739614)**, which is located under the project name on Gitlab.  To run a grade command on a Github url or Gitlab ID:
+For the tests/assignments we have covered so far, students will submit either a **Github repository url (Ex: https://github.com/jragard/katas4)** or a **Gitlab repository url (Ex: https://gitlab.com/jragard/katas4)**.  To run a grade command on a Github/Gitlab url:
 
-For a Github repository url, run `kenzie-test <assessment_name> -g <url>` with the specified assessment name in the assignment instructions, and the student's url submission. (Ex: `kenzie-test katas4 -g https://github.com/jragard/katas4` )
-
-For a Gitlab Project ID submission, run `kenzie-test <assessment_name> -g <project_id>` with the specified assessment name in the assignment instructions, and the student's Project ID submission (Ex: `kenzie-test katas4 -g 10739614`) If using Gitlab, the student will be submitting this ID number along with their Gitlab Pages url.
+For a Github/Gitlab repository url, run `kenzie-test <assessment_name> -g <url>` with the specified assessment name in the assignment instructions, and the student's url submission. (Ex: `kenzie-test katas4 -g https://github.com/jragard/katas4`  OR  `kenzie-test katas4 -g https://gitlab.com/jragard/katas4`)
 
 *Please contact Taylor Gentry or Ryan Agard at* **ryan@kenzie.academy** *or* **taylorgentry@kenzie.academy** *if you would like to contribute or have any questions.*
 
