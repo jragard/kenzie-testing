@@ -9,16 +9,16 @@ const {
   argv
 } = require('../../node_modules/yargs');
 
-const tempFile = "test/s.js";
-const tempFileStream = fs.createWriteStream(tempFile);
+const tempFileToTest = "test/tempFileToTest.js";
+const tempFileStream = fs.createWriteStream(tempFileToTest);
 
-const args = argv._[0]
+const gitUrlArg = argv._[0];
 
-if (args == null) {
+if (gitUrlArg == null) {
   defaultTest();
-} else if (String(args).includes("github")) {
+} else if (String(gitUrlArg).includes("github")) {
 
-  const argVars = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(args);
+  const argVars = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(gitUrlArg);
   const gitUser = argVars[1];
   const gitRepo = argVars[2];
 
@@ -27,7 +27,7 @@ if (args == null) {
   axios.get(gitFetchUrl).then(response => {
     for (let i = 0; i < response.data.length; i++) {
       let name = response.data[i].name
-      console.log(name.substring(0, name.length - 3))
+      
       if (name.substring(name.length - 2) == 'js' && name.substring(0, name.length - 3) != 'words') {
         fileToTest = name
         let url = `https://raw.githubusercontent.com/${gitUser}/${gitRepo}/master/${fileToTest}`;
@@ -38,7 +38,7 @@ if (args == null) {
 
 } else {
 
-  const argVars = /.*gitlab.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(args);
+  const argVars = /.*gitlab.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(gitUrlArg);
   const gitUser = argVars[1];
   const gitRepo = argVars[2];
 
@@ -139,7 +139,7 @@ function runTests(studentCode) {
     if (error) {
       console.log(error);
     }
-    exec(`rm ${tempFile}`);
+    exec(`rm ${tempFileToTest}`);
     exec(`rm ./test/temp.js`);
   });
 }
