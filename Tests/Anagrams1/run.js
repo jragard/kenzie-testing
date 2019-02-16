@@ -15,7 +15,11 @@ const tempFileStream = fs.createWriteStream(tempFileToTest);
 const gitUrlArg = argv._[0];
 
 if (gitUrlArg == null) {
-  defaultTest();
+  defaultTest().then(result => {
+    exec(`rm ./test/temp.js`);
+    let studentCode = result;
+    runTests(studentCode);
+  });
 } else if (String(gitUrlArg).includes("github")) {
 
   const argVars = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(gitUrlArg);
@@ -46,6 +50,7 @@ if (gitUrlArg == null) {
   const urlConstructor = {}
 
   const getFinalUrl = function() {
+
     let promise = new Promise(function(resolve, reject) {
 
       let result = fetch(getID, {
@@ -92,14 +97,20 @@ if (gitUrlArg == null) {
 }
 
 function defaultTest() {
-  studentCode = fs.readFileSync("./test/temp.js", {
-    encoding: "utf8"
+  let promise = new Promise(function(resolve, reject) {
+    if(reject) {
+      console.log(reject);
+    }
+    let result = fs.readFileSync("./test/temp.js", {
+      encoding: "utf8"
+    });
+
+    resolve(result);
   });
-  runTests(studentCode);
+  return promise;
 }
 
 function gitTest(url) {
-  // console.log('gitTest running');
   if (url.includes("github")) {
     axios.get(url).then(response => {
       runTests(response.data);
@@ -122,10 +133,10 @@ function gitTest(url) {
 }
 
 function runTests(studentCode) {
-
+  exec(`rm ./test/temp.js`);
   let html = "<!DOCTYPE html><html lang='en'><body><div><input type='text' id='input' size=40><button id='findButton'>Find Anagrams</button></div><script type='text/javascript' src='words.js'></script><script type='text/javascript' src='anagrams1.js'></script></body></html>"
 
-  tempFileStream.write("const { words } = require('./words');\n");
+  tempFileStream.write("const { words } = require('./words.js');\n");
   tempFileStream.write('const jsdom = require("jsdom");\n');
   tempFileStream.write('const { JSDOM } = jsdom;\n');
   tempFileStream.write("const dom = new JSDOM(\"" + html + "\")\n");
@@ -140,6 +151,5 @@ function runTests(studentCode) {
       console.log(error);
     }
     exec(`rm ${tempFileToTest}`);
-    exec(`rm ./test/temp.js`);
   });
 }
