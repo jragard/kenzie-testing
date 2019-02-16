@@ -1,4 +1,4 @@
-﻿var words = [
+﻿const words = [
 "a",
 "a's",
 "aaa",
