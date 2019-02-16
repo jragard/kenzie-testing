@@ -2,10 +2,12 @@
 
 ## About
 
-This package is used to run tests on students assessments at Kenzie Academy.  Students can utilize these tools to run tests on their work as they complete it, giving them instant feedback they can then experiment with.  Instructors and coaches can run terminal commands on student url submissions to instantly grade assessments, freeing up valuable face-to-face instruction time. 
+This package is used to run tests on student Javascript Assessment submissions at Kenzie Academy.  It uses the Mocha test framework and Chai assertion library.  Students can utilize these tools to run tests on their work as they complete it, giving them instant feedback they can then experiment with.  Instructors and coaches can run terminal commands on student url submissions to instantly grade assessments, freeing up valuable face-to-face instruction time. 
 
 
 ## Installation Instructions
+
+**THIS APPLICATION IS IN DEVELOPMENT**  - If the tests are broken or the installation doesn't work, or if you have any other problems, please open an Issue ticket here https://github.com/jragard/kenzie-testing/issues
 
 Run `npm install -g git+https://github.com/jragard/kenzie-testing`, if this fails, try adding `sudo` to the beginning of the aforementioned command.
 
