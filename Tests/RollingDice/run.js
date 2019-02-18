@@ -1,24 +1,28 @@
 const fs = require('fs');
-const axios = require('axios');
-const fetch = require('node-fetch');
+const axios = require('../../node_modules/axios');
+const fetch = require('../../node_modules/node-fetch');
 const {
   exec,
   spawn
 } = require('child_process');
 const {
   argv
-} = require('yargs');
+} = require('../../node_modules/yargs');
 
-const tempFile = "test/s.js";
-const tempFileStream = fs.createWriteStream(tempFile);
+const tempFileToTest = "test/tempFileToTest.js";
+const tempFileStream = fs.createWriteStream(tempFileToTest);
 
-const args = argv._[0]
+const gitUrlArg = argv._[0]
 
-if (args == null) {
-  defaultTest();
-} else if (String(args).includes("github")) {
+if (gitUrlArg == null) {
+  defaultTest().then(result => {
+    exec(`rm ./test/temp.js`);
+    let studentCode = result;
+    runTests(studentCode);
+  });
+} else if (String(gitUrlArg).includes("github")) {
 
-  const argVars = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(args);
+  const argVars = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(gitUrlArg);
   const gitUser = argVars[1];
   const gitRepo = argVars[2];
 
@@ -37,7 +41,7 @@ if (args == null) {
 
 } else {
 
-  const argVars = /.*gitlab.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(args);
+  const argVars = /.*gitlab.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(gitUrlArg);
   const gitUser = argVars[1];
   const gitRepo = argVars[2];
 
@@ -103,10 +107,17 @@ if (args == null) {
 }
 
 function defaultTest() {
-  studentCode = fs.readFileSync("./test/temp.js", {
-    encoding: "utf8"
+  let promise = new Promise(function(resolve, reject) {
+    if(reject) {
+      console.log(reject);
+    }
+    let result = fs.readFileSync("./test/temp.js", {
+      encoding: "utf8"
+    });
+
+    resolve(result);
   });
-  runTests(studentCode);
+  return promise;
 }
 
 function gitTest(url) {
@@ -143,13 +154,12 @@ function runTests(studentCode) {
   tempFileStream.write(
     "\nmodule.exports = { randomInteger: (typeof randomInteger) === 'function' && randomInteger, times: (typeof times) === 'function' && times, createKeyCount: (typeof createKeyCount) === 'function' && createKeyCount, createBarGraph: (typeof createBarGraph) === 'function' && createBarGraph, execute: (typeof execute) === 'function' && execute }"
   );
-  spawn("./node_modules/.bin/mocha", ['--colors'], {
+  spawn("../../node_modules/.bin/mocha", ['--colors'], {
     stdio: "inherit"
   }).on("exit", function (error) {
     if (error) {
       console.log(error);
     }
-    exec(`rm ${tempFile}`);
-    exec(`rm ./test/temp.js`);
+    exec(`rm ${tempFileToTest}`);
   });
 }

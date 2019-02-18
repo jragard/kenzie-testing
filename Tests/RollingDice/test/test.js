@@ -1,15 +1,14 @@
-const { randomInteger, times, createKeyCount } = require('./s.js');
-const jsdom = require("jsdom");
+const { randomInteger, times, createKeyCount } = require('./tempFileToTest.js');
+const jsdom = require("../../../node_modules/jsdom");
 const { JSDOM } = jsdom;
 const dom = new JSDOM("<!DOCTYPE html><html lang='en'><body></body></html>")
 global.document = dom.window.document;
-const chai = require('chai');
+const chai = require('../../../node_modules/chai');
 const assert = chai.assert;
-const colors = require('mocha/lib/reporters/base').colors;
+const colors = require('../../../node_modules/mocha/lib/reporters/base').colors;
 colors['pending'] = '93';
 colors['green'] = '92';
-const spies = require('chai-spies')
-// import spies from "chai-spies";
+const spies = require('../../../node_modules/chai-spies');
 
 chai.should();
 chai.use(spies);

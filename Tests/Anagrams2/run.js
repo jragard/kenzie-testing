@@ -9,16 +9,20 @@ const {
   argv
 } = require('../../node_modules/yargs');
 
-const tempFile = "test/s.js";
-const tempFileStream = fs.createWriteStream(tempFile);
+const tempFileToTest = "test/s.js";
+const tempFileStream = fs.createWriteStream(tempFileToTest);
 
-const args = argv._[0]
+const gitUrlArg = argv._[0]
 
-if (args == null) {
-  defaultTest();
-} else if (String(args).includes("github")) {
+if (gitUrlArg == null) {
+  defaultTest().then(result => {
+    exec(`rm ./test/temp.js`);
+    let studentCode = result;
+    runTests(studentCode);
+  });
+} else if (String(gitUrlArg).includes("github")) {
 
-  const argVars = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(args);
+  const argVars = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(gitUrlArg);
   const gitUser = argVars[1];
   const gitRepo = argVars[2];
 
@@ -38,7 +42,7 @@ if (args == null) {
 
 } else {
 
-  const argVars = /.*gitlab.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(args);
+  const argVars = /.*gitlab.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(gitUrlArg);
   const gitUser = argVars[1];
   const gitRepo = argVars[2];
 
@@ -92,10 +96,17 @@ if (args == null) {
 }
 
 function defaultTest() {
-  studentCode = fs.readFileSync("./test/temp.js", {
-    encoding: "utf8"
+  let promise = new Promise(function(resolve, reject) {
+    if(reject) {
+      console.log(reject);
+    }
+    let result = fs.readFileSync("./test/temp.js", {
+      encoding: "utf8"
+    });
+
+    resolve(result);
   });
-  runTests(studentCode);
+  return promise;
 }
 
 function gitTest(url) {
@@ -138,8 +149,6 @@ function runTests(studentCode) {
     if (error) {
       console.log(error);
     }
-    exec(`rm ${tempFile}`);
-    exec(`rm ./test/temp.js`);
-    exec(`rm ./test/temp.txt`);
+    exec(`rm ${tempFileToTest}`);
   });
 }
