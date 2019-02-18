@@ -9,7 +9,7 @@ const {
   argv
 } = require('../../node_modules/yargs');
 
-const tempFileToTest = "test/s.js";
+const tempFileToTest = "test/tempFileToTest.js";
 const tempFileStream = fs.createWriteStream(tempFileToTest);
 
 const gitUrlArg = argv._[0]
