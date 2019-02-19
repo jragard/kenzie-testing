@@ -1,24 +1,28 @@
 const fs = require('fs');
-const axios = require('axios');
-const fetch = require('node-fetch');
+const axios = require('../../node_modules/axios');
+const fetch = require('../../node_modules/node-fetch');
 const {
   exec,
   spawn
 } = require('child_process');
 const {
   argv
-} = require('yargs');
+} = require('../../node_modules/yargs');
 
-const tempFile = "test/s.js";
-const tempFileStream = fs.createWriteStream(tempFile);
+const tempFileToTest = "test/tempFileToTest.js";
+const tempFileStream = fs.createWriteStream(tempFileToTest);
 
-const args = argv._[0]
+const gitUrlArg = argv._[0]
 
-if (args == null) {
-  defaultTest();
-} else if (String(args).includes("github")) {
+if (gitUrlArg == null) {
+  defaultTest().then(result => {
+    exec(`rm ./test/temp.js`);
+    let studentCode = result;
+    runTests(studentCode);
+  });
+} else if (String(gitUrlArg).includes("github")) {
 
-  const argVars = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(args);
+  const argVars = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(gitUrlArg);
   const gitUser = argVars[1];
   const gitRepo = argVars[2];
 
@@ -38,7 +42,7 @@ if (args == null) {
 
 } else {
 
-  const argVars = /.*gitlab.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(args);
+  const argVars = /.*gitlab.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(gitUrlArg);
   const gitUser = argVars[1];
   const gitRepo = argVars[2];
 
@@ -101,10 +105,17 @@ if (args == null) {
 }
 
 function defaultTest() {
-  studentCode = fs.readFileSync("./test/temp.js", {
-    encoding: "utf8"
+  let promise = new Promise(function(resolve, reject) {
+    if(reject) {
+      console.log(reject);
+    }
+    let result = fs.readFileSync("./test/temp.js", {
+      encoding: "utf8"
+    });
+
+    resolve(result);
   });
-  runTests(studentCode);
+  return promise;
 }
 
 function gitTest(url) {
@@ -135,11 +146,10 @@ function runTests(studentCode) {
   tempFileStream.write(
     "\nmodule.exports = { kata1: (typeof kata1) === 'function' && kata1, kata2: (typeof kata2) === 'function' && kata2, kata3: (typeof kata3) === 'function' && kata3, kata4: (typeof kata4) === 'function' && kata4, kata5: (typeof kata5) === 'function' && kata5, kata6: (typeof kata6) === 'function' && kata6, kata7: (typeof kata7) === 'function' && kata7, kata8: (typeof kata8) === 'function' && kata8, kata9: (typeof kata9) === 'function' && kata9, kata10: (typeof kata10) === 'function' && kata10, kata11: (typeof kata11) === 'function' && kata11, kata12: (typeof kata12) === 'function' && kata12, kata13: (typeof kata13) === 'function' && kata13, kata14: (typeof kata14) === 'function' && kata14, kata15: (typeof kata15) === 'function' && kata15, kata16: (typeof kata16) === 'function' && kata16, kata17: (typeof kata17) === 'function' && kata17, kata18: (typeof kata18) === 'function' && kata18, kata19: (typeof kata19) === 'function' && kata19, kata20: (typeof kata20) === 'function' && kata20, kata21: (typeof kata21) === 'function' && kata21, kata22: (typeof kata22) === 'function' && kata22, kata23: (typeof kata23) === 'function' && kata23  };"
   );
-  spawn("./node_modules/.bin/mocha", ['--colors'], { stdio: "inherit" }).on("exit", function(error) {
+  spawn("../../node_modules/.bin/mocha", ['--colors'], { stdio: "inherit" }).on("exit", function(error) {
     if (error) {
       console.log(error);
     }
-    exec(`rm ${tempFile}`);
-    exec(`rm ./test/temp.js`);
+    exec(`rm ${tempFileToTest}`);
   });
 }

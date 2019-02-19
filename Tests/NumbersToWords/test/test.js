@@ -1,7 +1,7 @@
-const numbersToWords = require('./s.js');
-const chai = require('chai');
+const numbersToWords = require('./tempFileToTest.js');
+const chai = require('../../../node_modules/chai');
 const assert = chai.assert;
-const colors = require('mocha/lib/reporters/base').colors;
+const colors = require('../../../node_modules/mocha/lib/reporters/base').colors;
 colors['pending'] = '93';
 colors['green'] = '92';
 
