@@ -4,6 +4,16 @@ const fetch = require('./node_modules/node-fetch');
 const {exec} = require('child_process');
 const {argv} = require('./node_modules/yargs');
 
+
+/**
+ * Builds the test documents
+ *
+ * @constructor
+ * @param {string} directory - The path to the test directory.
+ * @param {string} functions - CSV list of desired functions to test.
+ * @param {string} dom - required HTML for testing DOM elements.
+ * @param {array} additional - a string array with any other code to add to the test.
+ */
 class TestBase {
     constructor(directory, functions, DOM = null, additional = null) {
         this.testDirectory = `${directory}/test/`;
@@ -14,12 +24,18 @@ class TestBase {
         this.functions = loadFunctions(functions);
     }
 
+    /**
+     * Creates a tempFileToTest.js
+     */
     writeTestFile(){
         const tempFileToTest = `${this.testDirectory}/tempFileToTest.js`;
         fs.writeFileSync(tempFileToTest, getTestFile(this.studentFile, this.functions, this.DOM, this.extra), function(err) {
             console.log(err)});
     }
 
+    /**
+     * Deletes the tempFileToTest.js
+     */
     deleteTestFile(){
         exec(`rm ${this.testDirectory}/tempFileToTest.js`);
     }
