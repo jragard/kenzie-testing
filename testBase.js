@@ -62,8 +62,9 @@ async function loadStudentFile(dir, args)
            break;
 
         case (args.includes("gitlab")):
-            return loadGitFile(getGitlabUrl(args));
-
+            let laburl = await getGitlabUrl(args);
+            r = await loadGitFile(laburl);
+            break;
         default:
             console.log("Please input a valid Github, or Gitlab url");
     }
