@@ -6,7 +6,7 @@ const {argv} = require('./node_modules/yargs');
 
 
 /**
- * Builds the test documents
+ * Builds a file to test in Mocha
  *
  * @class
  * @constructor
@@ -57,7 +57,6 @@ async function loadStudentFile(dir, args)
 
         case (args.includes("github")):
            let url = await getGithubUrl(args);
-           console.log(url);
            r = await loadGitFile(url);
            break;
 
@@ -84,103 +83,58 @@ function loadLocalFile(dir){
 }
 
 async function getGithubUrl(args){
-    console.log("GetGithubUrl start");
     const argVars = /.*github.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(args);
     const gitUser = argVars[1];
     const gitRepo = argVars[2];
 
     const gitFetchUrl = `https://api.github.com/repos/${gitUser}/${gitRepo}/contents`;
     let response = await axios.default.get(gitFetchUrl);
-    console.log("GetGithubURL inside Axios.default");
 
     for(let i=0; i < response.data.length; i++){
         let name = response.data[i].name;
-        console.log("getGitFileName " + name);
         if(name.substring(name.length-2) === 'js'){
-            let url = `https://raw.githubusercontent.com/${gitUser}/${gitRepo}/master/${name}`
-            return url;
+            return `https://raw.githubusercontent.com/${gitUser}/${gitRepo}/master/${name}`;
         }
     }
 }
 
 async function loadGitFile(url){
-    console.log("loadGitFile"+ 'Testing file from github repository - ' + url);
     if (url.includes("github")) {
         let file = await axios.default.get(url);
-        //console.log(file.data);
         return file.data
     } else {
-        console.log('Testing file from gitlab repository - ' + url);
-        fetch(url, {
-            method: 'GET',
-            headers: {
-                'PRIVATE-TOKEN': '5ZHEYQdoa5Tgx3yjpdP3'
+        let file = await axios.default.get(url, {
+            params:{
+                private_token: 'YiszMsh_vtySaoLLRZLd'
             }
-        })
-            .then(res => res.json())
-            .then(data => {
-                let content = data.content;
-                return Buffer.from(content, 'base64').toString();
-            });
+        });
+        return file.data;
     }
 }
 
-
-function getGitlabUrl(args) {
+async function getGitlabUrl(args) {
     const argVars = /.*gitlab.com\/([^/.]*)\/([^/.]*)[.git]?$/.exec(args);
     const gitUser = argVars[1];
     const gitRepo = argVars[2];
 
-    let getID = `https://gitlab.com/api/v4/projects/${gitUser}%2F${gitRepo}`
-    const urlConstructor = {}
+    let getID = `https://gitlab.com/api/v4/projects/${gitUser}%2F${gitRepo}/repository/tree`;
+    let response = await axios.default.get(getID, {
+        params:{
+            private_token: 'YiszMsh_vtySaoLLRZLd'
+        }
+    });
 
-    const getFinalUrl = function () {
-        let promise = new Promise(function (resolve, reject) {
-
-            let result = fetch(getID, {
-                method: 'GET',
-                headers: {
-                    'PRIVATE-TOKEN': 'YiszMsh_vtySaoLLRZLd'
-                }
-            }).then(result => {
-                return result.json()
-            }).then(result => {
-                urlConstructor['project_id'] = result.id;
-                return urlConstructor
-            });
-            resolve(result)
-        });
-        return promise
-    };
-    getFinalUrl().then(result => {
-        let projectID = urlConstructor['project_id'];
-        fetch(`https://gitlab.com/api/v4/projects/${projectID}/repository/tree`, {
-            method: 'GET',
-            headers: {
-                'PRIVATE-TOKEN': 'YiszMsh_vtySaoLLRZLd'
-            }
-        }).then(result => {
-            return result.json()
-        }).then(result => {
-            urlConstructor['filename'] = result[0].name;
-            return urlConstructor;
-        }).then(result => {
-            let filename = urlConstructor['filename'];
-            let projectID = urlConstructor['project_id'];
-            let extRegex = /\./;
-            let extIndex = extRegex.exec(filename).index;
-            let extension = filename.slice(extIndex+1);
-            let fileString = filename.slice(0, extIndex);
-            let fileContentsUrl = `https://gitlab.com/api/v4/projects/${projectID}/repository/files/${fileString}%2E${extension}?ref=master`
-            return fileContentsUrl;
-        })
-    })
+    for(let i = 0; i < response.data.length; i++){
+        let name = response.data[i].name;
+        if(name.substring(name.length-2) === 'js'){
+            return `https://gitlab.com/${gitUser}/${gitRepo}/raw/master/${name}`;
+        }
+    }
 }
 
 
 
 function getTestFile(file, functions, dom, extra){
-    //console.log("getTestFile" + file);
     let string = "";
     if(dom !== null){
         string += 'const jsdom = require("jsdom");\n' +
