@@ -7,8 +7,8 @@ let test = new TestBase(
   "<!DOCTYPE html><html lang='en'><body></body></html>"
 );
 
-function runTests() {
-  test.writeTestFile();
+async function runTests() {
+  await test.writeTestFile();
   spawn("../../node_modules/.bin/mocha", ["--colors"], {
     stdio: "inherit"
   }).on("exit", function(error) {
@@ -16,7 +16,7 @@ function runTests() {
       console.log(error);
     }
     test.deleteTestFile();
-  });
+  })
 }
 
-runTests(test);
+runTests();

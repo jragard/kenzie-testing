@@ -8,8 +8,8 @@ let test = new TestBase(
   ["const { words } = require('./words.js');"]
 );
 
-function runTests() {
-  test.writeTestFile();
+async function runTests() {
+  await test.writeTestFile();
   spawn("../../node_modules/.bin/mocha", ["--colors"], {
     stdio: "inherit"
   }).on("exit", function(error) {
@@ -17,7 +17,7 @@ function runTests() {
       console.log(error);
     }
     test.deleteTestFile();
-  });
+  })
 }
 
-runTests(test);
+runTests();
