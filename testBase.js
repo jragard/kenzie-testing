@@ -61,8 +61,9 @@ async function loadStudentFile(dir, args)
            break;
 
         case (args.includes("gitlab")):
-            let laburl = await getGitlabUrl(args);
-            r = await loadGitFile(laburl);
+            let labUrl = await getGitlabUrl(args);
+            r = await loadGitFile(labUrl);
+
             break;
         default:
             console.log("Please input a valid Github, or Gitlab url");
@@ -99,15 +100,17 @@ async function getGithubUrl(args){
 }
 
 async function loadGitFile(url){
+    console.log(url);
     if (url.includes("github")) {
         let file = await axios.default.get(url);
         return file.data
     } else {
         let file = await axios.default.get(url, {
-            params:{
-                private_token: 'YiszMsh_vtySaoLLRZLd'
+            headers:{
+                'PRIVATE-TOKEN': 'YiszMsh_vtySaoLLRZLd'
             }
         });
+        console.log(file);
         return file.data;
     }
 }
@@ -119,19 +122,19 @@ async function getGitlabUrl(args) {
 
     let getID = `https://gitlab.com/api/v4/projects/${gitUser}%2F${gitRepo}/repository/tree`;
     let response = await axios.default.get(getID, {
-        params:{
-            private_token: 'YiszMsh_vtySaoLLRZLd'
+        headers:{
+            'PRIVATE-TOKEN': 'YiszMsh_vtySaoLLRZLd'
         }
     });
 
     for(let i = 0; i < response.data.length; i++){
         let name = response.data[i].name;
         if(name.substring(name.length-2) === 'js'){
-            return `https://gitlab.com/${gitUser}/${gitRepo}/raw/master/${name}`;
+            name.replace('.', '%2');
+            return `https://gitlab.com/api/v4/projects/${gitUser}%2F${gitRepo}/repository/files/${name}/raw?ref=master`;
         }
     }
 }
-
 
 
 function getTestFile(file, functions, dom, extra){
