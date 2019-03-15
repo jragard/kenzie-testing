@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
+const readDirectory = fs.readdir
+const readFile = fs.readFileSync
+const changeDirectory = process.chdir
 const { exec } = require('child_process');
 const ArgumentParser = require('argparse').ArgumentParser;
 const path = require('path');
@@ -23,76 +26,117 @@ parser.addArgument(
     }
 );
 
+/*    
+    This script takes either a github/gitlab url as a 2nd argument (Ex: kenzie-test katas1 -g https://github.com/jragard/katas1) 
+    or, to test a local file, 1 argument (Ex: kenzie-test katas1).  Git url args must have a -g or --gitlink flag.
+
+    On line 67, it begins by reading through the kenzie-testing/Tests directory. Then on line 75, for each test package
+    in this directory, it checks to see if the given assessmentArg (case insensitive) matches the test package. Once import PropTypes from 'prop-types'
+    finds a matching test package (for instance, Katas1), it sets 'validTestArgument' to 'true'.
+
+    If the user has supplied a valid assessment name (line 64), 'testLocation' is set to 'Tests/<testPackage>'
+    (Ex: 'Tests/Katas1'), and the script automatically navigates to that directory.
+
+    Next, after switching to the appropriate ./Tests/ directory, it checks if the user is testing a local file, or if they
+    are testing a file via github/gitlab url.  If testing a local file, line 77 will read through the user's local directory, 
+    and for each of the local files in the users directory, we check if there is a valid local file to test.  (Valid local files must be named
+    the same name as the test package directory, case insensitive (Ex: katas1 or Katas1). 
+
+    If a valid local file exists, line 87 will set 'userLocalFile' = to the valid file.  The script will then find the full path to
+    the valid file to be tested, reads the contents of the file and stores it in 'userLocalFileContent'.  It then creates a 'temp.js' file
+    in the 'test' directory of the assessment in the npm package (Ex: Tests/Katas1/test), and writes 'userLocalFileContent' to the 'temp.js' file.
+    Now we have a file identical the local file to be tested, in 'Tests/Katas1/test'.
+    
+    Now that we currently reside in the Tests/Katas1 directory, and we have a temp.js file identical to the local file the user is testing,
+    the script will execute a terminal command 'node run.js'.  Each test package has its own run.js which further handles its testing. 
+
+*/
+
 const args = parser.parseArgs();
+const assessmentArg = new RegExp(args.assessment, 'i');
 const userLocalDir = process.cwd();
-const argMatchesAssessment = new RegExp(args.assessment, 'i');
-const assessmentTests = `${__dirname}/Tests`
+let testLocation = `${__dirname}/Tests`;
 
-fs.readdir(assessmentTests, (err, testDirs) => {
-    testDirs.forEach((testDir) => {
-        let validTestDir = argMatchesAssessment.test(testDir);
+let localFileTest;
+let userLocalFile;
+let validTestArgument = false;
 
-        if (validTestDir) {
-            let testLocation = `${assessmentTests}/${testDir}`
-            process.chdir(testLocation)
+const testPackageList = [];
 
-            // Need to add logic to see if there are -g or -gitlink args.  If not, then go ahead and do what is below,
-            // reading the filenames in the user's cwd() and testing them.  If so, we can skip that part and just do the 
-            // run.js stuff. Currently, if the user supplies a -g or -gitlink arg signalling they want to grab the files 
-            // from a gitlab or github repo, and they also happen to be in the same directory as their local file, this 
-            // will grab the contents of their cwd() first and tends to mess up the script
+readDirectory(testLocation, (err, testPackages) => {
 
-            const filesInUserLocalDir = fs.readdirSync(userLocalDir);
+    if (err) {
+       console.log('\n------------------------------------------------\n')
+       console.log(`TEST PACKAGE ERROR!  kenzie-test package may be corrupted.  Please reinstall: "npm i -g git+https://github.com/jragard/kenzie-testing"`);
+       console.log('\n------------------------------------------------\n')
+    }
+
+    testPackages.forEach((testPackage) => {
+        testPackageList.push(testPackage);
+        validTestArgument = assessmentArg.test(testPackage);
+
+        if (validTestArgument) {
             
-            let userLocalFile;
+            testLocation = `${testLocation}/${testPackage}`;
+            changeDirectory(testLocation);
 
-            filesInUserLocalDir.forEach(file => {
-                let validLocalFile = argMatchesAssessment.test(file);
+            if(args.gitlink === null) {
 
-                if (validLocalFile) {
-                    userLocalFile = file
-                    let pathToUserFile = path.join(userLocalDir, userLocalFile);
+                localFileTest = true;
 
-                    const studentCode = fs.readFileSync(pathToUserFile, {
-                        encoding: "utf8"
+                readDirectory(userLocalDir, (err, localFiles) => {
+
+                    if(err) {
+                        console.log(err);
+                    }
+
+                    localFiles.forEach(file => {
+
+                        let validLocalFileExists = assessmentArg.test(file);
+
+                        if (validLocalFileExists) {
+                            userLocalFile = file;
+                            let pathToUserFile = path.join(userLocalDir, userLocalFile);
+
+                            const userLocalFileContent = readFile(pathToUserFile, {
+                                encoding: "utf8"
+                            });
+
+                            let tempFile = './test/temp.js'
+                            fs.createWriteStream(tempFile).write(userLocalFileContent.replace(/['"]?use strict['"]?/, ""));
+                        } 
                     });
+                });
+            }
 
-                    let tempFile = './test/temp.js'
-                    let tempFileStream = fs.createWriteStream(tempFile);
-
-                    tempFileStream.write(studentCode.replace(/['"]?use strict['"]?/, ""));
-                }
-                if (file.includes(".html")) {
-                    let htmlFile = file;
-                    let pathToHTMLFile = path.join(userLocalDir, htmlFile);
-
-                    const htmlContent = fs.readFileSync(pathToHTMLFile, {
-                        encoding: "utf-8"
-                    })
-                    
-                    // For converting user HTML to a temp dom instance to test with jsdom, we might not use this soon
-                    let oneLineHTML = htmlContent.replace(/\n|\t/g, '')
-                    let tempTXT = './test/temp.txt'
-                    let tempTXTStream = fs.createWriteStream(tempTXT);
-                    tempTXTStream.write(JSON.stringify(oneLineHTML));
-                }
-            })
-
-            // This installs all required npm modules and awaits the install before continuing to next exec call
-            const installPackages = exec('npm i')
+            const installPackages = exec('npm i');
+            
             installPackages.on('exit', () => {
                 process.exit
-                const {gitlink, assessment} = args
+                const {gitlink} = args
                 exec(`node run.js ${gitlink ? gitlink : ''}`, (error, stdout, stderr) => {
                     if(error){
-                        console.log(error)
+                        console.log(error);
                     }
-                    // This code will console log this even if we are testing github/gitlab links, I believe
-                    console.log(`Testing ${userLocalFile} in ${userLocalDir}:`)
-                    console.log(stdout)
+                    if(localFileTest === true) {
+                        console.log(`Testing ${userLocalFile} in ${userLocalDir}:`)
+                    }
+                    console.log(stdout);
                 })
             })
 
         }
-    })
-})
+    });
+
+    for(let i = 0; i < testPackageList.length; i++) {
+
+        if(assessmentArg.test(testPackageList[i])) {
+            validTestArgument = true;
+        }
+    }
+    if(!validTestArgument) {
+        console.log('Invalid assessment name.  Please review instructions and try again with valid assessment name');
+    }
+});
+
+

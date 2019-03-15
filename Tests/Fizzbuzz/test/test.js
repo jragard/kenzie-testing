@@ -1,8 +1,8 @@
 // Used to test against function provided from run script
-const { fizzbuzz, fizzbuzzPrime } = require("./s.js");
+const { fizzbuzz, fizzbuzzPrime } = require("./tempFileToTest.js");
 
 const chai = require("chai");
-const colors = require("mocha/lib/reporters/base").colors;
+const colors = require("../../../node_modules/mocha/lib/reporters/base").colors;
 
 const assert = chai.assert;
 const expect = chai.expect;

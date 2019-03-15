@@ -1,16 +1,21 @@
-const coinObject = require('./coinObject.js');
-const jsdom = require("jsdom");
+const coinObject = require('./tempFileToTest.js');
+const jsdom = require("../../../node_modules/jsdom");
 const { JSDOM } = jsdom;
 const dom = new JSDOM("<!DOCTYPE html><html lang='en'><body></body></html>")
 global.document = dom.window.document;
-const chai = require('chai');
+const chai = require('../../../node_modules/chai');
 const expect = chai.expect;
-const colors = require('mocha/lib/reporters/base').colors;
+const colors = require('../../../node_modules/mocha/lib/reporters/base').colors;
 colors['pending'] = '93';
 colors['green'] = '92';
 
 describe("The flip method randomly sets the coin object's state to either 0 or 1", function() {
     
+    // it("coin should be an object", function() {
+    //     if(typeof coinObject.coin != 'object') {
+    //         this.skip();
+    //     }
+    // })
     function flip50() {
         const results = [];
         for (let i = 0; i < 50; i++) {

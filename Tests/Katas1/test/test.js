@@ -1,7 +1,7 @@
-const katas1 = require('./s.js')
-const chai = require('chai')
+const katas1 = require('./tempFileToTest.js')
+const chai = require('../../../node_modules/chai');
 const expect = chai.expect;
-const colors = require('mocha/lib/reporters/base').colors;
+const colors = require('../../../node_modules/mocha/lib/reporters/base').colors;
 colors['pending'] = '93';
 colors['green'] = '92';
 
@@ -15,7 +15,7 @@ describe('Kata 1, Display an array with 1 - 20', function() {
         if(typeof katas1.oneThroughTwenty != 'function') {
             this.skip();
         }
-    })
+    });
    
     if(typeof katas1.oneThroughTwenty === 'function') {
 

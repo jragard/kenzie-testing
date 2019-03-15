@@ -26,7 +26,7 @@ Once you've figured that out, extend your solution to work for the numbers up to
 
 If you've solved that, continue on to the full solution handling all the numbers up to 1000. *(6 points)*
 
-Get as far as you can.  It's always ok to ask for help.  If you are successfully returning all the numbers, create a web page that uses JavaScript to display them.  Write a seperate helper function to display the results of calling *numbersToWords* on the page.
+Get as far as you can.  It's always ok to ask for help.  If you are successfully returning all the numbers, create a web page that uses JavaScript to display them.  Write a separate helper function to display the results of calling *numbersToWords* on the page.
 
 ## Hints
 
