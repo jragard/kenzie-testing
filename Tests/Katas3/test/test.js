@@ -1,18 +1,10 @@
-// const katas3 = require("../katas3.js");
-const fs = require("fs");
-let path;
-if (fs.existsSync("./test/s.js")) {
-  path = "./s.js";
-} else {
-  path = "../katas3.js";
-}
-katas3 = require(path);
-
-const chai = require("chai");
+const katas3 = require("./tempFileToTest");
+const chai = require("../../../node_modules/chai");
 const assert = chai.assert;
 const expect = chai.expect;
-const colors = require("mocha/lib/reporters/base").colors;
-// colors["pending"] = "93";
+const colors = require("../../../node_modules/mocha/lib/reporters/base").colors;
+colors["pending"] = "93";
+colors["green"] = "92";
 
 const sampleArray = [
   469,
@@ -36,8 +28,6 @@ const sampleArray = [
   940,
   472
 ];
-colors["pending"] = "93";
-colors["green"] = "92";
 
 const isFunctionDefined = "Kata should define a function";
 const returnValueIsArray = "Function should return an array";

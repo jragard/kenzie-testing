@@ -1,11 +1,11 @@
-const coinObject = require('./coinObject.js');
-const jsdom = require("jsdom");
+const coinObject = require('./tempFileToTest.js');
+const jsdom = require("../../../node_modules/jsdom");
 const { JSDOM } = jsdom;
 const dom = new JSDOM("<!DOCTYPE html><html lang='en'><body></body></html>")
 global.document = dom.window.document;
-const chai = require('chai');
+const chai = require('../../../node_modules/chai');
 const expect = chai.expect;
-const colors = require('mocha/lib/reporters/base').colors;
+const colors = require('../../../node_modules/mocha/lib/reporters/base').colors;
 colors['pending'] = '93';
 colors['green'] = '92';
 
