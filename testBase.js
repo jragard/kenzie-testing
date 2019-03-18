@@ -1,3 +1,4 @@
+let _ = require('./node_modules/lodash');
 const fs = require('fs');
 const axios = require('./node_modules/axios');
 const fetch = require('./node_modules/node-fetch');
@@ -5,6 +6,17 @@ const {exec} = require('child_process');
 const {argv} = require('./node_modules/yargs');
 const Mocha = require('./node_modules/mocha');
 
+
+
+const optionsDefault ={
+    mochaTest: "test.js",
+    mochaFunctions: null,
+    mochaDom: "",
+    mochaExtra: [""],
+    gitRepoURL: null,
+    testCafeTests: null,
+    testCafeURL: null
+};
 
 /**
  * Builds a file to test in Mocha
@@ -16,12 +28,10 @@ const Mocha = require('./node_modules/mocha');
  * @param {array<string>} additional - a string array with any other code to add to the students file.
  */
 class TestBase {
-    constructor(directory, functions, DOM = null, additional = null) {
+    constructor(directory, options) {
         this.testDirectory = `${directory}/test/`;
         this.args = argv._[0];
-        this.DOM = DOM;
-        this.extra = additional;
-        this.functions = loadFunctions(functions);
+        this.options = setDefaults(options, optionsDefault);
     }
 
     /**
@@ -32,7 +42,7 @@ class TestBase {
     async writeTestFile(){
         const tempFileToTest = `${this.testDirectory}/tempFileToTest.js`;
         let file = await loadStudentFile(this.testDirectory, this.args);
-        fs.writeFileSync(tempFileToTest, getTestFile(file, this.functions, this.DOM, this.extra), function(err) {
+        fs.writeFileSync(tempFileToTest, getTestFile(file, this.options.mochaFunctions, this.options.mochaDom, this.options.mochaExtra), function(err) {
            console.log(err)});
     }
 
@@ -54,6 +64,10 @@ module.exports = {
     TestBase
 };
 
+
+function setDefaults(options, defaults){
+    return _.defaults({}, _.clone(options), defaults);
+}
 /**
  * Return student code as string
  * @async
@@ -206,7 +220,7 @@ function getTestFile(file, functions, dom, extra){
         string += " \n " + extra.join(" \n ");
     }
     string += file.replace(/['"]?use strict['"]?/, "");
-    string += functions;
+    string += loadFunctions(functions);
     return string;
 }
 
