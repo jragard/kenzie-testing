@@ -3,6 +3,7 @@ const axios = require('./node_modules/axios');
 const fetch = require('./node_modules/node-fetch');
 const {exec} = require('child_process');
 const {argv} = require('./node_modules/yargs');
+const Mocha = require('./node_modules/mocha');
 
 
 /**
@@ -32,13 +33,19 @@ class TestBase {
         const tempFileToTest = `${this.testDirectory}/tempFileToTest.js`;
         let file = await loadStudentFile(this.testDirectory, this.args);
         fs.writeFileSync(tempFileToTest, getTestFile(file, this.functions, this.DOM, this.extra), function(err) {
-           console.log(err)})
+           console.log(err)});
     }
 
-    /**
-     * Deletes the current tempFileToTest.js in the test directory
-     */
-    deleteTestFile(){
+    async runMochaTest(){
+        let mocha = new Mocha({
+            useColors: true
+        });
+        await this.writeTestFile();
+        mocha.addFile(`${this.testDirectory}/test.js`);
+        mocha.run()
+            .on('end', function() {
+                console.log('All done');
+            });
         exec(`rm ${this.testDirectory}/tempFileToTest.js`);
     }
 }
@@ -216,3 +223,4 @@ function loadFunctions(functions){
     result += "}";
     return result;
 }
+
