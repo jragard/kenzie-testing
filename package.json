@@ -4,7 +4,8 @@
     "description": "Kenzie Testing Command Line Tool",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "debug": "testcafe $NODE_DEBUG_OPTION chrome"
     },
     "bin": {
         "kenzie-test": "./index.js"
@@ -34,7 +35,8 @@
         "child_process": "^1.0.2",
         "ansi-256-colors": "^1.1.0",
         "js": "^0.1.0",
-        "selenium-webdriver": "^4.0.0-alpha.1"
+        "selenium-webdriver": "^4.0.0-alpha.1",
+        "lodash": "latest"
     },
     "devDependencies": {
         "esm": "^3.0.84",
