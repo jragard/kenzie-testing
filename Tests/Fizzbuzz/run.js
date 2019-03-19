@@ -1,28 +1,11 @@
 const { TestBase } = require("../../testBase");
-const { spawn } = require("child_process");
 
-let test = new TestBase(
-    __dirname,
-    "fizzbuzz, fizzbuzzPrime"
-);
+let test = new TestBase(__dirname, {
+  mochaFunctions: "fizzbuzz, fizzbuzzPrime"
+});
 
 async function runTests() {
-  await test.writeTestFile();
-  spawn("../../node_modules/.bin/mocha", ["--colors"], {
-    stdio: "inherit"
-  }).on("exit", function(error) {
-    if (error) {
-      console.log(error);
-    }
-    test.deleteTestFile();
-  })
+  await test.runMochaTest();
 }
 
 runTests();
-
-
-
-
-
-
-
