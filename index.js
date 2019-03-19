@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
-const readDirectory = fs.readdir
-const readFile = fs.readFileSync
-const changeDirectory = process.chdir
+const readDirectory = fs.readdir;
+const readFile = fs.readFileSync;
+const changeDirectory = process.chdir;
 const { exec } = require('child_process');
 const ArgumentParser = require('argparse').ArgumentParser;
 const path = require('path');
@@ -66,7 +66,7 @@ const testPackageList = [];
 readDirectory(testLocation, (err, testPackages) => {
 
     if (err) {
-       console.log('\n------------------------------------------------\n')
+       console.log('\n------------------------------------------------\n');
        console.log(`TEST PACKAGE ERROR!  kenzie-test package may be corrupted.  Please reinstall: "npm i -g git+https://github.com/jragard/kenzie-testing"`);
        console.log('\n------------------------------------------------\n')
     }
