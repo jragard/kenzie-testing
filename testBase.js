@@ -5,7 +5,7 @@ const fetch = require('./node_modules/node-fetch');
 const {exec} = require('child_process');
 const {argv} = require('./node_modules/yargs');
 const Mocha = require('./node_modules/mocha');
-
+const TestCafe = require('./node_modules/testcafe');
 
 
 const optionsDefault ={
@@ -13,9 +13,7 @@ const optionsDefault ={
     mochaFunctions: null,
     mochaDom: "",
     mochaExtra: [""],
-    gitRepoURL: null,
-    testCafeTests: null,
-    testCafeURL: null
+    testCafeTests: "testCafe.js",
 };
 
 /**
@@ -30,7 +28,6 @@ const optionsDefault ={
 class TestBase {
     constructor(directory, options) {
         this.testDirectory = `${directory}/test/`;
-        this.args = argv._[0];
         this.options = setDefaults(options, optionsDefault);
     }
 
@@ -41,9 +38,17 @@ class TestBase {
      */
     async writeTestFile(){
         const tempFileToTest = `${this.testDirectory}/tempFileToTest.js`;
-        let file = await loadStudentFile(this.testDirectory, this.args);
+        let file = await loadStudentFile(this.testDirectory);
         fs.writeFileSync(tempFileToTest, getTestFile(file, this.options.mochaFunctions, this.options.mochaDom, this.options.mochaExtra), function(err) {
            console.log(err)});
+    }
+
+    async runTestCafeTest(){
+        exec(`testcafe chrome ${this.testDirectory}${this.options.testCafeTests} --colors`, (error, stdout, stderr) =>{
+            if(error)
+                return console.log(error);
+            console.log(stdout || stderr);
+        })
     }
 
     async runMochaTest(){
@@ -72,18 +77,19 @@ function setDefaults(options, defaults){
  * Return student code as string
  * @async
  * @param {string} dir - Path to test directory
- * @param {string} args - remote Git links
  * @returns {Promise<string>} - string of all code in a student file.
  */
-async function loadStudentFile(dir, args)
+async function loadStudentFile(dir)
 {
+    const {gitlink} = argv;
+    console.log(gitlink);
     let r;
     switch (true) {
         /**
          * If no additional arguments such as remote git links are provided
          * load the temp.js created in index.js
          */
-        case (args == null):
+        case (gitlink == null):
             r = loadLocalFile(dir);
             exec(`rm ${dir}/temp.js`);
             break;
@@ -91,13 +97,13 @@ async function loadStudentFile(dir, args)
         /**
          * If git arguments were provided load a file from a remote git.
          */
-        case (args.includes("github")):
-           let url = await getGithubUrl(args);
+        case (gitlink.includes("github")):
+           let url = await getGithubUrl(gitlink);
            r = await loadGitFile(url);
            break;
 
-        case (args.includes("gitlab")):
-            let labUrl = await getGitlabUrl(args);
+        case (gitlink.includes("gitlab")):
+            let labUrl = await getGitlabUrl(gitlink);
             r = await loadGitFile(labUrl);
             break;
 

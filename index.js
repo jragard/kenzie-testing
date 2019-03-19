@@ -26,6 +26,11 @@ parser.addArgument(
     }
 );
 
+parser.addArgument(['-p', '--gitpage'], {
+    help: 'Gitlab Pages link, or url to hosted webpage to test.'
+    }
+);
+
 /*    
     This script takes either a github/gitlab url as a 2nd argument (Ex: kenzie-test katas1 -g https://github.com/jragard/katas1) 
     or, to test a local file, 1 argument (Ex: kenzie-test katas1).  Git url args must have a -g or --gitlink flag.
@@ -113,8 +118,9 @@ readDirectory(testLocation, (err, testPackages) => {
             
             installPackages.on('exit', () => {
                 process.exit
-                const {gitlink} = args
-                exec(`node run.js ${gitlink ? gitlink : ''}`, (error, stdout, stderr) => {
+                const {gitlink} = args;
+                const {gitpage} = args;
+                exec(`node run.js  ${gitlink ? '--gitlink ' + gitlink : ''} ${gitpage ? '--gitpage '+ gitpage : ''}`, (error, stdout, stderr) => {
                     if(error){
                         console.log(error);
                     }
