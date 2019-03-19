@@ -14,6 +14,7 @@ const optionsDefault ={
     mochaDom: "",
     mochaExtra: [""],
     testCafeTests: "testCafe.js",
+    testCafeFixture: null
 };
 
 /**
@@ -44,10 +45,18 @@ class TestBase {
     }
 
     async runTestCafeTest(){
-        exec(`testcafe chrome ${this.testDirectory}${this.options.testCafeTests} --colors`, (error, stdout, stderr) =>{
+        const {gitpage} = argv;
+        const tempTestCafeFile = `${this.testDirectory}/tempTestCafeFile.js`;
+        if(!gitpage)
+            return console.log("Please provide a url");
+
+        let file = getTestCafeTest(this.testDirectory, this.options.testCafeTests, this.options.testCafeFixture, gitpage);
+        fs.writeFileSync(tempTestCafeFile, file);
+        exec(`testcafe chrome ${tempTestCafeFile} --colors`, (error, stdout, stderr) =>{
             if(error)
                 return console.log(error);
             console.log(stdout || stderr);
+            exec(`rm ${tempTestCafeFile}`);
         })
     }
 
@@ -70,6 +79,22 @@ module.exports = {
 };
 
 
+
+function getTestCafeTest(dir, file, fixtureName, URL) {
+    let string = '';
+    let baseTestCafe = loadLocalFile(dir, file);
+
+    string += `fixture("${fixtureName}").page("${URL}"); \n`;
+    string += baseTestCafe;
+    return string;
+}
+
+/**
+ * Assigns default values to any of the options that were not provided.
+ * @param options
+ * @param defaults
+ */
+
 function setDefaults(options, defaults){
     return _.defaults({}, _.clone(options), defaults);
 }
@@ -90,7 +115,7 @@ async function loadStudentFile(dir)
          * load the temp.js created in index.js
          */
         case (gitlink == null):
-            r = loadLocalFile(dir);
+            r = loadLocalFile(dir, 'temp.js');
             exec(`rm ${dir}/temp.js`);
             break;
 
@@ -121,9 +146,9 @@ async function loadStudentFile(dir)
  * @param {string} dir - file path to the local file
  * @returns {string} - returns all code from the file
  */
-function loadLocalFile(dir){
+function loadLocalFile(dir, file){
     try {
-        return fs.readFileSync(`${dir}/temp.js`, {
+        return fs.readFileSync(`${dir}/${file}`, {
             encoding: "utf8"
         });
     }
