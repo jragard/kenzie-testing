@@ -52,7 +52,7 @@ class TestBase {
 
         let file = getTestCafeTest(this.testDirectory, this.options.testCafeTests, this.options.testCafeFixture, gitpage);
         fs.writeFileSync(tempTestCafeFile, file);
-        exec(`testcafe chrome ${tempTestCafeFile} --colors`, (error, stdout, stderr) =>{
+        exec(`../../node_modules/.bin/testcafe chrome ${tempTestCafeFile} --colors`, (error, stdout, stderr) =>{
             if(error)
                 return console.log(error);
             console.log(stdout || stderr);
