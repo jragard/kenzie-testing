@@ -23,8 +23,14 @@ const optionsDefault ={
  * @class
  * @constructor
  * @param {string} directory - The path to the test directory.
- * @param {string} functions - a CSV list of functions to test.
- * @param {array<string>} additional - a string array with any other code to add to the students file.
+ * @param {object} options - Any other needed information to pass into the tests.
+ *
+ * @property {string} mochaTest - The name of the mocha test file, Ex. test.js
+ * @property {string} mochaFunctions - a comma separated string with all the functions to test in mocha.
+ * @property {string} mochaDom - Any html to add to the students file for mocha testing.
+ * @property {[string]} mochaExtra - a string array of any other code to add to students files before running a mocha test.
+ * @property {string} testCafeTests - The name of the testcafe test file, Ex. testCafe.js
+ * @property {string} - testCafeFixture - Title for the testcafe test.
  */
 class TestBase {
     constructor(directory, options) {
@@ -33,17 +39,21 @@ class TestBase {
     }
 
     /**
-     * Creates a tempFileToTest.js
+     * Creates a tempFileToTest.js to test in Mocha
      * @async
-     * This function find the students file, adds any needed code to the file and then writes the new testable file to the test directory.
+     * This function find the students file, adds any needed code to the file and then writes the new mocha testable file to the test directory.
      */
-    async writeTestFile(){
+    async writeStudentMochaTestFile(){
         const tempFileToTest = `${this.testDirectory}/tempFileToTest.js`;
         let file = await loadStudentFile(this.testDirectory);
         fs.writeFileSync(tempFileToTest, getTestFile(file, this.options.mochaFunctions, this.options.mochaDom, this.options.mochaExtra), function(err) {
            console.log(err)});
     }
 
+    /**
+     * Creates the needed tests and runs testcafe tests on the students hosted web page.
+     * @async
+     */
     async runTestCafeTest(){
         const {gitpage} = argv;
         const tempTestCafeFile = `${this.testDirectory}/tempTestCafeFile.js`;
@@ -60,11 +70,15 @@ class TestBase {
         })
     }
 
+    /**
+     * Creates a testable file from the students code and runs mocha testing on the file.
+     * @async
+     */
     async runMochaTest(){
         let mocha = new Mocha({
             useColors: true
         });
-        await this.writeTestFile();
+        await this.writeStudentMochaTestFile();
         mocha.addFile(`${this.testDirectory}/test.js`);
         mocha.run()
             .on('end', function() {
