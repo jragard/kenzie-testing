@@ -22,28 +22,7 @@ describe("Kata 1, Display an array with 1 - 20", function() {
   if (typeof katas1.oneThroughTwenty === "function") {
     let spy = sinon.spy(console, "log");
     let studentAnswer = katas1.oneThroughTwenty();
-    const correctAnswer = [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      16,
-      17,
-      18,
-      19,
-      20
-    ];
+    const correctAnswer = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 
     const startsEarly =
       "Oops!  The array starts with 0...double check the start condition in your for loop";
