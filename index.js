@@ -114,23 +114,17 @@ readDirectory(testLocation, (err, testPackages) => {
                 });
             }
 
-            const installPackages = exec('npm i');
-            
-            installPackages.on('exit', () => {
-                process.exit
-                const {gitlink} = args;
-                const {gitpage} = args;
-                exec(`node run.js  ${gitlink ? '--gitlink ' + gitlink : ''} ${gitpage ? '--gitpage '+ gitpage : ''}`, (error, stdout, stderr) => {
-                    if(error){
-                        console.log(error);
-                    }
-                    if(localFileTest === true) {
-                        console.log(`Testing ${userLocalFile} in ${userLocalDir}:`)
-                    }
-                    console.log(stdout);
-                })
+            const {gitlink} = args;
+            const {gitpage} = args;
+            exec(`node run.js  ${gitlink ? '--gitlink ' + gitlink : ''} ${gitpage ? '--gitpage '+ gitpage : ''}`, (error, stdout, stderr) => {
+                if(error){
+                    console.log(error);
+                }
+                if(localFileTest === true) {
+                    console.log(`Testing ${userLocalFile} in ${userLocalDir}:`)
+                }
+                console.log(stdout);
             })
-
         }
     });
 
