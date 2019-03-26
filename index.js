@@ -66,7 +66,6 @@ let localFileTest;
 let userLocalFile;
 let validTestArgument = false;
 
-const testPackageList = [];
 
 readDirectory(testLocation, (err, testPackages) => {
 
@@ -77,11 +76,9 @@ readDirectory(testLocation, (err, testPackages) => {
     }
 
     testPackages.forEach((testPackage) => {
-        testPackageList.push(testPackage);
-        validTestArgument = assessmentArg.test(testPackage);
 
-        if (validTestArgument) {
-            
+        if (assessmentArg.test(testPackage)) {
+            validTestArgument = true;
             testLocation = `${testLocation}/${testPackage}`;
             changeDirectory(testLocation);
 
@@ -107,7 +104,7 @@ readDirectory(testLocation, (err, testPackages) => {
                                 encoding: "utf8"
                             });
 
-                            let tempFile = './test/temp.js'
+                            let tempFile = './test/temp.js';
                             fs.createWriteStream(tempFile).write(userLocalFileContent.replace(/['"]?use strict['"]?/, ""));
                         } 
                     });
@@ -128,12 +125,6 @@ readDirectory(testLocation, (err, testPackages) => {
         }
     });
 
-    for(let i = 0; i < testPackageList.length; i++) {
-
-        if(assessmentArg.test(testPackageList[i])) {
-            validTestArgument = true;
-        }
-    }
     if(!validTestArgument) {
         console.log('Invalid assessment name.  Please review instructions and try again with valid assessment name');
     }
