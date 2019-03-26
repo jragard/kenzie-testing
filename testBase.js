@@ -119,7 +119,6 @@ function setDefaults(options, defaults){
 async function loadStudentFile(dir)
 {
     const {gitlink} = argv;
-    console.log(gitlink);
     let r;
     switch (true) {
         /**
@@ -228,7 +227,6 @@ async function getGitlabUrl(args) {
  * @returns {Promise<string>} - returns all code in linked file.
  */
 async function loadGitFile(url){
-    console.log(url);
     if (url.includes("github")) {
         let file = await axios.default.get(url);
         return file.data
@@ -238,7 +236,6 @@ async function loadGitFile(url){
                 'PRIVATE-TOKEN': 'YiszMsh_vtySaoLLRZLd'
             }
         });
-        console.log(file);
         return file.data;
     }
 }
