@@ -9,7 +9,7 @@ This package is used to run tests on student Javascript Assessment submissions a
 
 **THIS APPLICATION IS IN DEVELOPMENT**  - If the tests are broken or the installation doesn't work, or if you have any other problems, please open an Issue ticket here https://github.com/jragard/kenzie-testing/issues
 
-Run `npm install -g git+https://github.com/jragard/kenzie-testing`, if this fails, try adding `sudo` to the beginning of the aforementioned command.
+Run `npm install -g git+https://github.com/jragard/kenzie-testing`.  If you are using Linux, this command may fail the first time. If so, try running `sudo chown -R $USER /usr/local`, and then try the installation command again.
 
 
 # Commands
