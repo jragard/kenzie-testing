@@ -1,4 +1,4 @@
-const { TestBase } = require("../../testBase");
+const { TestBase } = require("../../TestBase");
 const { spawn } = require("child_process");
 
 let test = new TestBase(

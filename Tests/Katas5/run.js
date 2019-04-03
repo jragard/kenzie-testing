@@ -1,4 +1,4 @@
-const { TestBase } = require("../../testBase");
+const { TestBase } = require("../../TestBase");
 
 let test = new TestBase(__dirname, {
   mochaFunctions:
