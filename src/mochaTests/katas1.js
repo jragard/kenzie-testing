@@ -1,7 +1,7 @@
-const katas1 = require('./tempFileToTest.js')
-const chai = require('../../../node_modules/chai');
+const katas1 = require('./../temp/temp.js');
+const chai = require('../../node_modules/chai');
 const expect = chai.expect;
-const colors = require('../../../node_modules/mocha/lib/reporters/base').colors;
+const colors = require('../../node_modules/mocha/lib/reporters/base').colors;
 colors['pending'] = '93';
 colors['green'] = '92';
 
@@ -28,18 +28,18 @@ describe('Kata 1, Display an array with 1 - 20', function() {
 
         it(studentAnswer.slice(0)[0] === 0 ? startsEarly : edgeSuccess, function() {
             expect(studentAnswer.slice(0)[0]).to.not.eql(0);
-        })
+        });
         it(studentAnswer.slice(-1)[0] === 21 ? endsLate : edgeSuccess, function() {
             expect(studentAnswer.slice(-1)[0]).to.not.eql(21);
-        })
+        });
         it(studentAnswer.slice(-1)[0] === 19 ? endsEarly : edgeSuccess, function() {
             expect(studentAnswer.slice(-1)[0]).to.not.eql(19);
-        })    
+        });
         it(JSON.stringify(studentAnswer) === JSON.stringify(correctAnswer) ? success : incorrect, function() {
             expect(studentAnswer).to.eql(correctAnswer);
         })
     }
-})
+});
 
 describe('Kata 2, Display an array with even numbers from 2 - 20', function() {
 
@@ -48,7 +48,7 @@ describe('Kata 2, Display an array with even numbers from 2 - 20', function() {
         if(typeof katas1.evensToTwenty != 'function') {
             this.skip();
         }
-    })
+    });
 
       if(typeof katas1.evensToTwenty === 'function') {
 
