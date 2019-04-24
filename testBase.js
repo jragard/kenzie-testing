@@ -1,9 +1,21 @@
+let _ = require('./node_modules/lodash');
 const fs = require('fs');
 const axios = require('./node_modules/axios');
 const fetch = require('./node_modules/node-fetch');
 const {exec} = require('child_process');
 const {argv} = require('./node_modules/yargs');
+const Mocha = require('./node_modules/mocha');
+const TestCafe = require('./node_modules/testcafe');
 
+
+const optionsDefault ={
+    mochaTest: "test.js",
+    mochaFunctions: null,
+    mochaDom: "",
+    mochaExtra: [""],
+    testCafeTests: "testCafe.js",
+    testCafeFixture: null
+};
 
 /**
  * Builds a file to test in Mocha
@@ -11,34 +23,65 @@ const {argv} = require('./node_modules/yargs');
  * @class
  * @constructor
  * @param {string} directory - The path to the test directory.
- * @param {string} functions - a CSV list of functions to test.
- * @param {array<string>} additional - a string array with any other code to add to the students file.
+ * @param {object} options - Any other needed information to pass into the tests.
+ *
+ * @property {string} mochaTest - The name of the mocha test file, Ex. test.js
+ * @property {string} mochaFunctions - a comma separated string with all the functions to test in mocha.
+ * @property {string} mochaDom - Any html to add to the students file for mocha testing.
+ * @property {[string]} mochaExtra - a string array of any other code to add to students files before running a mocha test.
+ * @property {string} testCafeTests - The name of the testcafe test file, Ex. testCafe.js
+ * @property {string} - testCafeFixture - Title for the testcafe test.
  */
 class TestBase {
-    constructor(directory, functions, DOM = null, additional = null) {
+    constructor(directory, options) {
         this.testDirectory = `${directory}/test/`;
-        this.args = argv._[0];
-        this.DOM = DOM;
-        this.extra = additional;
-        this.functions = loadFunctions(functions);
+        this.options = setDefaults(options, optionsDefault);
     }
 
     /**
-     * Creates a tempFileToTest.js
+     * Creates a tempFileToTest.js to test in Mocha
      * @async
-     * This function find the students file, adds any needed code to the file and then writes the new testable file to the test directory.
+     * This function find the students file, adds any needed code to the file and then writes the new mocha testable file to the test directory.
      */
-    async writeTestFile(){
+    async writeStudentMochaTestFile(){
         const tempFileToTest = `${this.testDirectory}/tempFileToTest.js`;
-        let file = await loadStudentFile(this.testDirectory, this.args);
-        fs.writeFileSync(tempFileToTest, getTestFile(file, this.functions, this.DOM, this.extra), function(err) {
-           console.log(err)})
+        let file = await loadStudentFile(this.testDirectory);
+        fs.writeFileSync(tempFileToTest, getTestFile(file, this.options.mochaFunctions, this.options.mochaDom, this.options.mochaExtra), function(err) {
+           console.log(err)});
     }
 
     /**
-     * Deletes the current tempFileToTest.js in the test directory
+     * Creates the needed tests and runs testcafe tests on the students hosted web page.
+     * @async
      */
-    deleteTestFile(){
+    async runTestCafeTest(){
+        const {gitpage} = argv;
+        const tempTestCafeFile = `${this.testDirectory}/tempTestCafeFile.js`;
+        if(!gitpage)
+            return console.log("Please provide a url");
+
+        let file = getTestCafeTest(this.testDirectory, this.options.testCafeTests, this.options.testCafeFixture, gitpage);
+        fs.writeFileSync(tempTestCafeFile, file);
+        exec(`../../node_modules/.bin/testcafe chrome ${tempTestCafeFile} --colors`, (error, stdout, stderr) =>{
+            console.log(stdout || stderr);
+            exec(`rm ${tempTestCafeFile}`);
+        })
+    }
+
+    /**
+     * Creates a testable file from the students code and runs mocha testing on the file.
+     * @async
+     */
+    async runMochaTest(){
+        let mocha = new Mocha({
+            useColors: true
+        });
+        await this.writeStudentMochaTestFile();
+        mocha.addFile(`${this.testDirectory}/test.js`);
+        mocha.run()
+            .on('end', function() {
+                console.log('All done');
+            });
         exec(`rm ${this.testDirectory}/tempFileToTest.js`);
     }
 }
@@ -47,36 +90,56 @@ module.exports = {
     TestBase
 };
 
+
+
+function getTestCafeTest(dir, file, fixtureName, URL) {
+    let string = '';
+    let baseTestCafe = loadLocalFile(dir, file);
+
+    string += `fixture("${fixtureName}").page("${URL}"); \n`;
+    string += baseTestCafe;
+    return string;
+}
+
+/**
+ * Assigns default values to any of the options that were not provided.
+ * @param options
+ * @param defaults
+ */
+
+function setDefaults(options, defaults){
+    return _.defaults({}, _.clone(options), defaults);
+}
 /**
  * Return student code as string
  * @async
  * @param {string} dir - Path to test directory
- * @param {string} args - remote Git links
  * @returns {Promise<string>} - string of all code in a student file.
  */
-async function loadStudentFile(dir, args)
+async function loadStudentFile(dir)
 {
+    const {gitlink} = argv;
     let r;
     switch (true) {
         /**
          * If no additional arguments such as remote git links are provided
          * load the temp.js created in index.js
          */
-        case (args == null):
-            r = loadLocalFile(dir);
+        case (gitlink == null):
+            r = loadLocalFile(dir, 'temp.js');
             exec(`rm ${dir}/temp.js`);
             break;
 
         /**
          * If git arguments were provided load a file from a remote git.
          */
-        case (args.includes("github")):
-           let url = await getGithubUrl(args);
+        case (gitlink.includes("github")):
+           let url = await getGithubUrl(gitlink);
            r = await loadGitFile(url);
            break;
 
-        case (args.includes("gitlab")):
-            let labUrl = await getGitlabUrl(args);
+        case (gitlink.includes("gitlab")):
+            let labUrl = await getGitlabUrl(gitlink);
             r = await loadGitFile(labUrl);
             break;
 
@@ -94,9 +157,9 @@ async function loadStudentFile(dir, args)
  * @param {string} dir - file path to the local file
  * @returns {string} - returns all code from the file
  */
-function loadLocalFile(dir){
+function loadLocalFile(dir, file){
     try {
-        return fs.readFileSync(`${dir}/temp.js`, {
+        return fs.readFileSync(`${dir}/${file}`, {
             encoding: "utf8"
         });
     }
@@ -164,7 +227,6 @@ async function getGitlabUrl(args) {
  * @returns {Promise<string>} - returns all code in linked file.
  */
 async function loadGitFile(url){
-    console.log(url);
     if (url.includes("github")) {
         let file = await axios.default.get(url);
         return file.data
@@ -174,7 +236,6 @@ async function loadGitFile(url){
                 'PRIVATE-TOKEN': 'YiszMsh_vtySaoLLRZLd'
             }
         });
-        console.log(file);
         return file.data;
     }
 }
@@ -199,7 +260,7 @@ function getTestFile(file, functions, dom, extra){
         string += " \n " + extra.join(" \n ");
     }
     string += file.replace(/['"]?use strict['"]?/, "");
-    string += functions;
+    string += loadFunctions(functions);
     return string;
 }
 
@@ -216,3 +277,4 @@ function loadFunctions(functions){
     result += "}";
     return result;
 }
+

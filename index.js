@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 const fs = require('fs');
-const readDirectory = fs.readdir
-const readFile = fs.readFileSync
-const changeDirectory = process.chdir
+const readDirectory = fs.readdir;
+const readFile = fs.readFileSync;
+const changeDirectory = process.chdir;
 const { exec } = require('child_process');
 const ArgumentParser = require('argparse').ArgumentParser;
 const path = require('path');
@@ -23,6 +23,11 @@ parser.addArgument(
 parser.addArgument(
     ['-g', '--gitlink'], {
         help: 'Github or Gitlab link to assessment file(s)'
+    }
+);
+
+parser.addArgument(['-p', '--gitpage'], {
+    help: 'Gitlab Pages link, or url to hosted webpage to test.'
     }
 );
 
@@ -60,22 +65,19 @@ let localFileTest;
 let userLocalFile;
 let validTestArgument = false;
 
-const testPackageList = [];
 
 readDirectory(testLocation, (err, testPackages) => {
 
     if (err) {
-       console.log('\n------------------------------------------------\n')
+       console.log('\n------------------------------------------------\n');
        console.log(`TEST PACKAGE ERROR!  kenzie-test package may be corrupted.  Please reinstall: "npm i -g git+https://github.com/jragard/kenzie-testing"`);
        console.log('\n------------------------------------------------\n')
     }
 
     testPackages.forEach((testPackage) => {
-        testPackageList.push(testPackage);
-        validTestArgument = assessmentArg.test(testPackage);
 
-        if (validTestArgument) {
-            
+        if (assessmentArg.test(testPackage)) {
+            validTestArgument = true;
             testLocation = `${testLocation}/${testPackage}`;
             changeDirectory(testLocation);
 
@@ -101,38 +103,27 @@ readDirectory(testLocation, (err, testPackages) => {
                                 encoding: "utf8"
                             });
 
-                            let tempFile = './test/temp.js'
+                            let tempFile = './test/temp.js';
                             fs.createWriteStream(tempFile).write(userLocalFileContent.replace(/['"]?use strict['"]?/, ""));
                         } 
                     });
                 });
             }
 
-            const installPackages = exec('npm i');
-            
-            installPackages.on('exit', () => {
-                process.exit
-                const {gitlink} = args
-                exec(`node run.js ${gitlink ? gitlink : ''}`, (error, stdout, stderr) => {
-                    if(error){
-                        console.log(error);
-                    }
-                    if(localFileTest === true) {
-                        console.log(`Testing ${userLocalFile} in ${userLocalDir}:`)
-                    }
-                    console.log(stdout);
-                })
+            const {gitlink} = args;
+            const {gitpage} = args;
+            exec(`node run.js  ${gitlink ? '--gitlink ' + gitlink : ''} ${gitpage ? '--gitpage '+ gitpage : ''}`, (error, stdout, stderr) => {
+                if(error){
+                    console.log(error);
+                }
+                if(localFileTest === true) {
+                    console.log(`Testing ${userLocalFile} in ${userLocalDir}:`)
+                }
+                console.log(stdout);
             })
-
         }
     });
 
-    for(let i = 0; i < testPackageList.length; i++) {
-
-        if(assessmentArg.test(testPackageList[i])) {
-            validTestArgument = true;
-        }
-    }
     if(!validTestArgument) {
         console.log('Invalid assessment name.  Please review instructions and try again with valid assessment name');
     }
