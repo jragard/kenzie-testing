@@ -4,11 +4,7 @@
 
 1.  If you haven't already installed the kenzie-test npm package, from your terminal run `sudo npm install --global git+https://github.com/jragard/kenzie-testing`
 
-2.  To test a completed assignment from a Gitlab Project ID submission, run `kenzie-test anagrams1 -g <Project ID>`  (The student will need to submit their gitlab project ID number, and share their project with KA_SE5 Gitlab account) For example, `kenzie-test anagrams1 -g 10771115` will grab the contents of the file at https://gitlab.com/jragard/anagrams1.
-
-3. To test a completed assignment from a github link, run `kenzie-test anagrams1 -g https://github.com/jragard/anagrams1` (or whatever the submitted github link happens to be)
-
-4. To test a local file, the file and parent directory should be named according to assignment instructions (e.g. `anagrams1.js` and `anagrams1`).  Then run `kenzie-test anagrams1` (or appropriate assignment name) while in the `anagrams1` directory.
+2.  To test a completed assignment from a gitlab Pages submission, run `kenzie-test anagrams1 -p url`  (The student will need to submit their gitlab pages link, and share their project with KA_SE5 Gitlab account) For example, `kenzie-test anagrams1 -g https://notarealperson.gitlab.io/js-anagrams-1` will run various tests on the students web page.
 
 ## IMPORTANT TESTING BUG ##
 
@@ -36,12 +32,13 @@ You will need to include the `words.js` file as a script. Save it in your `anagr
 
 Remember to also add the file to your git repository.
 
-Next, you'll need a way to let the user enter some text. The following snippet of HTML defines a text field and a button:
+Next, you'll need a way to let the user enter some text and see the results. The following snippet of HTML defines a text field, a button, and a paragraph:
 
 ```html
 <div>
     <input type="text" id="input" size=40>
     <button id="findButton">Find Anagrams</button>
+    <p id="results"></p>
 </div>
 ```
 
@@ -62,6 +59,7 @@ button.onclick = function () {
     getAnagramsOf(typedText);
 }
 ```
+
 
 
 ### Detecting Anagrams  ###
