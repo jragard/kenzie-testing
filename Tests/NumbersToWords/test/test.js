@@ -8,13 +8,13 @@ colors['green'] = '92';
 describe("Numbers To Words, write a function that returns an array with all the numbers from 1 through 1000 in words", function () {
 
     it("should be a function", function () {
-        if (typeof numbersToWords.numbersToWords != 'function') {
+        if (typeof numbersToWords != 'function') {
             this.skip();
         }
     });
-    if (typeof numbersToWords.numbersToWords === 'function') {
+    if (typeof numbersToWords === 'function') {
 
-        const results = numbersToWords.numbersToWords();
+        const results = numbersToWords();
         it("Returns an array", function () {
             assert.isArray(results);
         });

@@ -4,7 +4,8 @@
     "description": "Kenzie Testing Command Line Tool",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "debug": "testcafe $NODE_DEBUG_OPTION chrome"
     },
     "bin": {
         "kenzie-test": "./index.js"
