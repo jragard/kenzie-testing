@@ -1,9 +1,8 @@
-<<<<<<< HEAD:Tests/Katas1/test/test.js
-const katas1 = require("./tempFileToTest.js");
-const chai = require("../../../node_modules/chai");
-const sinon = require("../../../node_modules/sinon");
+const katas1 = require("./../temp/temp.js");
+const chai = require("../../node_modules/chai");
+const sinon = require("../../node_modules/sinon");
 const expect = chai.expect;
-const colors = require("../../../node_modules/mocha/lib/reporters/base").colors;
+const colors = require("../../node_modules/mocha/lib/reporters/base").colors;
 colors["pending"] = "93";
 colors["green"] = "92";
 
@@ -17,81 +16,6 @@ describe("Kata 1, Display an array with 1 - 20", function() {
   it("should be a function", function() {
     if (typeof katas1.oneThroughTwenty != "function") {
       this.skip();
-=======
-const katas1 = require('./../temp/temp.js');
-const chai = require('../../node_modules/chai');
-const expect = chai.expect;
-const colors = require('../../node_modules/mocha/lib/reporters/base').colors;
-colors['pending'] = '93';
-colors['green'] = '92';
-
-const edgeSuccess = 'Edge case passed';
-const success = 'CORRECT!  Function passes all tests';
-const incorrect = 'Incorrect - Something has gone wrong';
-
-describe('Kata 1, Display an array with 1 - 20', function() {
-    
-    it("should be a function", function() {
-        if(typeof katas1.oneThroughTwenty != 'function') {
-            this.skip();
-        }
-    });
-   
-    if(typeof katas1.oneThroughTwenty === 'function') {
-
-        const studentAnswer = katas1.oneThroughTwenty();
-        const correctAnswer = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-
-        const startsEarly = 'Oops!  The array starts with 0...double check the start condition in your for loop';
-        const endsLate = 'Oops!  The array includes an extra number 21...double check the end condition in your for loop';
-        const endsEarly = 'Oops!  The array ends at 19 instead of 20...double check the end condition in your for loop';
-
-        it(studentAnswer.slice(0)[0] === 0 ? startsEarly : edgeSuccess, function() {
-            expect(studentAnswer.slice(0)[0]).to.not.eql(0);
-        });
-        it(studentAnswer.slice(-1)[0] === 21 ? endsLate : edgeSuccess, function() {
-            expect(studentAnswer.slice(-1)[0]).to.not.eql(21);
-        });
-        it(studentAnswer.slice(-1)[0] === 19 ? endsEarly : edgeSuccess, function() {
-            expect(studentAnswer.slice(-1)[0]).to.not.eql(19);
-        });
-        it(JSON.stringify(studentAnswer) === JSON.stringify(correctAnswer) ? success : incorrect, function() {
-            expect(studentAnswer).to.eql(correctAnswer);
-        })
-    }
-});
-
-describe('Kata 2, Display an array with even numbers from 2 - 20', function() {
-
-
-    it("should be a function", function() {
-        if(typeof katas1.evensToTwenty != 'function') {
-            this.skip();
-        }
-    });
-
-      if(typeof katas1.evensToTwenty === 'function') {
-
-        const studentAnswer = katas1.evensToTwenty();
-        const correctAnswer = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
-
-        const startsEarly = 'Oops!  The array starts with 0 when it should start with 2...double check the start condition in your for loop';
-        const endsEarly = 'Oops!  The array ends with 18 when it should go to 20...double check the end condition in your for loop';
-        const endsLate = 'Oops!  The array ends with 22 when it should stop at 20...double check the end condition in your for loop';
-        
-        it(studentAnswer.slice(0)[0] === 0 ? startsEarly : edgeSuccess, function() {
-            expect(studentAnswer.slice(0)[0]).to.not.eql(0);
-        })
-        it(studentAnswer.slice(-1)[0] === 1 ? endsEarly : edgeSuccess, function() {
-            expect(studentAnswer.slice(-1)[0]).to.not.eql(18);
-        })
-        it(studentAnswer.slice(-1)[0] === 2 ? endsLate : edgeSuccess, function() {
-            expect(studentAnswer.slice(-1)[0]).to.not.eql(22);
-        })
-        it(JSON.stringify(studentAnswer) === JSON.stringify(correctAnswer) ? success : incorrect, function() {
-            expect(katas1.evensToTwenty()).to.eql(correctAnswer)
-        })
->>>>>>> JW-Project-Restructure:src/mochaTests/katas1.js
     }
   });
 
