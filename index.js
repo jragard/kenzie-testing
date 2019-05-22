@@ -1,18 +1,10 @@
 #!/usr/bin/env node
+'use strict';
 
-const fs = require('fs');
-const readDirectory = fs.readdir;
-const readFile = fs.readFileSync;
-const changeDirectory = process.chdir;
-const { exec } = require('child_process');
-const ArgumentParser = require('argparse').ArgumentParser;
-const path = require('path');
-
-const parser = new ArgumentParser({
-    version: '1.0.0',
-    addHelp: true,
-    description: 'Kenzie Academy assessment testing tool'
+require('dotenv').config({
+    path: `${__dirname}/.env`
 });
+<<<<<<< HEAD
 
 parser.addArgument(
     ['assessment'], {
@@ -130,3 +122,10 @@ readDirectory(testLocation, (err, testPackages) => {
 });
 
 
+=======
+const Parser = require('./lib/utils/Parser');
+const CommandHandler = require('./lib/utils/CommandHandler');
+let args = new Parser();
+let commandHandler = new CommandHandler(args);
+commandHandler.runCommand();
+>>>>>>> JW-Project-Restructure
