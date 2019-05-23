@@ -19,7 +19,7 @@
 
     If testing functions for specific return values:  For each `describe` statement, your first test should check to see if the function exists.  If `(typeof function) != 'function'`, we will skip the rest of the tests.  This allows students to run tests on assignments that are only partially completed, without seeing a bunch of ugly fail errors for work they haven't completed yet.
 
-    Ex: 
+    Example: 
     ```
         it("should be a function", function() {
         if(typeof katas1.oneThroughTwenty != 'function') {
