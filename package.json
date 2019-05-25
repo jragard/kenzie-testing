@@ -42,6 +42,6 @@
     },
     "devDependencies": {
         "esm": "^3.0.84",
-        "testcafe": "^0.23.3"
+        "testcafe": "15.1.317922"
     }
 }
