@@ -35,18 +35,19 @@
         "fs": "0.0.1-security",
         "js": "^0.1.0",
         "jsdom": "^13.2.0",
+        "lodash": "latest",
         "mime": ">=1.4.1",
         "mocha": "^5.2.0",
         "moment": ">=2.19.3",
         "node-fetch": "^2.3.0",
-        "send": ">=0.11.1",
-        "uglify-js": ">=2.6.0",
+        "parse-json": "4.0.0",
         "selenium-webdriver": "^4.0.0-alpha.1",
+        "send": ">=0.11.1",
         "sinon": "^7.2.7",
+        "uglify-js": ">=2.6.0",
         "urijs": "^1.19.1",
         "useragent": ">=2.1.13",
-        "yargs": "^12.0.5",
-        "lodash": "latest"
+        "yargs": "^12.0.5"
     },
     "devDependencies": {
         "esm": "^3.0.84",
