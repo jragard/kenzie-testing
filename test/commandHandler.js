@@ -8,10 +8,9 @@ const validCommandArgs1 = {
 };
 const validCommandArgs2 = {
   command: "grade",
-  subCommand: "katas2",
+  subCommand: "katas-1",
   options: { filePath: null, gitRepo: null, webpageUrl: null }
 };
-const workingTests = ["anagrams1", "katas1", "katas2"];
 
 describe("isCommand", () => {
   describe("should check that the command argument is a valid command", () => {
@@ -59,3 +58,19 @@ describe("getSubCommand", () => {
   });
 });
 
+describe("getFullCommand", () => {
+  describe("Should return the function for the given command", () => {
+    it("Should return the function for katas1 using name", async () => {
+      const CmdHndl = new CommandHandler(validCommandArgs1);
+      const command = await CmdHndl.getFullCommand();
+      expect([command.help.name, ...command.help.aliases]).to.include("katas1");
+    });
+    it("Should return the function for katas-1 using help.aliases", async () => {
+      const CmdHndl = new CommandHandler(validCommandArgs2);
+      const command = await CmdHndl.getFullCommand();
+      expect([command.help.name, ...command.help.aliases]).to.include(
+        "katas-1"
+      );
+    });
+  });
+});
