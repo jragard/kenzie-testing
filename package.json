@@ -23,7 +23,7 @@
     "dependencies": {
         "ansi-256-colors": "^1.1.0",
         "argparse": "^1.0.10",
-        "axios": "^0.18.0",
+        "axios": "^0.21.1",
         "chai": "^4.2.0",
         "chai-spies": "^1.0.0",
         "child_process": "^1.0.2",
