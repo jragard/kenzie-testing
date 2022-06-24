@@ -34,7 +34,7 @@
         "js": "^0.1.0",
         "jsdom": "^13.2.0",
         "mocha": "^5.2.0",
-        "node-fetch": "^2.3.0",
+        "node-fetch": "^2.6.7",
         "selenium-webdriver": "^4.0.0-alpha.1",
         "sinon": "^7.2.7",
         "testcafe": "1.1.5-alpha.1",
